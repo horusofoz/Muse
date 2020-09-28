@@ -7,20 +7,29 @@ body, html {
   color: #f0f0f0;
 }
 
-#container {
+#div_page_container {
   margin: 0 1em;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100vh;
 }
 
 #div_content {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+}
+
+
+#div_active_content {
+  display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-#output_container_div {
+#div_container_output {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -28,7 +37,7 @@ body, html {
   overflow: auto;
 }
 
-#output_field {
+#div_output_field {
   padding: .5em 1.5em;
   height: 100%;
   overflow: auto;
@@ -36,7 +45,7 @@ body, html {
   border: #f0f0f0 .2em solid;
 }
 
-#output_control_div {
+#div_output_control {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -91,7 +100,7 @@ body, html {
   color: #f0f0f0;
 }
 
-.sidebar_omen {
+.div_sidebar {
   width: 20%;
   padding-right: 1em;
 }
@@ -112,7 +121,7 @@ body, html {
     font-size: x-large;
   }
 
-  #output_field {
+  #div_output_field {
     font-size: large;
   }
 }

@@ -35,7 +35,7 @@ var button_copy = document.getElementById("copy_output");
 var button_clear = document.getElementById("clear_output");
 var input_oracle_question = document.getElementById("input_oracle_question");
 var input_oracle_likelihood = document.getElementById("input_oracle_likelihood");
-var output_field = document.getElementById("output_field");
+var div_output_field = document.getElementById("div_output_field");
 
 button_ask_oracle.onclick = function () {
     askOracle();
@@ -94,8 +94,8 @@ function setOracleOutput(oracleResult, question) {
 
     var result_node = document.createElement('p');
     result_node.innerHTML = oracleOutput;
-    output_field.appendChild(result_node);
-    output_field.scrollTop = output_field.scrollHeight;
+    div_output_field.appendChild(result_node);
+    div_output_field.scrollTop = div_output_field.scrollHeight;
 
 }
 
@@ -136,7 +136,7 @@ function resetOracleInputs() {
 
 function copyOutput() {
     var range = document.createRange();
-    range.selectNode(output_field);
+    range.selectNode(div_output_field);
     window.getSelection().removeAllRanges(); // clear current selection
     window.getSelection().addRange(range); // to select text
     document.execCommand("copy");
@@ -144,7 +144,7 @@ function copyOutput() {
 }
 
 function clearOutput() {
-    output_field.innerHTML = "";
+    div_output_field.innerHTML = "";
 }
 
 function showFeatureDiv(divName) {
