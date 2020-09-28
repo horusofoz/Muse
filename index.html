@@ -8,7 +8,6 @@
   <title>Muse</title>
   <meta name="description" content="Muse">
   <meta name="author" content="Jeff Smith">
-
   <link rel="stylesheet" href="styles/styles.css">
 
 </head>
@@ -17,32 +16,34 @@
   <div id="div_page_container">
 
     <div id="div_top_menu">
-      <!--<button class="button" id="button_menu_journal"><img class="button_image" src="images/quill.png" alt="quill image"><span class="menu text"><br />Journal</span></button>
-      <button class="button" id="button_menu_omen"><img class="button_image" src="images/eye.png" alt="eye image"><span class="menu text"><br />Omen</span></button>
-      <button class="button" id="button_menu_dungeon"><img class="button_image" src="images/torch.png" alt="torch image"><span class="menu text"><br />Dungeon</span></button>
-      <button class="button" id="button_menu_about"><img class="button_image" src="images/help.png" alt="help image"><span class="menu text"><br />About</span></button>-->
-
-      <button class="button" id="button_menu_journal"><span class="menu text">Journal</span></button>
-      <button class="button" id="button_menu_omen"><span class="menu text">Omen</span></button>
-      <button class="button" id="button_menu_dungeon"><span class="menu text">Dungeon</span></button>
-      <button class="button" id="button_menu_about"><span class="menu text">About</span></button>
+      <button class="button" id="button_menu_journal"><img class="button_image" src="images/quill.png"
+          alt="quill image"><span class="menu text"><br />Journal</span></button>
+      <button class="button" id="button_menu_omen"><img class="button_image" src="images/eye.png" alt="eye image"><span
+          class="menu text"><br />Omen</span></button>
+      <button class="button" id="button_menu_dungeon"><img class="button_image" src="images/torch.png"
+          alt="torch image"><span class="menu text"><br />Dungeon</span></button>
+      <button class="button" id="button_menu_about"><img class="button_image" src="images/help.png"
+          alt="help image"><span class="menu text"><br />About</span></button>
     </div>
 
     <div id="div_content">
 
       <div class="div_active_sidebar" id="div_active_sidebar">
-        <div id="div_sidebar_omen">
-          <button class="button" id="button_feature_oracle">Oracle</button>
-          <button class="button" id="button_feature_portent">Portent</button>
-          <button class="button" id="button_feature_event">Event</button>
+        <div id="div_sidebar_journal">
+          <button class="button" id="button_feature_journal_append">Append</button>
         </div>
+
+
       </div>
 
 
       <div id="div_active_content">
 
         <div id="div_active_feature">
-          <div id="placeholder"></div>
+          <div id="div_feature_append_journal">
+            <textarea id="input_journal_textarea" name="input_journal_textarea"
+              placeholder="Journal entry goes here..."></textarea>
+          </div>
         </div>
 
         <div id="div_container_output">
@@ -70,7 +71,7 @@
         </select>
       </div>
       <div class="div_feature_row">
-        <input class="xlarge input_text_area" type="text" id="input_oracle_question" name="question">
+        <input class="input_text_area" type="text" id="input_oracle_question" name="question">
       </div>
     </div>
 
@@ -86,13 +87,15 @@
       </div>
     </div>
 
-    <div id="div_feature_append_journal">
-      <textarea id="input_journal_textarea" name="input_journal_textarea" placeholder="Journal entry goes here..."></textarea>
-    </div>
-
   </div>
 
   <div id="div_hidden_sidebars" class="hidden">
+    <div id="div_sidebar_omen">
+      <button class="button" id="button_feature_oracle">Oracle</button>
+      <button class="button" id="button_feature_portent">Portent</button>
+      <button class="button" id="button_feature_event">Event</button>
+    </div>
+
     <div id="div_sidebar_dungeon">
       <button class="button" id="button_feature_dungeon_design">Design</button>
       <button class="button" id="button_feature_room">Room</button>
@@ -100,17 +103,8 @@
       <button class="button" id="button_feature_door">Door</button>
     </div>
 
-    <div id="div_sidebar_journal">
-      <button class="button" id="button_feature_journal_append">Append</button>
-    </div>
+
   </div>
-
-
-
-
-
-
-
 
   <script src="scripts/scripts.js"></script>
 </body>

@@ -175,10 +175,10 @@ function resetOracleInputs() {
 function copyOutput() {
     var range = document.createRange();
     range.selectNode(div_output_field);
-    window.getSelection().removeAllRanges(); // clear current selection
-    window.getSelection().addRange(range); // to select text
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
     document.execCommand("copy");
-    window.getSelection().removeAllRanges();// to deselect
+    window.getSelection().removeAllRanges();
 }
 
 function clearOutput() {
@@ -206,8 +206,9 @@ function showFeatureSetSidebar(divName) {
 function appendJournalTextToLog() {
     var journalText = input_journal_textarea.value;
     console.log(journalText);
-    journalText =  journalText.replace(/(?:\r\n|\r|\n)/g, '<br>')
+    journalText =  journalText.replace(/(?:\r\n|\r|\n)/g, '<br>');
     var journalTextHTML = document.createElement("p");
-    journalTextHTML.innerHTML = journalText
-    div_output_field.appendChild(journalTextHTML)   ;
+    journalTextHTML.innerHTML = journalText;
+    div_output_field.appendChild(journalTextHTML);
+    input_journal_textarea.value = "";
 }

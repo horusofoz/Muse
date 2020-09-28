@@ -12,7 +12,7 @@ body, html {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /*max-width: 1440px;*/
+  max-width: 1440px;
 }
 
 #div_content {
@@ -22,10 +22,6 @@ body, html {
   flex: 1;
   overflow: auto;
 }
-
-
-
-
 
 #div_active_content {
   display: flex;
@@ -77,24 +73,21 @@ body, html {
   height: 5em;
 }
 
-.xlarge {
-  font-size: x-large;
-}
-
-.input_text_area {
-  border:  #f0f0f0 .2em solid;
+.input_text_area, textarea {
+  border: #f0f0f0 .2em solid;
   width: 100%;
+  font-size: large;
 }
 
 .selector {
   padding: 0.25em;
   width: 100%;
-  border:  #f0f0f0 .2em solid;
+  border: #f0f0f0 .2em solid;
   text-align: center;
   font-size: large;
   background-color: black;
   color: #f0f0f0;
-  font-family: 'Roboto Condensed',Helvetica,sans-serif;
+  font-family: 'Roboto Condensed', Helvetica, sans-serif;
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -108,17 +101,15 @@ body, html {
   width: 20%;
 }
 
-.button_active {
-  background-color: #b0b0b0;
-  color: black;
-  
-}
-
 .hidden {
   display: none;
 }
 
 #div_top_menu {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
 }
@@ -140,14 +131,4 @@ body, html {
   -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
-}
-
-@media (max-width: 1024px) {
-  .button {
-    font-size: x-large;
-  }
-
-  #div_output_field {
-    font-size: large;
-  }
 }
