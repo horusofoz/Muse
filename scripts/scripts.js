@@ -19,15 +19,38 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-var button_oracle = document.getElementById("button_oracle");
+var button_ask_oracle = document.getElementById("button_ask_oracle");
+var button_feature_oracle = document.getElementById("button_feature_oracle");
+var button_feature_portent = document.getElementById("button_feature_portent");
+var button_feature_event = document.getElementById("button_feature_event");
+
+var div_active_feature = document.getElementById("div_active_feature");
+var div_hidden_features = document.getElementById("div_hidden_features");
+
+var feature_oracle = document.getElementById("feature_oracle");
+var feature_portent = document.getElementById("feature_portent");
+var feature_event = document.getElementById("feature_event");
+
 var button_copy = document.getElementById("copy_output");
 var button_clear = document.getElementById("clear_output");
 var input_question = document.getElementById("input_question");
 var input_oracle_likelihood = document.getElementById("input_oracle_likelihood");
 var output_field = document.getElementById("output_field");
 
-button_oracle.onclick = function () {
+button_ask_oracle.onclick = function () {
     askOracle();
+}
+
+button_feature_oracle.onclick = function() {
+    showFeatureDiv(feature_oracle);
+}
+
+button_feature_portent.onclick = function() {
+    showFeatureDiv(feature_portent);
+}
+
+button_feature_event.onclick = function() {
+    showFeatureDiv(feature_event);
 }
 
 button_copy.onclick = function() {
@@ -118,3 +141,11 @@ function clearOutput() {
     output_field.innerHTML = "";
 }
 
+function showFeatureDiv(divName) {
+    
+    // move active feature to div_hidden_features
+    div_hidden_features.appendChild(div_active_feature.firstElementChild);
+
+    // move selected feature to div_active_feature
+    div_active_feature.appendChild(divName);
+}

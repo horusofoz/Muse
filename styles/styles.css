@@ -14,7 +14,7 @@ body, html {
   height: 97vh;
 }
 
-#content_div {
+#div_content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -42,13 +42,13 @@ body, html {
   justify-content: stretch;
 }
 
-.input_container_div {
+#div_active_feature {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
 }
 
-.input_row_div {
+.div_feature_row {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -102,6 +102,10 @@ body, html {
   
 }
 
-@media (max-width: 1024px) {
+.hidden {
+  display: none;
+}
+
+@media (max-width: 800px) {
   
 }

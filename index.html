@@ -16,33 +16,19 @@
 <body>
   <div id="container">
 
-
     <div class="sidebar_omen">
-      <button class="button">Oracle</button>
-      <button class="button">Portent</button>
-      <button class="button">Event</button>
+      <button class="button" id="button_feature_oracle">Oracle</button>
+      <button class="button" id="button_feature_portent">Portent</button>
+      <button class="button" id="button_feature_event">Event</button>
     </div>
 
+    
 
-    <div id="content_div">
-
-
-      <div class="input_container_div">
+    <div id="div_content">
 
 
-        <div id="oracle_input">
-          <div class="input_row_div" id="oracle_input">
-            <button class="button" id="button_oracle">Ask</button>
-            <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
-              <option value="likely">Likely</option>
-              <option value="possible" selected>Possible</option>
-              <option value="unlikely">Unlikely</option>
-            </select>
-          </div>
-          <div class="input_row_div" id="oracle_input">
-            <input class="xlarge input_text_area" type="text" id="input_question" name="question">
-          </div>
-        </div>
+      <div id="div_active_feature">
+        <div id="placeholder"></div>
       </div>
 
       <div id="output_container_div">
@@ -55,14 +41,47 @@
 
     </div>
 
+  </div>
 
+  <div id="div_hidden_features" class="hidden">
 
+    <div id="feature_oracle">
+      <div class="div_feature_row">
+        <button class="button" id="button_ask_oracle">Ask</button>
+        <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
+          <option value="likely">Likely</option>
+          <option value="possible" selected>Possible</option>
+          <option value="unlikely">Unlikely</option>
+        </select>
+      </div>
+      <div class="div_feature_row">
+        <input class="xlarge input_text_area" type="text" id="input_question" name="question">
+      </div>
+    </div>
 
+    <div id="feature_portent">
+      <div class="div_feature_row">
+        <button class="button" id="button_get_portent">Get</button>
+      </div>
+    </div>
+
+    <div id="feature_event">
+      <div class="div_feature_row">
+        <button class="button" id="button_get_event">Get</button>
+      </div>
+    </div>
 
   </div>
 
-
-
+<div id="div_hidden_sidebars" class="hidden">
+  <div class="sidebar_dungeon">
+    <button class="button" id="button_feature_dungeon_design">Design</button>
+    <button class="button" id="button_feature_room">Room</button>
+    <button class="button" id="button_feature_passage">Passage</button>
+    <button class="button" id="button_feature_door">Door</button>
+  </div>
+</div>
+  
 
 
 
