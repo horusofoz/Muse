@@ -34,17 +34,19 @@ var button_feature_journal_append = document.getElementById("button_feature_jour
 
 var div_active_feature = document.getElementById("div_active_feature");
 var div_hidden_features = document.getElementById("div_hidden_features");
-
 var div_active_sidebar = document.getElementById("div_active_sidebar");
 var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
 
 var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
 var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
 var div_sidebar_journal = document.getElementById("div_sidebar_journal");
+var div_sidebar_about = document.getElementById("div_sidebar_about")
 
 var div_feature_question = document.getElementById("div_feature_question");
-var feature_portent = document.getElementById("div_feature_portent");
-var feature_event = document.getElementById("div_feature_event");
+var div_feature_portent = document.getElementById("div_feature_portent");
+var div_feature_event = document.getElementById("div_feature_event");
+
+var div_feature_about_app = document.getElementById("div_feature_about_app");
 
 var button_copy = document.getElementById("button_copy_output");
 var button_clear = document.getElementById("button_clear_output");
@@ -53,6 +55,8 @@ var input_question_likelihood = document.getElementById("input_question_likeliho
 var div_output_field = document.getElementById("div_output_field");
 
 var input_journal_textarea = document.getElementById("input_journal_textarea");
+
+var button_feature_about_app = document.getElementById("button_feature_about_app");
 
 
 
@@ -69,6 +73,13 @@ button_menu_dungeon.onclick = function() {
     showFeatureSetSidebar(div_sidebar_dungeon);
 };
 
+button_menu_about.onclick = function() {
+    showFeatureSetSidebar(div_sidebar_about);
+}
+
+button_feature_about_app.onclick = function() {
+    showFeatureDiv(div_feature_about_app);
+}
 
 
 button_ask_question.onclick = function () {

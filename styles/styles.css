@@ -13,7 +13,7 @@ body, html {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-width: 1440px;
+  max-width: 1080px;
 }
 
 #div_content {
@@ -132,6 +132,11 @@ body, html {
   -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
+}
+
+.div_feature_about {
+  height: 50%;
+  padding: 1em;
 }
 
 @media (max-width: 1024px) {
