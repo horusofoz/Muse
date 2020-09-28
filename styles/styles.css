@@ -8,10 +8,11 @@ body, html {
 }
 
 #div_page_container {
-  margin: 0 1em;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /*max-width: 1440px;*/
 }
 
 #div_content {
@@ -21,6 +22,9 @@ body, html {
   flex: 1;
   overflow: auto;
 }
+
+
+
 
 
 #div_active_content {
@@ -70,7 +74,7 @@ body, html {
   padding: .25em;
   background-color: black;
   color: #f0f0f0;
-  min-height: 3em;
+  height: 5em;
 }
 
 .xlarge {
@@ -100,9 +104,8 @@ body, html {
   color: #f0f0f0;
 }
 
-.div_sidebar {
+.div_active_sidebar {
   width: 20%;
-  padding-right: 1em;
 }
 
 .button_active {
@@ -115,9 +118,32 @@ body, html {
   display: none;
 }
 
+#div_top_menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.button_image {
+  max-height: 2em;
+}
+
+#input_journal_textarea {
+  width: 95%;
+  background-color: black;
+  color: #f0f0f0;
+  height: 10em;
+  border: none;
+  padding: 1em;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+}
+
 @media (max-width: 1024px) {
   .button {
-    min-height: 5em;
     font-size: x-large;
   }
 

@@ -16,14 +16,22 @@
 <body>
   <div id="div_page_container">
 
-    <div class="div_top_menu">
-      test
+    <div id="div_top_menu">
+      <!--<button class="button" id="button_menu_journal"><img class="button_image" src="images/quill.png" alt="quill image"><span class="menu text"><br />Journal</span></button>
+      <button class="button" id="button_menu_omen"><img class="button_image" src="images/eye.png" alt="eye image"><span class="menu text"><br />Omen</span></button>
+      <button class="button" id="button_menu_dungeon"><img class="button_image" src="images/torch.png" alt="torch image"><span class="menu text"><br />Dungeon</span></button>
+      <button class="button" id="button_menu_about"><img class="button_image" src="images/help.png" alt="help image"><span class="menu text"><br />About</span></button>-->
+
+      <button class="button" id="button_menu_journal"><span class="menu text">Journal</span></button>
+      <button class="button" id="button_menu_omen"><span class="menu text">Omen</span></button>
+      <button class="button" id="button_menu_dungeon"><span class="menu text">Dungeon</span></button>
+      <button class="button" id="button_menu_about"><span class="menu text">About</span></button>
     </div>
 
     <div id="div_content">
 
-      <div class="div_sidebar">
-        <div class="sidebar_omen">
+      <div class="div_active_sidebar" id="div_active_sidebar">
+        <div id="div_sidebar_omen">
           <button class="button" id="button_feature_oracle">Oracle</button>
           <button class="button" id="button_feature_portent">Portent</button>
           <button class="button" id="button_feature_event">Event</button>
@@ -33,7 +41,6 @@
 
       <div id="div_active_content">
 
-
         <div id="div_active_feature">
           <div id="placeholder"></div>
         </div>
@@ -41,8 +48,8 @@
         <div id="div_container_output">
           <div id="div_output_field"></div>
           <div id="div_output_control">
-            <button class="button" id="copy_output">Copy</button>
-            <button class="button" id="clear_output">Clear</button>
+            <button class="button" id="button_copy_output">Copy</button>
+            <button class="button" id="button_clear_output">Clear</button>
           </div>
         </div>
 
@@ -53,7 +60,7 @@
 
   <div id="div_hidden_features" class="hidden">
 
-    <div id="feature_oracle">
+    <div id="div_feature_oracle">
       <div class="div_feature_row">
         <button class="button" id="button_ask_oracle">Ask</button>
         <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
@@ -67,26 +74,34 @@
       </div>
     </div>
 
-    <div id="feature_portent">
+    <div id="div_feature_portent">
       <div class="div_feature_row">
         <button class="button" id="button_get_portent">Get</button>
       </div>
     </div>
 
-    <div id="feature_event">
+    <div id="div_feature_event">
       <div class="div_feature_row">
         <button class="button" id="button_get_event">Get</button>
       </div>
     </div>
 
+    <div id="div_feature_append_journal">
+      <textarea id="input_journal_textarea" name="input_journal_textarea" placeholder="Journal entry goes here..."></textarea>
+    </div>
+
   </div>
 
   <div id="div_hidden_sidebars" class="hidden">
-    <div class="sidebar_dungeon">
+    <div id="div_sidebar_dungeon">
       <button class="button" id="button_feature_dungeon_design">Design</button>
       <button class="button" id="button_feature_room">Room</button>
       <button class="button" id="button_feature_passage">Passage</button>
       <button class="button" id="button_feature_door">Door</button>
+    </div>
+
+    <div id="div_sidebar_journal">
+      <button class="button" id="button_feature_journal_append">Append</button>
     </div>
   </div>
 
