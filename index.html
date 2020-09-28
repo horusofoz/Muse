@@ -18,8 +18,8 @@
     <div id="div_top_menu">
       <button class="button" id="button_menu_journal"><img class="button_image" src="images/quill.png"
           alt="quill image"><span class="menu text"><br />Journal</span></button>
-      <button class="button" id="button_menu_oracle"><img class="button_image" src="images/eye.png" alt="eye image"><span
-          class="menu text"><br />Oracle</span></button>
+      <button class="button" id="button_menu_oracle"><img class="button_image" src="images/eye.png"
+          alt="eye image"><span class="menu text"><br />Oracle</span></button>
       <button class="button" id="button_menu_dungeon"><img class="button_image" src="images/torch.png"
           alt="torch image"><span class="menu text"><br />Dungeon</span></button>
       <button class="button" id="button_menu_about"><img class="button_image" src="images/help.png"
@@ -30,7 +30,8 @@
 
       <div class="div_active_sidebar" id="div_active_sidebar">
         <div id="div_sidebar_journal">
-          <button class="button" id="button_feature_journal_append">Append</button>
+          <button class="button" id="button_feature_journal_write">Write</button>
+          <button class="button" id="button_feature_journal_read">Read</button>
         </div>
 
 
@@ -40,8 +41,14 @@
       <div id="div_active_content">
 
         <div id="div_active_feature">
-          <div id="div_feature_append_journal">
-            <textarea class="input_text_area" id="input_journal_textarea" name="input_journal_textarea" placeholder="Journal entry goes here..."></textarea>
+          <div id="div_feature_write_journal">
+            <div class="div_feature_row">
+              <button class="button" id="button_journal_append">Append</button>
+              <button class="button" id="button_journal_clear">Clear</button>
+            </div>
+            <div class="div_feature_row">
+              <textarea class="input_text_area" id="input_journal_textarea" name="input_journal_textarea" placeholder="Journal entry goes here..."></textarea>
+            </div>
           </div>
         </div>
 
@@ -59,6 +66,9 @@
   </div>
 
   <div id="div_hidden_features" class="hidden">
+
+    <div id="div_feature_journal_read"> <!--Empty by design to maximise log/journal reading space-->
+    </div>
 
     <div id="div_feature_question">
       <div class="div_feature_row">
@@ -88,9 +98,12 @@
 
     <div id="div_feature_about_app">
       <div class="div_feature_about">
-        <p>Muse (final name pending) is my attempt to combine the various tools I use for solo tabletop roleplaying and for when I GM.</p>
+        <p>Muse (final name pending) is my attempt to combine the various tools I use for solo tabletop roleplaying and
+          for when I GM.</p>
         <p>The interface I've kept minimal to make it easy to use and maintain.</p>
-        <p>The log, shown below, is not stored in the app. It's designed to be copied out into whatever word processing software you use, on desktop or mobile. It doesn't provide rich text formatting as the coding around that gets a lot more complicated, especially for consistent experience between desktop and mobile devices.</p>
+        <p>The log, shown below, is not stored in the app. It's designed to be copied out into whatever word processing
+          software you use, on desktop or mobile. It doesn't provide rich text formatting as the coding around that gets
+          a lot more complicated, especially for consistent experience between desktop and mobile devices.</p>
       </div>
     </div>
 
