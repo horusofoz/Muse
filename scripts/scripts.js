@@ -108,9 +108,6 @@ button_clear.onclick = function () {
 function askOracle() {
 
     var question = input_oracle_question.value;
-    /*if (question === "") {
-        return;
-    }*/
     var oracleResult = getOracleResult();
     setOracleOutput(oracleResult, question);
     resetOracleInputs();
@@ -120,7 +117,8 @@ function askOracle() {
 function setOracleOutput(oracleResult, question) {
 
     var oracleOutput = question;
-    oracleOutput += "<br />Likelihood: " + oracleResult.likelihood;
+    oracleOutput += (question === "") ? "" : "<br />";
+    oracleOutput += "Likelihood: " + oracleResult.likelihood;
     oracleOutput += "<br />Roll: " + oracleResult.firstRoll;
 
     if (oracleResult.likelihood !== "50/50") {
