@@ -206,6 +206,8 @@ function showFeatureSetSidebar(divName) {
 function appendJournalTextToLog() {
     var journalText = input_journal_textarea.value;
     console.log(journalText);
-
-    div_output_field.appendChild(journalText);
+    journalText =  journalText.replace(/(?:\r\n|\r|\n)/g, '<br>')
+    var journalTextHTML = document.createElement("p");
+    journalTextHTML.innerHTML = journalText
+    div_output_field.appendChild(journalTextHTML)   ;
 }
