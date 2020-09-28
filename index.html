@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Muse</title>
+  <meta name="description" content="Muse">
+  <meta name="author" content="Jeff Smith">
+
+  <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+  <div id="container">
+
+
+    <div class="sidebar_oracle">
+      <button class="button button_active">Oracle</button>
+      <button class="button">Portent</button>
+      <button class="button">Event</button>
+    </div>
+
+
+    <div id="content_div">
+
+
+      <div class="input_container_div">
+
+
+        <div class="input_buttons_div">
+          <button class="button" id="button_oracle">Ask</button>
+          <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
+            <option value="likely">Likely</option>
+            <option value="possible" selected>Possible</option>
+            <option value="unlikely">Unlikely</option>
+          </select>
+        </div>
+        
+        <input class="xlarge" type="text" id="input_question" name="question">
+
+
+      </div>
+
+
+      <div id="output_container_div">
+        <div id="output_field"></div>
+        <div id="output_control_div">
+          <button class="button" id="copy_output">Copy</button>
+          <button class="button" id="clear_output">Clear</button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+  <script src="scripts/scripts.js"></script>
+</body>
+
+</html>
