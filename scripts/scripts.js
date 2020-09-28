@@ -114,7 +114,6 @@ function askOracle() {
     var oracleResult = getOracleResult();
     setOracleOutput(oracleResult, question);
     resetOracleInputs();
-    input_oracle_question.focus();
     return;
 }
 
@@ -124,7 +123,7 @@ function setOracleOutput(oracleResult, question) {
     oracleOutput += "<br />Likelihood: " + oracleResult.likelihood;
     oracleOutput += "<br />Roll: " + oracleResult.firstRoll;
 
-    if (oracleResult.likelihood !== "Possible") {
+    if (oracleResult.likelihood !== "50/50") {
         oracleOutput += " & " + oracleResult.secondRoll;
     }
 
@@ -169,7 +168,7 @@ function getOracleResult() {
 
 function resetOracleInputs() {
     input_oracle_question.value = "";
-    input_oracle_likelihood.value = "possible";
+    input_oracle_likelihood.value = "50/50";
 }
 
 function copyOutput() {
@@ -211,4 +210,5 @@ function appendJournalTextToLog() {
     journalTextHTML.innerHTML = journalText;
     div_output_field.appendChild(journalTextHTML);
     input_journal_textarea.value = "";
+    div_output_field.scrollTop = div_output_field.scrollHeight;
 }
