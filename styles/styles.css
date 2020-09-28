@@ -48,7 +48,7 @@ body, html {
   justify-content: stretch;
 }
 
-.input_buttons_div {
+.input_row_div {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -68,8 +68,9 @@ body, html {
   font-size: x-large;
 }
 
-#input_question {
+.input_text_area {
   border:  #f0f0f0 .2em solid;
+  width: 100%;
 }
 
 .selector {
@@ -90,7 +91,7 @@ body, html {
   color: #f0f0f0;
 }
 
-.sidebar_oracle {
+.sidebar_omen {
   width: 20%;
   padding-right: 1em;
 }

@@ -17,8 +17,8 @@
   <div id="container">
 
 
-    <div class="sidebar_oracle">
-      <button class="button button_active">Oracle</button>
+    <div class="sidebar_omen">
+      <button class="button">Oracle</button>
       <button class="button">Portent</button>
       <button class="button">Event</button>
     </div>
@@ -30,20 +30,20 @@
       <div class="input_container_div">
 
 
-        <div class="input_buttons_div">
-          <button class="button" id="button_oracle">Ask</button>
-          <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
-            <option value="likely">Likely</option>
-            <option value="possible" selected>Possible</option>
-            <option value="unlikely">Unlikely</option>
-          </select>
+        <div id="oracle_input">
+          <div class="input_row_div" id="oracle_input">
+            <button class="button" id="button_oracle">Ask</button>
+            <select name="input_oracle_likelihood" id="input_oracle_likelihood" class="selector">
+              <option value="likely">Likely</option>
+              <option value="possible" selected>Possible</option>
+              <option value="unlikely">Unlikely</option>
+            </select>
+          </div>
+          <div class="input_row_div" id="oracle_input">
+            <input class="xlarge input_text_area" type="text" id="input_question" name="question">
+          </div>
         </div>
-        
-        <input class="xlarge" type="text" id="input_question" name="question">
-
-
       </div>
-
 
       <div id="output_container_div">
         <div id="output_field"></div>
@@ -53,11 +53,22 @@
         </div>
       </div>
 
-
     </div>
 
 
+
+
+
   </div>
+
+
+
+
+
+
+
+
+
 
   <script src="scripts/scripts.js"></script>
 </body>
