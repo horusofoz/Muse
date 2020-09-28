@@ -1,4 +1,4 @@
-const oracle_table = {
+const question_table = {
     1: "Extreme No",
     2: "No",
     3: "No",
@@ -11,7 +11,7 @@ const oracle_table = {
     10: "Extreme Yes"
 };
 
-const oracle_table_count = Object.keys(oracle_table).length;
+const question_table_count = Object.keys(question_table).length;
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -20,16 +20,16 @@ function getRandomInt(min, max) {
 }
 
 var button_menu_journal = document.getElementById("button_menu_journal");
-var button_menu_omen = document.getElementById("button_menu_omen");
+var button_menu_oracle = document.getElementById("button_menu_oracle");
 var button_menu_dungeon = document.getElementById("button_menu_dungeon");
 var button_menu_about = document.getElementById("button_menu_about");
 
-var button_feature_oracle = document.getElementById("button_feature_oracle");
+var button_feature_question = document.getElementById("button_feature_question");
 var button_feature_portent = document.getElementById("button_feature_portent");
 var button_feature_event = document.getElementById("button_feature_event");
 var div_feature_append_journal = document.getElementById("div_feature_append_journal");
 
-var button_ask_oracle = document.getElementById("button_ask_oracle");
+var button_ask_question = document.getElementById("button_ask_question");
 var button_feature_journal_append = document.getElementById("button_feature_journal_append");
 
 var div_active_feature = document.getElementById("div_active_feature");
@@ -38,18 +38,18 @@ var div_hidden_features = document.getElementById("div_hidden_features");
 var div_active_sidebar = document.getElementById("div_active_sidebar");
 var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
 
-var div_sidebar_omen = document.getElementById("div_sidebar_omen");
+var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
 var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
 var div_sidebar_journal = document.getElementById("div_sidebar_journal");
 
-var div_feature_oracle = document.getElementById("div_feature_oracle");
+var div_feature_question = document.getElementById("div_feature_question");
 var feature_portent = document.getElementById("div_feature_portent");
 var feature_event = document.getElementById("div_feature_event");
 
 var button_copy = document.getElementById("button_copy_output");
 var button_clear = document.getElementById("button_clear_output");
-var input_oracle_question = document.getElementById("input_oracle_question");
-var input_oracle_likelihood = document.getElementById("input_oracle_likelihood");
+var input_question = document.getElementById("input_question");
+var input_question_likelihood = document.getElementById("input_question_likelihood");
 var div_output_field = document.getElementById("div_output_field");
 
 var input_journal_textarea = document.getElementById("input_journal_textarea");
@@ -61,8 +61,8 @@ button_menu_journal.onclick = function() {
     showFeatureDiv(div_feature_append_journal);
 };
 
-button_menu_omen.onclick = function() {
-    showFeatureSetSidebar(div_sidebar_omen);
+button_menu_oracle.onclick = function() {
+    showFeatureSetSidebar(div_sidebar_oracle);
 };
 
 button_menu_dungeon.onclick = function() {
@@ -71,18 +71,18 @@ button_menu_dungeon.onclick = function() {
 
 
 
-button_ask_oracle.onclick = function () {
-    askOracle();
+button_ask_question.onclick = function () {
+    askquestion();
 };
 
-input_oracle_question.addEventListener("keydown", function (event) {
+input_question.addEventListener("keydown", function (event) {
     if (event.key === 'Enter') {
-        askOracle();
+        askquestion();
     }
 });
 
-button_feature_oracle.onclick = function () {
-    showFeatureDiv(div_feature_oracle);
+button_feature_question.onclick = function () {
+    showFeatureDiv(div_feature_question);
 };
 
 button_feature_portent.onclick = function () {
@@ -105,44 +105,44 @@ button_clear.onclick = function () {
     clearOutput();
 };
 
-function askOracle() {
+function askquestion() {
 
-    var question = input_oracle_question.value;
-    var oracleResult = getOracleResult();
-    setOracleOutput(oracleResult, question);
-    resetOracleInputs();
+    var question = input_question.value;
+    var questionResult = getquestionResult();
+    setquestionOutput(questionResult, question);
+    resetquestionInputs();
     return;
 }
 
-function setOracleOutput(oracleResult, question) {
+function setquestionOutput(questionResult, question) {
 
-    var oracleOutput = question;
-    oracleOutput += (question === "") ? "" : "<br />";
-    oracleOutput += "Likelihood: " + oracleResult.likelihood;
-    oracleOutput += "<br />Roll: " + oracleResult.firstRoll;
+    var questionOutput = question;
+    questionOutput += (question === "") ? "" : "<br />";
+    questionOutput += "Likelihood: " + questionResult.likelihood;
+    questionOutput += "<br />Roll: " + questionResult.firstRoll;
 
-    if (oracleResult.likelihood !== "50/50") {
-        oracleOutput += " & " + oracleResult.secondRoll;
+    if (questionResult.likelihood !== "50/50") {
+        questionOutput += " & " + questionResult.secondRoll;
     }
 
-    oracleOutput += "<br />Answer: " + oracleResult.answer;
+    questionOutput += "<br />Answer: " + questionResult.answer;
 
     var result_node = document.createElement('p');
-    result_node.innerHTML = oracleOutput;
+    result_node.innerHTML = questionOutput;
     div_output_field.appendChild(result_node);
     div_output_field.scrollTop = div_output_field.scrollHeight;
 
 }
 
-function getOracleResult() {
-    var oracle_likelihood = input_oracle_likelihood.options[input_oracle_likelihood.selectedIndex].text;
-    var firstRoll = getRandomInt(1, oracle_table_count);
-    var secondRoll = getRandomInt(1, oracle_table_count);
+function getquestionResult() {
+    var question_likelihood = input_question_likelihood.options[input_question_likelihood.selectedIndex].text;
+    var firstRoll = getRandomInt(1, question_table_count);
+    var secondRoll = getRandomInt(1, question_table_count);
 
     var rollResult;
 
     // Determine result
-    switch (oracle_likelihood) {
+    switch (question_likelihood) {
         case "Likely":
             rollResult = (firstRoll > secondRoll) ? firstRoll : secondRoll;
             break;
@@ -154,19 +154,19 @@ function getOracleResult() {
             break;
     }
 
-    var answer = oracle_table[rollResult];
+    var answer = question_table[rollResult];
 
     return {
         answer: answer,
         firstRoll: firstRoll,
         secondRoll: secondRoll,
-        likelihood: oracle_likelihood
+        likelihood: question_likelihood
     };
 }
 
-function resetOracleInputs() {
-    input_oracle_question.value = "";
-    input_oracle_likelihood.value = "50/50";
+function resetquestionInputs() {
+    input_question.value = "";
+    input_question_likelihood.value = "50/50";
 }
 
 function copyOutput() {
