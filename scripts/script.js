@@ -26,6 +26,7 @@ var button_feature_question = document.getElementById("button_feature_question")
 var button_feature_portent = document.getElementById("button_feature_portent");
 var button_feature_event = document.getElementById("button_feature_event");
 var button_ask_question = document.getElementById("button_ask_question");
+var button_receive_portent = document.getElementById("button_receive_portent");
 
 var div_feature_question = document.getElementById("div_feature_question");
 var div_feature_portent = document.getElementById("div_feature_portent");
@@ -33,6 +34,7 @@ var div_feature_event = document.getElementById("div_feature_event");
 
 var input_oracle_question = document.getElementById("input_oracle_question");
 var input_question_likelihood = document.getElementById("input_question_likelihood");
+var input_portent_number = document.getElementById("input_portent_number");
 
 
 // Shared Elements
@@ -130,8 +132,8 @@ function clearJournalLog() {
 
 function undoLastJournalEntry() {
     var lastJournalEntry = div_journal_log.lastChild;
-    
-    if(lastJournalEntry !== null) {
+
+    if (lastJournalEntry !== null) {
         lastJournalEntry.remove();
     }
 }
@@ -160,6 +162,10 @@ button_feature_portent.onclick = function () {
 button_feature_event.onclick = function () {
     showFeatureDiv(div_feature_event);
 };
+
+button_receive_portent.onclick = function () {
+    receivePortent();
+}
 
 function askquestion() {
 
@@ -225,7 +231,37 @@ function resetquestionInputs() {
     input_question_likelihood.value = "50/50";
 }
 
+function receivePortent() {
+    var portentResult = getPortentResult();
+    setPortentResult(portentResult);
+}
 
+function getPortentResult() {
+    var portentResult = [];
+    var portentTableRolls = input_portent_number.options[input_portent_number.selectedIndex].text;
+
+    portentTableRolls = parseInt(portentTableRolls);
+
+    for (var i = 1; i <= portentTableRolls; i++) {
+
+        var verb = table_verb[getRandomInt(1, table_verb_count)].verb;
+        portentResult.push(verb);
+    }
+    return portentResult;
+}
+
+function setPortentResult(portentResult) {
+    var portentOutput = "Portent: ";
+    for (var i = 0; i < portentResult.length; i++) {
+        portentOutput += portentResult[i];
+        portentOutput += (i !== portentResult.length - 1) ? ", " : "";
+    }
+    
+    var result_node = document.createElement('p');
+    result_node.innerHTML = portentOutput;
+    div_journal_log.appendChild(result_node);
+    div_journal_log.scrollTop = div_journal_log.scrollHeight;
+}
 
 // About Functions
 button_feature_about_app.onclick = function () {
