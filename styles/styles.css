@@ -136,6 +136,10 @@ body, html {
   border: #f0f0f0 .2em solid;
 }
 
+.active_button {
+  filter: invert(1);
+}
+
 @media (max-width: 1024px) {
   body, .button, .selector, .input_text_area, textarea, #div_journal_log {
     font-size: x-large;

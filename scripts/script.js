@@ -1,18 +1,3 @@
-const question_table = {
-    1: "Extreme No",
-    2: "No",
-    3: "No",
-    4: "No",
-    5: "No, but...",
-    6: "Yes, but...",
-    7: "Yes",
-    8: "Yes",
-    9: "Yes",
-    10: "Extreme Yes"
-};
-
-const question_table_count = Object.keys(question_table).length;
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -214,8 +199,8 @@ function setQuestionOutput(questionResult, question) {
 
 function getquestionResult() {
     var question_likelihood = input_question_likelihood.options[input_question_likelihood.selectedIndex].text;
-    var firstRoll = getRandomInt(1, question_table_count);
-    var secondRoll = getRandomInt(1, question_table_count);
+    var firstRoll = getRandomInt(1, table_question_count);
+    var secondRoll = getRandomInt(1, table_question_count);
 
     var rollResult;
 
@@ -232,7 +217,7 @@ function getquestionResult() {
             break;
     }
 
-    var answer = question_table[rollResult];
+    var answer = table_question[rollResult];
 
     return {
         answer: answer,
@@ -277,4 +262,3 @@ function showFeatureSetSidebar(divName) {
     // click first sidebar button of active sidebar
     div_active_sidebar.firstElementChild.firstElementChild.click();
 }
-
