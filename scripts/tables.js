@@ -1,14 +1,34 @@
 const table_question = {
-    "1": "Extreme No",
-    "2": "No",
-    "3": "No",
-    "4": "No",
-    "5": "No, but...",
-    "6": "Yes, but...",
-    "7": "Yes",
-    "8": "Yes",
-    "9": "Yes",
-    "10": "Extreme Yes"
-};
+    "1": {
+      "answer": "Extreme No"
+    },
+    "2": {
+      "answer": "No"
+    },
+    "3": {
+      "answer": "No"
+    },
+    "4": {
+      "answer": "No"
+    },
+    "5": {
+      "answer": "No, but"
+    },
+    "6": {
+      "answer": "Yes, but"
+    },
+    "7": {
+      "answer": "Yes"
+    },
+    "8": {
+      "answer": "Yes"
+    },
+    "9": {
+      "answer": "Yes"
+    },
+    "10": {
+      "answer": "Extreme Yes"
+    }
+  }
 
 const table_question_count = Object.keys(table_question).length;

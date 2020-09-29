@@ -1,10 +1,3 @@
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-
 // Menu Elements
 var button_menu_journal = document.getElementById("button_menu_journal");
 var button_menu_oracle = document.getElementById("button_menu_oracle");
@@ -217,7 +210,7 @@ function getquestionResult() {
             break;
     }
 
-    var answer = table_question[rollResult];
+    var answer = table_question[rollResult].answer;
 
     return {
         answer: answer,
@@ -261,4 +254,10 @@ function showFeatureSetSidebar(divName) {
 
     // click first sidebar button of active sidebar
     div_active_sidebar.firstElementChild.firstElementChild.click();
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
