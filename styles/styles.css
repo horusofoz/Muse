@@ -112,6 +112,7 @@ body, html {
 }
 
 #input_journal_entry_textarea {
+  font-family: 'Roboto Condensed', Helvetica, sans-serif;
   width: 100%;
   background-color: black;
   color: #f0f0f0;
