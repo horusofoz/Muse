@@ -16,7 +16,7 @@
   <div id="div_page_container">
 
     <div id="div_top_menu">
-      <button class="button" id="button_menu_journal"><img class="button_image" src="images/quill.png"
+      <button class="button active_button" id="button_menu_journal"><img class="button_image" src="images/quill.png"
           alt="quill image"><span class="menu text"><br />Journal</span></button>
       <button class="button" id="button_menu_oracle"><img class="button_image" src="images/eye.png"
           alt="eye image"><span class="menu text"><br />Oracle</span></button>
@@ -34,7 +34,7 @@
 
       <div class="div_active_sidebar" id="div_active_sidebar">
         <div id="div_sidebar_journal">
-          <button class="button" id="button_feature_journal_write">Write</button>
+          <button class="button active_button" id="button_feature_journal_write">Write</button>
           <button class="button" id="button_feature_journal_read">Read</button>
           <button class="button" id="button_journal_undo">Undo</button>
           <button class="button" id="button_journal_copy">Copy</button>
@@ -54,8 +54,8 @@
               <button class="button" id="button_journal_entry_erase">Erase</button>
             </div>
             <div class="div_feature_row">
-              <textarea class="input_journal_entry_textarea textarea" id="input_journal_entry_textarea" name="input_journal_entry_textarea"
-                placeholder="Journal entry goes here..."></textarea>
+              <textarea class="input_journal_entry_textarea textarea" id="input_journal_entry_textarea"
+                name="input_journal_entry_textarea" placeholder="Journal entry goes here..."></textarea>
             </div>
           </div>
         </div>
@@ -85,7 +85,8 @@
         </select>
       </div>
       <div class="div_feature_row">
-        <input class="input_text_area" type="text" id="input_oracle_question" name="question" placeholder="Enter question here...">
+        <input class="input_text_area" type="text" id="input_oracle_question" name="question"
+          placeholder="Enter question here...">
       </div>
     </div>
 
@@ -117,35 +118,41 @@
       </div>
     </div>
 
-  </div>
+    <div id="div_feature_dungeon" class="bordered">
+      <div class="div_feature_dungeon_design">
+        <img src="/images/construction.png" alt="construction image" >
+        <p>Under construction...</p>
+      </div>
 
-  <div id="div_hidden_sidebars" class="hidden">
-    <div id="div_sidebar_oracle">
-      <button class="button" id="button_feature_question">Question</button>
-      <button class="button" id="button_feature_portent">Portent</button>
-      <button class="button" id="button_feature_event">Event</button>
     </div>
 
-    <div id="div_sidebar_dungeon">
-      <button class="button" id="button_feature_dungeon_design">Design</button>
-      <button class="button" id="button_feature_room">Room</button>
-      <button class="button" id="button_feature_passage">Passage</button>
-      <button class="button" id="button_feature_door">Door</button>
+    <div id="div_hidden_sidebars" class="hidden">
+      <div id="div_sidebar_oracle">
+        <button class="button" id="button_feature_question">Question</button>
+        <button class="button" id="button_feature_portent">Portent</button>
+        <button class="button" id="button_feature_event">Event</button>
+      </div>
+
+      <div id="div_sidebar_dungeon">
+        <button class="button" id="button_feature_dungeon_design">Design</button>
+        <button class="button" id="button_feature_room">Room</button>
+        <button class="button" id="button_feature_passage">Passage</button>
+        <button class="button" id="button_feature_door">Door</button>
+      </div>
+
+      <div id="div_sidebar_about">
+        <button class="button" id="button_feature_about_app">General</button>
+        <button class="button" id="button_feature_about_journal">Journal</button>
+        <button class="button" id="button_feature_about_oracle">Oracle</button>
+        <button class="button" id="button_feature_about_dungeon">Dungeon</button>
+      </div>
+
+
     </div>
 
-    <div id="div_sidebar_about">
-      <button class="button" id="button_feature_about_app">General</button>
-      <button class="button" id="button_feature_about_journal">Journal</button>
-      <button class="button" id="button_feature_about_oracle">Oracle</button>
-      <button class="button" id="button_feature_about_dungeon">Dungeon</button>
-    </div>
+    <script src="scripts/tables.js"></script>
+    <script src="scripts/script.js"></script>
 
-
-  </div>
-
-  <script src="scripts/tables.js"></script>
-  <script src="scripts/script.js"></script>
-  
 </body>
 
 </html>

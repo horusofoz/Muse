@@ -2,6 +2,8 @@
 var button_menu_journal = document.getElementById("button_menu_journal");
 var button_menu_oracle = document.getElementById("button_menu_oracle");
 var button_menu_dungeon = document.getElementById("button_menu_dungeon");
+var button_menu_wilderness = document.getElementById("button_menu_wilderness");
+var button_menu_combat = document.getElementById("button_menu_combat");
 var button_menu_about = document.getElementById("button_menu_about");
 
 
@@ -54,39 +56,46 @@ var div_feature_about_app = document.getElementById("div_feature_about_app");
 var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
 var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
 var div_sidebar_journal = document.getElementById("div_sidebar_journal");
-var div_sidebar_about = document.getElementById("div_sidebar_about")
+var div_sidebar_about = document.getElementById("div_sidebar_about");
 
 // Menu Navigation
 button_menu_journal.onclick = function () {
     showFeatureSetSidebar(div_sidebar_journal);
+    applyActiveStyleToMenuButton(this);
 };
 
 button_menu_oracle.onclick = function () {
     showFeatureSetSidebar(div_sidebar_oracle);
+    applyActiveStyleToMenuButton(this);
 };
 
 button_menu_dungeon.onclick = function () {
     showFeatureSetSidebar(div_sidebar_dungeon);
+    applyActiveStyleToMenuButton(this);
 };
 
 button_menu_about.onclick = function () {
     showFeatureSetSidebar(div_sidebar_about);
-}
+    applyActiveStyleToMenuButton(this);
+};
 
 
 
 // Journal Functions
 button_feature_journal_write.onclick = function () {
     showFeatureDiv(div_feature_journal_write);
-}
+    applyActiveStyleToFeatureButton(this);
+};
 
 button_journal_append.onclick = function () {
     appendJournalTextToLog();
-}
+    applyActiveStyleToFeatureButton(this);
+};
 
 button_feature_journal_read.onclick = function () {
     showFeatureDiv(div_feature_journal_read);
-}
+    applyActiveStyleToFeatureButton(this);
+};
 
 button_journal_undo.onclick = function () {
     undoLastJournalEntry();
@@ -94,7 +103,7 @@ button_journal_undo.onclick = function () {
 
 button_journal_entry_erase.onclick = function () {
     eraseJournalEntryTextArea();
-}
+};
 
 button_journal_copy.onclick = function () {
     copyJournalLog();
@@ -154,24 +163,27 @@ input_oracle_question.addEventListener("keydown", function (event) {
 
 button_feature_question.onclick = function () {
     showFeatureDiv(div_feature_question);
+    applyActiveStyleToFeatureButton(this);
 };
 
 button_feature_portent.onclick = function () {
     showFeatureDiv(div_feature_portent);
+    applyActiveStyleToFeatureButton(this);
 };
 
 button_feature_event.onclick = function () {
     showFeatureDiv(div_feature_event);
+    applyActiveStyleToFeatureButton(this);
 };
 
 button_receive_portent.onclick = function () {
     receivePortent();
-}
+};
 
 button_initiate_event.onclick = function () {
     var randomEvent = getRandomEvent();
     setRandomEvent(randomEvent);
-}
+};
 
 function askquestion() {
 
@@ -185,7 +197,7 @@ function askquestion() {
 function setQuestionOutput(questionResult, question) {
 
     //var questionOutput = question;
-    var questionOutput = (question === "") ? "" : `${question}<br />`;
+    var questionOutput = (question === "") ? "" : question + "<br />";
     questionOutput += "Likelihood: " + questionResult.likelihood;
     questionOutput += "<br />Roll: " + questionResult.firstRoll;
 
@@ -289,10 +301,12 @@ function setRandomEvent(randomEvent) {
     writeToJournal(eventResult);
 }
 
+
+
 // About Functions
 button_feature_about_app.onclick = function () {
     showFeatureDiv(div_feature_about_app);
-}
+};
 
 
 
@@ -329,4 +343,26 @@ function writeToJournal(journalEntry) {
     result_node.innerHTML = journalEntry;
     div_journal_log.appendChild(result_node);
     div_journal_log.scrollTop = div_journal_log.scrollHeight;
+}
+
+function applyActiveStyleToMenuButton(activeMenuButton) {
+
+    var menuButtons = activeMenuButton.parentElement.children;
+
+    Object.keys(menuButtons).forEach(button => {
+        menuButtons[button].classList.remove("active_button");
+    });
+
+    activeMenuButton.classList.add("active_button");
+}
+
+function applyActiveStyleToFeatureButton(activeFeatureButton) {
+
+    var featureButtons = activeFeatureButton.parentElement.children;
+
+    Object.keys(featureButtons).forEach(button => {
+        featureButtons[button].classList.remove("active_button");
+    });
+
+    activeFeatureButton.classList.add("active_button");
 }
