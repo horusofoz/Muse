@@ -32,6 +32,7 @@ var button_journal_append = document.getElementById("button_journal_append");
 var button_feature_journal_write = document.getElementById("button_feature_journal_write");
 var button_journal_entry_erase = document.getElementById("button_journal_entry_erase");
 var button_feature_journal_read = document.getElementById("button_feature_journal_read");
+var button_journal_undo = document.getElementById("button_journal_undo");
 var button_journal_copy = document.getElementById("button_journal_copy");
 var button_journal_clear = document.getElementById("button_journal_clear");
 
@@ -106,6 +107,10 @@ button_feature_journal_read.onclick = function () {
     showFeatureDiv(div_feature_journal_read);
 }
 
+button_journal_undo.onclick = function () {
+    undoLastJournalEntry();
+};
+
 button_journal_entry_erase.onclick = function () {
     eraseJournalEntryTextArea();
 }
@@ -132,7 +137,6 @@ function eraseJournalEntryTextArea() {
     input_journal_entry_textarea.value = "";
 }
 
-
 function copyJournalLog() {
     var range = document.createRange();
     range.selectNode(div_journal_log);
@@ -144,6 +148,14 @@ function copyJournalLog() {
 
 function clearJournalLog() {
     div_journal_log.innerHTML = "";
+}
+
+function undoLastJournalEntry() {
+    var lastJournalEntry = div_journal_log.lastChild;
+    
+    if(lastJournalEntry !== null) {
+        lastJournalEntry.remove();
+    }
 }
 
 
