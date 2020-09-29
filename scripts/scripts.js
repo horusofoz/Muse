@@ -187,15 +187,15 @@ function askquestion() {
 
     var question = input_oracle_question.value;
     var questionResult = getquestionResult();
-    setquestionOutput(questionResult, question);
+    setQuestionOutput(questionResult, question);
     resetquestionInputs();
     return;
 }
 
-function setquestionOutput(questionResult, question) {
+function setQuestionOutput(questionResult, question) {
 
-    var questionOutput = question;
-    questionOutput += (question === "") ? "" : "<br />";
+    //var questionOutput = question;
+    var questionOutput = (question === "") ? "" : `${question}<br />`;
     questionOutput += "Likelihood: " + questionResult.likelihood;
     questionOutput += "<br />Roll: " + questionResult.firstRoll;
 
