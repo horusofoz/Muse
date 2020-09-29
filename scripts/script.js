@@ -27,6 +27,7 @@ var button_feature_portent = document.getElementById("button_feature_portent");
 var button_feature_event = document.getElementById("button_feature_event");
 var button_ask_question = document.getElementById("button_ask_question");
 var button_receive_portent = document.getElementById("button_receive_portent");
+var button_initiate_event = document.getElementById("button_initiate_event");
 
 var div_feature_question = document.getElementById("div_feature_question");
 var div_feature_portent = document.getElementById("div_feature_portent");
@@ -167,6 +168,11 @@ button_receive_portent.onclick = function () {
     receivePortent();
 }
 
+button_initiate_event.onclick = function () {
+    var randomEvent = getRandomEvent();
+    setRandomEvent(randomEvent);
+}
+
 function askquestion() {
 
     var question = input_oracle_question.value;
@@ -263,6 +269,26 @@ function setPortentResult(portentResult) {
     div_journal_log.scrollTop = div_journal_log.scrollHeight;
 }
 
+function getRandomEvent() {
+    
+    var randomEvent = {
+        focus : table_event_focus[getRandomInt(1,table_event_focus_count)].focus,
+        subject : table_event_subject[getRandomInt(1,table_event_subject_count)].subject,
+        action : table_verb[getRandomInt(1, table_verb_count)].verb
+    };
+    
+    return randomEvent;
+}
+
+function setRandomEvent(randomEvent) {
+    var eventResult = "Random Event";
+    eventResult += "<br />Focus: " + randomEvent.focus;
+    eventResult += "<br />Subject: " + randomEvent.subject;
+    eventResult += "<br />Action: " + randomEvent.action;
+
+    writeToJournal(eventResult);
+}
+
 // About Functions
 button_feature_about_app.onclick = function () {
     showFeatureDiv(div_feature_about_app);
@@ -296,4 +322,11 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function writeToJournal(journalEntry) {
+    var result_node = document.createElement('p');
+    result_node.innerHTML = journalEntry;
+    div_journal_log.appendChild(result_node);
+    div_journal_log.scrollTop = div_journal_log.scrollHeight;
 }

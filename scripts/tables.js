@@ -1048,7 +1048,7 @@ const table_verb = {
         "verb": "Salute"
     },
     "338": {
-        "verb": "Contestconverse"
+        "verb": "Contest"
     },
     "339": {
         "verb": "Reveal"
@@ -1539,3 +1539,457 @@ const table_verb = {
 }
 
 const table_verb_count = Object.keys(table_verb).length;
+
+const table_event_focus = {
+    "1": {
+        "focus": "NPC Action"
+    },
+    "2": {
+        "focus": "New NPC"
+    },
+    "3": {
+        "focus": "Advance Plot"
+    },
+    "4": {
+        "focus": "Regress Plot"
+    },
+    "5": {
+        "focus": "PC Positive"
+    },
+    "6": {
+        "focus": "PC Negative"
+    },
+    "7": {
+        "focus": "NPC Negative"
+    },
+    "8": {
+        "focus": "NPC Positive"
+    }
+}
+
+const table_event_focus_count = Object.keys(table_event_focus).length;
+
+const table_event_subject = {
+    "1": {
+      "subject": "Afterthought"
+    },
+    "2": {
+      "subject": "Mechanism"
+    },
+    "3": {
+      "subject": "Queen"
+    },
+    "4": {
+      "subject": "King"
+    },
+    "5": {
+      "subject": "Girl"
+    },
+    "6": {
+      "subject": "Idea"
+    },
+    "7": {
+      "subject": "Candle"
+    },
+    "8": {
+      "subject": "Fountain"
+    },
+    "9": {
+      "subject": "Lock"
+    },
+    "10": {
+      "subject": "Border"
+    },
+    "11": {
+      "subject": "Magic"
+    },
+    "12": {
+      "subject": "Slave"
+    },
+    "13": {
+      "subject": "Circle"
+    },
+    "14": {
+      "subject": "Teacher"
+    },
+    "15": {
+      "subject": "Beauty"
+    },
+    "16": {
+      "subject": "Veil"
+    },
+    "17": {
+      "subject": "Monkey"
+    },
+    "18": {
+      "subject": "Death"
+    },
+    "19": {
+      "subject": "Creature"
+    },
+    "20": {
+      "subject": "Land"
+    },
+    "21": {
+      "subject": "River"
+    },
+    "22": {
+      "subject": "Lizard"
+    },
+    "23": {
+      "subject": "Lion"
+    },
+    "24": {
+      "subject": "Rain"
+    },
+    "25": {
+      "subject": "Learn"
+    },
+    "26": {
+      "subject": "Crowd"
+    },
+    "27": {
+      "subject": "Message"
+    },
+    "28": {
+      "subject": "Pleasure"
+    },
+    "29": {
+      "subject": "Boy"
+    },
+    "30": {
+      "subject": "Aftermath"
+    },
+    "31": {
+      "subject": "Plant"
+    },
+    "32": {
+      "subject": "Flag"
+    },
+    "33": {
+      "subject": "Friction"
+    },
+    "34": {
+      "subject": "Beach"
+    },
+    "35": {
+      "subject": "Insurance"
+    },
+    "36": {
+      "subject": "Achieve"
+    },
+    "37": {
+      "subject": "Deer"
+    },
+    "38": {
+      "subject": "Clothing"
+    },
+    "39": {
+      "subject": "Painting"
+    },
+    "40": {
+      "subject": "Market"
+    },
+    "41": {
+      "subject": "Sun"
+    },
+    "42": {
+      "subject": "Divide"
+    },
+    "43": {
+      "subject": "Ocean"
+    },
+    "44": {
+      "subject": "Cemetery"
+    },
+    "45": {
+      "subject": "Oil"
+    },
+    "46": {
+      "subject": "Lawyer"
+    },
+    "47": {
+      "subject": "Doctor"
+    },
+    "48": {
+      "subject": "Shoe"
+    },
+    "49": {
+      "subject": "House"
+    },
+    "50": {
+      "subject": "Pollution"
+    },
+    "51": {
+      "subject": "School"
+    },
+    "52": {
+      "subject": "Mountain"
+    },
+    "53": {
+      "subject": "Creator"
+    },
+    "54": {
+      "subject": "Galley"
+    },
+    "55": {
+      "subject": "Egg"
+    },
+    "56": {
+      "subject": "Army"
+    },
+    "57": {
+      "subject": "Animal"
+    },
+    "58": {
+      "subject": "Guide"
+    },
+    "59": {
+      "subject": "Volcano"
+    },
+    "60": {
+      "subject": "Action"
+    },
+    "61": {
+      "subject": "Learn"
+    },
+    "62": {
+      "subject": "Light"
+    },
+    "63": {
+      "subject": "Night"
+    },
+    "64": {
+      "subject": "Partner"
+    },
+    "65": {
+      "subject": "Ice"
+    },
+    "66": {
+      "subject": "Language"
+    },
+    "67": {
+      "subject": "Island"
+    },
+    "68": {
+      "subject": "Massacre"
+    },
+    "69": {
+      "subject": "Beginner"
+    },
+    "70": {
+      "subject": "Hospital"
+    },
+    "71": {
+      "subject": "Vulture"
+    },
+    "72": {
+      "subject": "Guard"
+    },
+    "73": {
+      "subject": "Feather"
+    },
+    "74": {
+      "subject": "Aberration"
+    },
+    "75": {
+      "subject": "Deity"
+    },
+    "76": {
+      "subject": "Boundary"
+    },
+    "77": {
+      "subject": "Temper"
+    },
+    "78": {
+      "subject": "Devil"
+    },
+    "79": {
+      "subject": "Demon"
+    },
+    "80": {
+      "subject": "Son"
+    },
+    "81": {
+      "subject": "Daughter"
+    },
+    "82": {
+      "subject": "Forest"
+    },
+    "83": {
+      "subject": "Reward"
+    },
+    "84": {
+      "subject": "Blade"
+    },
+    "85": {
+      "subject": "Needle"
+    },
+    "86": {
+      "subject": "Shadow"
+    },
+    "87": {
+      "subject": "Fey"
+    },
+    "88": {
+      "subject": "Library"
+    },
+    "89": {
+      "subject": "Eye"
+    },
+    "90": {
+      "subject": "Ancient"
+    },
+    "91": {
+      "subject": "Genocide"
+    },
+    "92": {
+      "subject": "Rainbow"
+    },
+    "93": {
+      "subject": "Bomb"
+    },
+    "94": {
+      "subject": "Gold"
+    },
+    "95": {
+      "subject": "Religion"
+    },
+    "96": {
+      "subject": "Heart"
+    },
+    "97": {
+      "subject": "Star"
+    },
+    "98": {
+      "subject": "Iron"
+    },
+    "99": {
+      "subject": "Sister"
+    },
+    "100": {
+      "subject": "Ghost"
+    },
+    "101": {
+      "subject": "Brother"
+    },
+    "102": {
+      "subject": "Channel"
+    },
+    "103": {
+      "subject": "King"
+    },
+    "104": {
+      "subject": "Wall"
+    },
+    "105": {
+      "subject": "Room"
+    },
+    "106": {
+      "subject": "Wilderness"
+    },
+    "107": {
+      "subject": "Dream"
+    },
+    "108": {
+      "subject": "Minister"
+    },
+    "109": {
+      "subject": "Temple"
+    },
+    "110": {
+      "subject": "Believe"
+    },
+    "111": {
+      "subject": "Resurrection"
+    },
+    "112": {
+      "subject": "Food"
+    },
+    "113": {
+      "subject": "Helmet"
+    },
+    "114": {
+      "subject": "Thread"
+    },
+    "115": {
+      "subject": "Garden"
+    },
+    "116": {
+      "subject": "Weather"
+    },
+    "117": {
+      "subject": "Jewellery"
+    },
+    "118": {
+      "subject": "Health"
+    },
+    "119": {
+      "subject": "Flower"
+    },
+    "120": {
+      "subject": "Territory"
+    },
+    "121": {
+      "subject": "Energy"
+    },
+    "122": {
+      "subject": "Slave"
+    },
+    "123": {
+      "subject": "Fuel"
+    },
+    "124": {
+      "subject": "Portal"
+    },
+    "125": {
+      "subject": "Family"
+    },
+    "126": {
+      "subject": "Window"
+    },
+    "127": {
+      "subject": "Disease"
+    },
+    "128": {
+      "subject": "Picture"
+    },
+    "129": {
+      "subject": "Book"
+    },
+    "130": {
+      "subject": "Music"
+    },
+    "131": {
+      "subject": "Time"
+    },
+    "132": {
+      "subject": "Writer"
+    },
+    "133": {
+      "subject": "Diamond"
+    },
+    "134": {
+      "subject": "Fire"
+    },
+    "135": {
+      "subject": "Amulet"
+    },
+    "136": {
+      "subject": "Nest"
+    },
+    "137": {
+      "subject": "Stone"
+    },
+    "138": {
+      "subject": "Plant"
+    },
+    "139": {
+      "subject": "Wealth"
+    },
+    "140": {
+      "subject": "Insect"
+    }
+}
+
+const table_event_subject_count = Object.keys(table_event_subject).length;
