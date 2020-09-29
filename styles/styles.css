@@ -30,7 +30,7 @@ body, html {
   width: 100%;
 }
 
-#div_container_output {
+#div_container_journal_log {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -39,7 +39,7 @@ body, html {
   flex-wrap: nowrap;
 }
 
-#div_output_field {
+#div_journal_log {
   padding: .5em 1.5em;
   height: 100%;
   max-width: 100%;
