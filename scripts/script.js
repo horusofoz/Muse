@@ -60,10 +60,19 @@ var div_active_sidebar = document.getElementById("div_active_sidebar");
 var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
 
 // About Elements
-var button_feature_about_app = document.getElementById("button_feature_about_app");
+var button_feature_about_general = document.getElementById("button_feature_about_general");
+var button_feature_about_journal = document.getElementById("button_feature_about_journal");
+var button_feature_about_oracle = document.getElementById("button_feature_about_oracle");
+var button_feature_about_dungeon = document.getElementById("button_feature_about_dungeon");
+var button_feature_about_wilderness = document.getElementById("button_feature_about_wilderness");
+var button_feature_about_combat = document.getElementById("button_feature_about_combat");
 
-var div_feature_about_app = document.getElementById("div_feature_about_app");
-
+var div_feature_about_general = document.getElementById("div_feature_about_general");
+var div_feature_about_journal = document.getElementById("div_feature_about_journal");
+var div_feature_about_oracle = document.getElementById("div_feature_about_oracle");
+var div_feature_about_dungeon = document.getElementById("div_feature_about_dungeon");
+var div_feature_about_wilderness = document.getElementById("div_feature_about_wilderness");
+var div_feature_about_combat = document.getElementById("div_feature_about_combat");
 
 // Sidebars
 var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
@@ -342,8 +351,33 @@ button_feature_dungeon_door.onclick = function() {
 
 
 // About Functions
-button_feature_about_app.onclick = function () {
-    showFeatureDiv(div_feature_about_app);
+button_feature_about_general.onclick = function () {
+    showFeatureDiv(div_feature_about_general);
+    applyActiveStyleToFeatureButton(this);
+};
+
+button_feature_about_journal.onclick = function () {
+    showFeatureDiv(div_feature_about_journal);
+    applyActiveStyleToFeatureButton(this);
+};
+
+button_feature_about_oracle.onclick = function () {
+    showFeatureDiv(div_feature_about_oracle);
+    applyActiveStyleToFeatureButton(this);
+};
+
+button_feature_about_dungeon.onclick = function () {
+    showFeatureDiv(div_feature_about_dungeon);
+    applyActiveStyleToFeatureButton(this);
+};
+
+button_feature_about_wilderness.onclick = function () {
+    showFeatureDiv(div_feature_about_wilderness);
+    applyActiveStyleToFeatureButton(this);
+};
+
+button_feature_about_combat.onclick = function () {
+    showFeatureDiv(div_feature_about_combat);
     applyActiveStyleToFeatureButton(this);
 };
 
