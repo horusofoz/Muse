@@ -71,10 +71,12 @@
 
   <div id="div_hidden_features" class="hidden">
 
+    <!--Journal Features-->
     <div id="div_feature_journal_read">
       <!--Empty by design to maximise log/journal reading space-->
     </div>
 
+    <!--Oracle Features-->
     <div id="div_feature_question">
       <div class="div_feature_row">
         <button class="button" id="button_ask_question">Ask</button>
@@ -109,49 +111,78 @@
       </div>
     </div>
 
+    <!--Dungeon Features-->
+    <div id="div_feature_dungeon_design" class="bordered">
+      <div class="div_feature_row">
+        <img src="images/construction.png" alt="construction image">
+        <p><br />Under construction...</p>
+      </div>
+    </div>
+
+    <div id="div_feature_dungeon_room" class="bordered">
+      <div class="div_feature_row">
+        <img src="images/construction.png" alt="construction image">
+        <p><br />Under construction...</p>
+      </div>
+    </div>
+
+    <div id="div_feature_dungeon_passage" class="bordered">
+      <div class="div_feature_row">
+        <img src="images/construction.png" alt="construction image">
+        <p><br />Under construction...</p>
+      </div>
+    </div>
+
+    <div id="div_feature_dungeon_door" class="bordered">
+      <div class="div_feature_row">
+        <img src="images/construction.png" alt="construction image">
+        <p><br />Under construction...</p>
+      </div>
+    </div>
+
+
+    <!--About Features-->
     <div id="div_feature_about_app" class="bordered">
       <div class="div_feature_about">
         <p>Wish combines tools I use for solo tabletop roleplaying and
           for when I GM.</p>
         <p>The interface is minimal to make it easy to use and maintain.</p>
-        <p>The journal is not stored in the app. It's designed to be copied out into your preferred software just by clicking the Journal>Copy button.</p>
+        <p>The journal is not stored in the app. It's designed to be copied out into your preferred software just by
+          clicking the Journal>Copy button.</p>
       </div>
     </div>
 
-    <div id="div_feature_dungeon" class="bordered">
-      <div class="div_feature_dungeon_design">
-        <img src="/images/construction.png" alt="construction image" >
-        <p>Under construction...</p>
-      </div>
 
+
+
+  </div>
+
+  <div id="div_hidden_sidebars" class="hidden">
+    <div id="div_sidebar_oracle">
+      <button class="button" id="button_feature_question">Question</button>
+      <button class="button" id="button_feature_portent">Portent</button>
+      <button class="button" id="button_feature_event">Event</button>
     </div>
 
-    <div id="div_hidden_sidebars" class="hidden">
-      <div id="div_sidebar_oracle">
-        <button class="button" id="button_feature_question">Question</button>
-        <button class="button" id="button_feature_portent">Portent</button>
-        <button class="button" id="button_feature_event">Event</button>
-      </div>
-
-      <div id="div_sidebar_dungeon">
-        <button class="button" id="button_feature_dungeon_design">Design</button>
-        <button class="button" id="button_feature_room">Room</button>
-        <button class="button" id="button_feature_passage">Passage</button>
-        <button class="button" id="button_feature_door">Door</button>
-      </div>
-
-      <div id="div_sidebar_about">
-        <button class="button" id="button_feature_about_app">General</button>
-        <button class="button" id="button_feature_about_journal">Journal</button>
-        <button class="button" id="button_feature_about_oracle">Oracle</button>
-        <button class="button" id="button_feature_about_dungeon">Dungeon</button>
-      </div>
-
-
+    <div id="div_sidebar_dungeon">
+      <button class="button" id="button_feature_dungeon_design">Design</button>
+      <button class="button" id="button_feature_dungeon_room">Room</button>
+      <button class="button" id="button_feature_dungeon_passage">Passage</button>
+      <button class="button" id="button_feature_dungeon_door">Door</button>
     </div>
 
-    <script src="scripts/tables.js"></script>
-    <script src="scripts/script.js"></script>
+    <div id="div_sidebar_about">
+      <button class="button" id="button_feature_about_app">General</button>
+      <button class="button" id="button_feature_about_journal">Journal</button>
+      <button class="button" id="button_feature_about_oracle">Oracle</button>
+      <button class="button" id="button_feature_about_dungeon">Dungeon</button>
+    </div>
+
+
+  </div>
+
+  <script src="scripts/tables.js"></script>
+  <script src="scripts/script.js"></script>
 
 </body>
 

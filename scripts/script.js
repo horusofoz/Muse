@@ -40,6 +40,19 @@ var input_question_likelihood = document.getElementById("input_question_likeliho
 var input_portent_number = document.getElementById("input_portent_number");
 
 
+// Dungeon Elements
+var button_feature_dungeon_design = document.getElementById("button_feature_dungeon_design");
+var button_feature_dungeon_room = document.getElementById("button_feature_dungeon_room");
+var button_feature_dungeon_passage = document.getElementById("button_feature_dungeon_passage");
+var button_feature_dungeon_door = document.getElementById("button_feature_dungeon_door");
+
+var div_feature_dungeon_design = document.getElementById("div_feature_dungeon_design");
+var div_feature_dungeon_room = document.getElementById("div_feature_dungeon_room");
+var div_feature_dungeon_passage = document.getElementById("div_feature_dungeon_passage");
+var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door");
+
+
+
 // Shared Elements
 var div_active_feature = document.getElementById("div_active_feature");
 var div_hidden_features = document.getElementById("div_hidden_features");
@@ -302,9 +315,36 @@ function setRandomEvent(randomEvent) {
 
 
 
+// Dungeon Features
+button_feature_dungeon_design.onclick = function() {
+    showFeatureDiv(div_feature_dungeon_design);
+    applyActiveStyleToFeatureButton(this);
+
+}
+
+button_feature_dungeon_room.onclick = function() {
+    showFeatureDiv(div_feature_dungeon_room);
+    applyActiveStyleToFeatureButton(this);
+
+}
+
+button_feature_dungeon_passage.onclick = function() {
+    showFeatureDiv(div_feature_dungeon_passage);
+    applyActiveStyleToFeatureButton(this);
+
+}
+
+button_feature_dungeon_door.onclick = function() {
+    showFeatureDiv(div_feature_dungeon_door);
+    applyActiveStyleToFeatureButton(this);
+
+}
+
+
 // About Functions
 button_feature_about_app.onclick = function () {
     showFeatureDiv(div_feature_about_app);
+    applyActiveStyleToFeatureButton(this);
 };
 
 
