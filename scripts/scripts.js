@@ -273,5 +273,8 @@ function showFeatureSetSidebar(divName) {
 
     // move selected feature to div_active_feature
     div_active_sidebar.appendChild(divName);
+
+    // click first sidebar button of active sidebar
+    div_active_sidebar.firstElementChild.firstElementChild.click();
 }
 
