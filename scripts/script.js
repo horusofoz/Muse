@@ -89,7 +89,6 @@ button_feature_journal_write.onclick = function () {
 
 button_journal_append.onclick = function () {
     appendJournalTextToLog();
-    applyActiveStyleToFeatureButton(this);
 };
 
 button_feature_journal_read.onclick = function () {
