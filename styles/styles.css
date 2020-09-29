@@ -36,20 +36,16 @@ body, html {
   width: 100%;
   flex: 1;
   overflow: auto;
+  flex-wrap: nowrap;
 }
 
 #div_output_field {
   padding: .5em 1.5em;
   height: 100%;
+  max-width: 100%;
   overflow: auto;
   color: #f0f0f0;
   border: #f0f0f0 .2em solid;
-}
-
-#div_output_control {
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
 }
 
 #div_active_feature {
@@ -74,10 +70,13 @@ body, html {
   height: 5em;
 }
 
-.input_text_area, textarea {
+.input_text_area {
   border: #f0f0f0 .2em solid;
   width: 100%;
   font-size: large;
+  background-color: black;
+  color: #f0f0f0;
+  padding: 1em;
 }
 
 .selector {
@@ -94,12 +93,9 @@ body, html {
   -webkit-appearance: none;
 }
 
-#title {
-  color: #f0f0f0;
-}
-
 .div_active_sidebar {
   width: 20%;
+  min-width: 16.7%;
 }
 
 .hidden {
@@ -107,10 +103,6 @@ body, html {
 }
 
 #div_top_menu {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   flex-direction: row;
 }
@@ -119,24 +111,28 @@ body, html {
   max-height: 2em;
 }
 
-#input_journal_textarea {
-  width: 95%;
+#input_journal_entry_textarea {
+  width: 100%;
   background-color: black;
   color: #f0f0f0;
   height: 10em;
-  border: none;
+  border: #f0f0f0 .2em solid;
   padding: 1em;
   overflow: auto;
   outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
+  font-size: large;
+  margin: 0;
 }
 
 .div_feature_about {
   height: 50%;
   padding: 1em;
+}
+
+.bordered {
+  border: #f0f0f0 .2em solid;
 }
 
 @media (max-width: 1024px) {

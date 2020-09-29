@@ -29,10 +29,10 @@ var button_menu_about = document.getElementById("button_menu_about");
 // Journal Elements
 var button_journal_append = document.getElementById("button_journal_append");
 var button_feature_journal_write = document.getElementById("button_feature_journal_write");
-var button_journal_clear = document.getElementById("button_journal_clear");
+var button_journal_entry_erase = document.getElementById("button_journal_entry_erase");
 var button_feature_journal_read = document.getElementById("button_feature_journal_read");
 
-var input_journal_textarea = document.getElementById("input_journal_textarea");
+var input_journal_entry_textarea = document.getElementById("input_journal_entry_textarea");
 
 var div_feature_write_journal = document.getElementById("div_feature_write_journal");
 var div_feature_journal_read = document.getElementById("div_feature_journal_read");
@@ -44,7 +44,7 @@ var button_feature_portent = document.getElementById("button_feature_portent");
 var button_feature_event = document.getElementById("button_feature_event");
 var button_ask_question = document.getElementById("button_ask_question");
 
-var input_question = document.getElementById("input_question");
+var input_oracle_question = document.getElementById("input_oracle_question");
 var input_question_likelihood = document.getElementById("input_question_likelihood");
 
 var div_feature_question = document.getElementById("div_feature_question");
@@ -69,8 +69,8 @@ var div_sidebar_about = document.getElementById("div_sidebar_about")
 
 
 // Output Elements
-var button_copy = document.getElementById("button_copy_output");
-var button_clear = document.getElementById("button_clear_output");
+var button_copy = document.getElementById("button_journal_copy");
+var button_clear = document.getElementById("button_journal_clear");
 var div_output_field = document.getElementById("div_output_field");
 
 
@@ -106,23 +106,23 @@ button_feature_journal_read.onclick = function () {
     showFeatureDiv(div_feature_journal_read);
 }
 
-button_journal_clear.onclick = function () {
-    clearJournalText();
+button_journal_entry_erase.onclick = function () {
+    eraseJournalEntryTextArea();
 }
 
 function appendJournalTextToLog() {
-    var journalText = input_journal_textarea.value;
+    var journalText = input_journal_entry_textarea.value;
     console.log(journalText);
     journalText = journalText.replace(/(?:\r\n|\r|\n)/g, '<br>');
     var journalTextHTML = document.createElement("p");
     journalTextHTML.innerHTML = journalText;
     div_output_field.appendChild(journalTextHTML);
-    input_journal_textarea.value = "";
+    input_journal_entry_textarea.value = "";
     div_output_field.scrollTop = div_output_field.scrollHeight;
 }
 
-function clearJournalText() {
-    input_journal_textarea.value = "";
+function eraseJournalEntryTextArea() {
+    input_journal_entry_textarea.value = "";
 }
 
 // Oracle Functions
@@ -130,7 +130,7 @@ button_ask_question.onclick = function () {
     askquestion();
 };
 
-input_question.addEventListener("keydown", function (event) {
+input_oracle_question.addEventListener("keydown", function (event) {
     if (event.key === 'Enter') {
         askquestion();
     }
@@ -150,7 +150,7 @@ button_feature_event.onclick = function () {
 
 function askquestion() {
 
-    var question = input_question.value;
+    var question = input_oracle_question.value;
     var questionResult = getquestionResult();
     setquestionOutput(questionResult, question);
     resetquestionInputs();
@@ -208,7 +208,7 @@ function getquestionResult() {
 }
 
 function resetquestionInputs() {
-    input_question.value = "";
+    input_oracle_question.value = "";
     input_question_likelihood.value = "50/50";
 }
 

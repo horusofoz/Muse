@@ -36,6 +36,8 @@
         <div id="div_sidebar_journal">
           <button class="button" id="button_feature_journal_write">Write</button>
           <button class="button" id="button_feature_journal_read">Read</button>
+          <button class="button" id="button_journal_copy">Copy</button>
+          <button class="button" id="button_journal_clear">Clear</button>
         </div>
 
 
@@ -48,10 +50,10 @@
           <div id="div_feature_write_journal">
             <div class="div_feature_row">
               <button class="button" id="button_journal_append">Append</button>
-              <button class="button" id="button_journal_clear">Clear</button>
+              <button class="button" id="button_journal_entry_erase">Erase</button>
             </div>
             <div class="div_feature_row">
-              <textarea class="input_text_area" id="input_journal_textarea" name="input_journal_textarea"
+              <textarea class="input_journal_entry_textarea textarea" id="input_journal_entry_textarea" name="input_journal_entry_textarea"
                 placeholder="Journal entry goes here..."></textarea>
             </div>
           </div>
@@ -59,10 +61,6 @@
 
         <div id="div_container_output">
           <div id="div_output_field"></div>
-          <div id="div_output_control">
-            <button class="button" id="button_copy_output">Copy</button>
-            <button class="button" id="button_clear_output">Clear</button>
-          </div>
         </div>
 
       </div>
@@ -86,7 +84,7 @@
         </select>
       </div>
       <div class="div_feature_row">
-        <input class="input_text_area" type="text" id="input_question" name="question">
+        <input class="input_text_area" type="text" id="input_oracle_question" name="question">
       </div>
     </div>
 
@@ -102,7 +100,7 @@
       </div>
     </div>
 
-    <div id="div_feature_about_app">
+    <div id="div_feature_about_app" class="bordered">
       <div class="div_feature_about">
         <p>Muse (final name pending) is my attempt to combine the various tools I use for solo tabletop roleplaying and
           for when I GM.</p>
