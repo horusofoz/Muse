@@ -127,9 +127,9 @@ body, html {
   margin: 0;
 }
 
-.div_feature_about {
-  height: 50%;
+.div_text_only {
   padding: 1em;
+  overflow: auto;
 }
 
 .bordered {
@@ -140,8 +140,14 @@ body, html {
   filter: invert(1);
 }
 
+.display_table, .display_table td {
+  border: #f0f0f0 .2em solid;
+  padding: .5em;
+  border-collapse: collapse;
+}
+
 @media (max-width: 1024px) {
-  body, .button, .selector, .input_text_area, textarea, #div_journal_log {
+  body, .button, .selector, .input_text_area, textarea, #div_journal_log p {
     font-size: x-large;
   }
 }
