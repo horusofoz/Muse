@@ -7,6 +7,22 @@ var button_menu_combat = document.getElementById("button_menu_combat");
 var button_menu_about = document.getElementById("button_menu_about");
 
 
+// Sidebars
+var div_sidebar_journal = document.getElementById("div_sidebar_journal");
+var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
+var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
+var div_sidebar_wilderness = document.getElementById("div_sidebar_wilderness");
+var div_sidebar_combat = document.getElementById("div_sidebar_combat");
+var div_sidebar_about = document.getElementById("div_sidebar_about");
+
+
+// Shared Elements
+var div_active_feature = document.getElementById("div_active_feature");
+var div_hidden_features = document.getElementById("div_hidden_features");
+var div_active_sidebar = document.getElementById("div_active_sidebar");
+var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
+
+
 // Journal Elements
 var button_journal_append = document.getElementById("button_journal_append");
 var button_feature_journal_write = document.getElementById("button_feature_journal_write");
@@ -53,11 +69,30 @@ var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door
 
 
 
-// Shared Elements
-var div_active_feature = document.getElementById("div_active_feature");
-var div_hidden_features = document.getElementById("div_hidden_features");
-var div_active_sidebar = document.getElementById("div_active_sidebar");
-var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
+// Wilderness Elements
+var button_feature_wilderness_terrain  = document.getElementById("button_feature_wilderness_terrain");
+var button_feature_wilderness_feature  = document.getElementById("button_feature_wilderness_feature");
+var button_feature_wilderness_encounter  = document.getElementById("button_feature_wilderness_encounter");
+var button_feature_wilderness_complication  = document.getElementById("button_feature_wilderness_complication");
+
+var div_feature_wilderness_terrain = document.getElementById("div_feature_wilderness_terrain");
+var div_feature_wilderness_feature = document.getElementById("div_feature_wilderness_feature");
+var div_feature_wilderness_encounter = document.getElementById("div_feature_wilderness_encounter");
+var div_feature_wilderness_complication = document.getElementById("div_feature_wilderness_complication");
+
+
+// Combat Elements
+var button_feature_combat_difficulty  = document.getElementById("button_feature_combat_difficulty");
+var button_feature_combat_intention  = document.getElementById("button_feature_combat_intention");
+var button_feature_combat_reaction  = document.getElementById("button_feature_combat_reaction");
+var button_feature_combat_complication  = document.getElementById("button_feature_combat_complication");
+
+var div_feature_combat_difficulty = document.getElementById("div_feature_combat_difficulty");
+var div_feature_combat_feature = document.getElementById("div_feature_combat_feature");
+var div_feature_combat_reaction = document.getElementById("div_feature_combat_reaction");
+var div_feature_combat_complication = document.getElementById("div_feature_combat_complication");
+
+
 
 // About Elements
 var button_feature_about_general = document.getElementById("button_feature_about_general");
@@ -74,11 +109,7 @@ var div_feature_about_dungeon = document.getElementById("div_feature_about_dunge
 var div_feature_about_wilderness = document.getElementById("div_feature_about_wilderness");
 var div_feature_about_combat = document.getElementById("div_feature_about_combat");
 
-// Sidebars
-var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
-var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
-var div_sidebar_journal = document.getElementById("div_sidebar_journal");
-var div_sidebar_about = document.getElementById("div_sidebar_about");
+
 
 // Menu Navigation
 button_menu_journal.onclick = function () {
@@ -93,6 +124,16 @@ button_menu_oracle.onclick = function () {
 
 button_menu_dungeon.onclick = function () {
     showFeatureSetSidebar(div_sidebar_dungeon);
+    applyActiveStyleToMenuButton(this);
+};
+
+button_menu_wilderness.onclick = function () {
+    showFeatureSetSidebar(div_sidebar_wilderness);
+    applyActiveStyleToMenuButton(this);
+};
+
+button_menu_combat.onclick = function () {
+    showFeatureSetSidebar(div_sidebar_combat);
     applyActiveStyleToMenuButton(this);
 };
 
@@ -328,26 +369,68 @@ function setRandomEvent(randomEvent) {
 button_feature_dungeon_design.onclick = function() {
     showFeatureDiv(div_feature_dungeon_design);
     applyActiveStyleToFeatureButton(this);
-
 }
 
 button_feature_dungeon_room.onclick = function() {
     showFeatureDiv(div_feature_dungeon_room);
     applyActiveStyleToFeatureButton(this);
-
 }
 
 button_feature_dungeon_passage.onclick = function() {
     showFeatureDiv(div_feature_dungeon_passage);
     applyActiveStyleToFeatureButton(this);
-
 }
 
 button_feature_dungeon_door.onclick = function() {
     showFeatureDiv(div_feature_dungeon_door);
     applyActiveStyleToFeatureButton(this);
-
 }
+
+
+// Wilderness Functions
+button_feature_wilderness_terrain.onclick = function() {
+    showFeatureDiv(div_feature_wilderness_terrain);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_wilderness_feature.onclick = function() {
+    showFeatureDiv(div_feature_wilderness_feature);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_wilderness_encounter.onclick = function() {
+    showFeatureDiv(div_feature_wilderness_encounter);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_wilderness_complication.onclick = function() {
+    showFeatureDiv(div_feature_wilderness_complication);
+    applyActiveStyleToFeatureButton(this);
+}
+
+
+
+// Combat Functions
+button_feature_combat_difficulty.onclick = function() {
+    showFeatureDiv(div_feature_combat_difficulty);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_combat_intention.onclick = function() {
+    showFeatureDiv(div_feature_combat_intention);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_combat_reaction.onclick = function() {
+    showFeatureDiv(div_feature_combat_reaction);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_feature_combat_complication.onclick = function() {
+    showFeatureDiv(div_feature_combat_complication);
+    applyActiveStyleToFeatureButton(this);
+}
+
 
 
 // About Functions
