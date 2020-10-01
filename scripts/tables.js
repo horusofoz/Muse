@@ -31,7 +31,7 @@ const table_question = {
     "10": {
         "answer": "Extreme Yes"
     }
-}
+};
 
 const table_question_count = Object.keys(table_question).length;
 
@@ -1536,7 +1536,7 @@ const table_verb = {
     "500": {
         "verb": "Disgrace"
     }
-}
+};
 
 const table_verb_count = Object.keys(table_verb).length;
 
@@ -1565,431 +1565,918 @@ const table_event_focus = {
     "8": {
         "focus": "NPC Positive"
     }
-}
+};
 
 const table_event_focus_count = Object.keys(table_event_focus).length;
 
 const table_event_subject = {
     "1": {
-      "subject": "Afterthought"
+        "subject": "Afterthought"
     },
     "2": {
-      "subject": "Mechanism"
+        "subject": "Mechanism"
     },
     "3": {
-      "subject": "Queen"
+        "subject": "Queen"
     },
     "4": {
-      "subject": "King"
+        "subject": "King"
     },
     "5": {
-      "subject": "Girl"
+        "subject": "Girl"
     },
     "6": {
-      "subject": "Idea"
+        "subject": "Idea"
     },
     "7": {
-      "subject": "Candle"
+        "subject": "Candle"
     },
     "8": {
-      "subject": "Fountain"
+        "subject": "Fountain"
     },
     "9": {
-      "subject": "Lock"
+        "subject": "Lock"
     },
     "10": {
-      "subject": "Border"
+        "subject": "Border"
     },
     "11": {
-      "subject": "Magic"
+        "subject": "Magic"
     },
     "12": {
-      "subject": "Slave"
+        "subject": "Slave"
     },
     "13": {
-      "subject": "Circle"
+        "subject": "Circle"
     },
     "14": {
-      "subject": "Teacher"
+        "subject": "Teacher"
     },
     "15": {
-      "subject": "Beauty"
+        "subject": "Beauty"
     },
     "16": {
-      "subject": "Veil"
+        "subject": "Veil"
     },
     "17": {
-      "subject": "Monkey"
+        "subject": "Monkey"
     },
     "18": {
-      "subject": "Death"
+        "subject": "Death"
     },
     "19": {
-      "subject": "Creature"
+        "subject": "Creature"
     },
     "20": {
-      "subject": "Land"
+        "subject": "Land"
     },
     "21": {
-      "subject": "River"
+        "subject": "River"
     },
     "22": {
-      "subject": "Lizard"
+        "subject": "Lizard"
     },
     "23": {
-      "subject": "Lion"
+        "subject": "Lion"
     },
     "24": {
-      "subject": "Rain"
+        "subject": "Rain"
     },
     "25": {
-      "subject": "Learn"
+        "subject": "Learn"
     },
     "26": {
-      "subject": "Crowd"
+        "subject": "Crowd"
     },
     "27": {
-      "subject": "Message"
+        "subject": "Message"
     },
     "28": {
-      "subject": "Pleasure"
+        "subject": "Pleasure"
     },
     "29": {
-      "subject": "Boy"
+        "subject": "Boy"
     },
     "30": {
-      "subject": "Aftermath"
+        "subject": "Aftermath"
     },
     "31": {
-      "subject": "Plant"
+        "subject": "Plant"
     },
     "32": {
-      "subject": "Flag"
+        "subject": "Flag"
     },
     "33": {
-      "subject": "Friction"
+        "subject": "Friction"
     },
     "34": {
-      "subject": "Beach"
+        "subject": "Beach"
     },
     "35": {
-      "subject": "Insurance"
+        "subject": "Insurance"
     },
     "36": {
-      "subject": "Achieve"
+        "subject": "Achieve"
     },
     "37": {
-      "subject": "Deer"
+        "subject": "Deer"
     },
     "38": {
-      "subject": "Clothing"
+        "subject": "Clothing"
     },
     "39": {
-      "subject": "Painting"
+        "subject": "Painting"
     },
     "40": {
-      "subject": "Market"
+        "subject": "Market"
     },
     "41": {
-      "subject": "Sun"
+        "subject": "Sun"
     },
     "42": {
-      "subject": "Divide"
+        "subject": "Divide"
     },
     "43": {
-      "subject": "Ocean"
+        "subject": "Ocean"
     },
     "44": {
-      "subject": "Cemetery"
+        "subject": "Cemetery"
     },
     "45": {
-      "subject": "Oil"
+        "subject": "Oil"
     },
     "46": {
-      "subject": "Lawyer"
+        "subject": "Lawyer"
     },
     "47": {
-      "subject": "Doctor"
+        "subject": "Doctor"
     },
     "48": {
-      "subject": "Shoe"
+        "subject": "Shoe"
     },
     "49": {
-      "subject": "House"
+        "subject": "House"
     },
     "50": {
-      "subject": "Pollution"
+        "subject": "Pollution"
     },
     "51": {
-      "subject": "School"
+        "subject": "School"
     },
     "52": {
-      "subject": "Mountain"
+        "subject": "Mountain"
     },
     "53": {
-      "subject": "Creator"
+        "subject": "Creator"
     },
     "54": {
-      "subject": "Galley"
+        "subject": "Galley"
     },
     "55": {
-      "subject": "Egg"
+        "subject": "Egg"
     },
     "56": {
-      "subject": "Army"
+        "subject": "Army"
     },
     "57": {
-      "subject": "Animal"
+        "subject": "Animal"
     },
     "58": {
-      "subject": "Guide"
+        "subject": "Guide"
     },
     "59": {
-      "subject": "Volcano"
+        "subject": "Volcano"
     },
     "60": {
-      "subject": "Action"
+        "subject": "Action"
     },
     "61": {
-      "subject": "Learn"
+        "subject": "Learn"
     },
     "62": {
-      "subject": "Light"
+        "subject": "Light"
     },
     "63": {
-      "subject": "Night"
+        "subject": "Night"
     },
     "64": {
-      "subject": "Partner"
+        "subject": "Partner"
     },
     "65": {
-      "subject": "Ice"
+        "subject": "Ice"
     },
     "66": {
-      "subject": "Language"
+        "subject": "Language"
     },
     "67": {
-      "subject": "Island"
+        "subject": "Island"
     },
     "68": {
-      "subject": "Massacre"
+        "subject": "Massacre"
     },
     "69": {
-      "subject": "Beginner"
+        "subject": "Beginner"
     },
     "70": {
-      "subject": "Hospital"
+        "subject": "Hospital"
     },
     "71": {
-      "subject": "Vulture"
+        "subject": "Vulture"
     },
     "72": {
-      "subject": "Guard"
+        "subject": "Guard"
     },
     "73": {
-      "subject": "Feather"
+        "subject": "Feather"
     },
     "74": {
-      "subject": "Aberration"
+        "subject": "Aberration"
     },
     "75": {
-      "subject": "Deity"
+        "subject": "Deity"
     },
     "76": {
-      "subject": "Boundary"
+        "subject": "Boundary"
     },
     "77": {
-      "subject": "Temper"
+        "subject": "Temper"
     },
     "78": {
-      "subject": "Devil"
+        "subject": "Devil"
     },
     "79": {
-      "subject": "Demon"
+        "subject": "Demon"
     },
     "80": {
-      "subject": "Son"
+        "subject": "Son"
     },
     "81": {
-      "subject": "Daughter"
+        "subject": "Daughter"
     },
     "82": {
-      "subject": "Forest"
+        "subject": "Forest"
     },
     "83": {
-      "subject": "Reward"
+        "subject": "Reward"
     },
     "84": {
-      "subject": "Blade"
+        "subject": "Blade"
     },
     "85": {
-      "subject": "Needle"
+        "subject": "Needle"
     },
     "86": {
-      "subject": "Shadow"
+        "subject": "Shadow"
     },
     "87": {
-      "subject": "Fey"
+        "subject": "Fey"
     },
     "88": {
-      "subject": "Library"
+        "subject": "Library"
     },
     "89": {
-      "subject": "Eye"
+        "subject": "Eye"
     },
     "90": {
-      "subject": "Ancient"
+        "subject": "Ancient"
     },
     "91": {
-      "subject": "Genocide"
+        "subject": "Genocide"
     },
     "92": {
-      "subject": "Rainbow"
+        "subject": "Rainbow"
     },
     "93": {
-      "subject": "Bomb"
+        "subject": "Bomb"
     },
     "94": {
-      "subject": "Gold"
+        "subject": "Gold"
     },
     "95": {
-      "subject": "Religion"
+        "subject": "Religion"
     },
     "96": {
-      "subject": "Heart"
+        "subject": "Heart"
     },
     "97": {
-      "subject": "Star"
+        "subject": "Star"
     },
     "98": {
-      "subject": "Iron"
+        "subject": "Iron"
     },
     "99": {
-      "subject": "Sister"
+        "subject": "Sister"
     },
     "100": {
-      "subject": "Ghost"
+        "subject": "Ghost"
     },
     "101": {
-      "subject": "Brother"
+        "subject": "Brother"
     },
     "102": {
-      "subject": "Channel"
+        "subject": "Channel"
     },
     "103": {
-      "subject": "King"
+        "subject": "King"
     },
     "104": {
-      "subject": "Wall"
+        "subject": "Wall"
     },
     "105": {
-      "subject": "Room"
+        "subject": "Room"
     },
     "106": {
-      "subject": "Wilderness"
+        "subject": "Wilderness"
     },
     "107": {
-      "subject": "Dream"
+        "subject": "Dream"
     },
     "108": {
-      "subject": "Minister"
+        "subject": "Minister"
     },
     "109": {
-      "subject": "Temple"
+        "subject": "Temple"
     },
     "110": {
-      "subject": "Believe"
+        "subject": "Believe"
     },
     "111": {
-      "subject": "Resurrection"
+        "subject": "Resurrection"
     },
     "112": {
-      "subject": "Food"
+        "subject": "Food"
     },
     "113": {
-      "subject": "Helmet"
+        "subject": "Helmet"
     },
     "114": {
-      "subject": "Thread"
+        "subject": "Thread"
     },
     "115": {
-      "subject": "Garden"
+        "subject": "Garden"
     },
     "116": {
-      "subject": "Weather"
+        "subject": "Weather"
     },
     "117": {
-      "subject": "Jewellery"
+        "subject": "Jewellery"
     },
     "118": {
-      "subject": "Health"
+        "subject": "Health"
     },
     "119": {
-      "subject": "Flower"
+        "subject": "Flower"
     },
     "120": {
-      "subject": "Territory"
+        "subject": "Territory"
     },
     "121": {
-      "subject": "Energy"
+        "subject": "Energy"
     },
     "122": {
-      "subject": "Slave"
+        "subject": "Slave"
     },
     "123": {
-      "subject": "Fuel"
+        "subject": "Fuel"
     },
     "124": {
-      "subject": "Portal"
+        "subject": "Portal"
     },
     "125": {
-      "subject": "Family"
+        "subject": "Family"
     },
     "126": {
-      "subject": "Window"
+        "subject": "Window"
     },
     "127": {
-      "subject": "Disease"
+        "subject": "Disease"
     },
     "128": {
-      "subject": "Picture"
+        "subject": "Picture"
     },
     "129": {
-      "subject": "Book"
+        "subject": "Book"
     },
     "130": {
-      "subject": "Music"
+        "subject": "Music"
     },
     "131": {
-      "subject": "Time"
+        "subject": "Time"
     },
     "132": {
-      "subject": "Writer"
+        "subject": "Writer"
     },
     "133": {
-      "subject": "Diamond"
+        "subject": "Diamond"
     },
     "134": {
-      "subject": "Fire"
+        "subject": "Fire"
     },
     "135": {
-      "subject": "Amulet"
+        "subject": "Amulet"
     },
     "136": {
-      "subject": "Nest"
+        "subject": "Nest"
     },
     "137": {
-      "subject": "Stone"
+        "subject": "Stone"
     },
     "138": {
-      "subject": "Plant"
+        "subject": "Plant"
     },
     "139": {
-      "subject": "Wealth"
+        "subject": "Wealth"
     },
     "140": {
-      "subject": "Insect"
+        "subject": "Insect"
     }
-}
+};
 
 const table_event_subject_count = Object.keys(table_event_subject).length;
+
+
+// Dungeon Tables
+
+const table_dungeon_locations = {
+    "1": {
+        "location": "A building in a city"
+    },
+    "2": {
+        "location": "Catacombs or sewers beneath a city"
+    },
+    "3": {
+        "location": "Beneath a farmhouse"
+    },
+    "4": {
+        "location": "Beneath a graveyard"
+    },
+    "5": {
+        "location": "Beneath a ruined castle"
+    },
+    "6": {
+        "location": "Beneath a ruined city"
+    },
+    "7": {
+        "location": "Beneath a temple"
+    },
+    "8": {
+        "location": "In a chasm"
+    },
+    "9": {
+        "location": "In a cliff face"
+    },
+    "10": {
+        "location": "In a desert"
+    },
+    "11": {
+        "location": "In a forest"
+    },
+    "12": {
+        "location": "In a glacier"
+    },
+    "13": {
+        "location": "In a gorge"
+    },
+    "14": {
+        "location": "In a jungle"
+    },
+    "15": {
+        "location": "In a mountain pass"
+    },
+    "16": {
+        "location": "In a swamp"
+    },
+    "17": {
+        "location": "Beneath or on top of a mesa"
+    },
+    "18": {
+        "location": "In sea caves"
+    },
+    "19": {
+        "location": "In several connected mesas"
+    },
+    "20": {
+        "location": "On a mountain peak"
+    },
+    "21": {
+        "location": "On a promontory"
+    },
+    "22": {
+        "location": "On an island"
+    },
+    "23": {
+        "location": "Underwater"
+    }
+};
+
+const table_dungeon_locations_count = Object.keys(table_dungeon_locations).length;
+
+const table_dungeon_creator = {
+    "1": {
+        "creator": "Beholder"
+    },
+    "2": {
+        "creator": "Cult or religious group"
+    },
+    "3": {
+        "creator": "Cult or religious group"
+    },
+    "4": {
+        "creator": "Cult or religious group"
+    },
+    "5": {
+        "creator": "Dwarves"
+    },
+    "6": {
+        "creator": "Dwarves"
+    },
+    "7": {
+        "creator": "Dwarves"
+    },
+    "8": {
+        "creator": "Dwarves"
+    },
+    "9": {
+        "creator": "Elves (including drow)"
+    },
+    "10": {
+        "creator": "Giants"
+    },
+    "11": {
+        "creator": "Hobgoblins"
+    },
+    "12": {
+        "creator": "Humans"
+    },
+    "13": {
+        "creator": "Humans"
+    },
+    "14": {
+        "creator": "Humans"
+    },
+    "15": {
+        "creator": "Humans"
+    },
+    "16": {
+        "creator": "Kuo-toa"
+    },
+    "17": {
+        "creator": "Lich"
+    },
+    "18": {
+        "creator": "Mind flayers"
+    },
+    "19": {
+        "creator": "Yuan-ti"
+    },
+    "20": {
+        "creator": "No creator (natural caverns)"
+    }
+};
+
+const table_dungeon_creator_count = Object.keys(table_dungeon_creator).length;
+
+const table_dungeon_purpose = {
+    "1": {
+        "purpose": "Death trap",
+        "description": "This dungeon is built to eliminate any creature that dares to enter it. A death trap might guard the treasure of an insane wizard, or it might be designed to lure adventurers to their demise for some nefarious purpose, such as to feed souls to a lich’s phylactery."
+    },
+    "2": {
+        "purpose": "Lair",
+        "description": "A lair is a place where monsters live. Typical lairs include ruins and caves."
+    },
+    "3": {
+        "purpose": "Lair",
+        "description": "A lair is a place where monsters live. Typical lairs include ruins and caves."
+    },
+    "4": {
+        "purpose": "Lair",
+        "description": "A lair is a place where monsters live. Typical lairs include ruins and caves."
+    },
+    "5": {
+        "purpose": "Lair",
+        "description": "A lair is a place where monsters live. Typical lairs include ruins and caves."
+    },
+    "6": {
+        "purpose": "Maze",
+        "description": "A maze is intended to deceive or confuse those who enter it. Some mazes are elaborate obstacles that protect treasure, while others are gauntlets for prisoners banished there to be hunted and devoured by the monsters within."
+    },
+    "7": {
+        "purpose": "Mine",
+        "description": "An abandoned mine can quickly become infested with monsters, while miners who delve too deep can break through into the Underdark."
+    },
+    "8": {
+        "purpose": "Mine",
+        "description": "An abandoned mine can quickly become infested with monsters, while miners who delve too deep can break through into the Underdark."
+    },
+    "9": {
+        "purpose": "Mine",
+        "description": "An abandoned mine can quickly become infested with monsters, while miners who delve too deep can break through into the Underdark."
+    },
+    "10": {
+        "purpose": "Planar gate",
+        "description": "Dungeons built around planar portals are often transformed by the planar energy seeping out through those portals."
+    },
+    "11": {
+        "purpose": "Stronghold",
+        "description": "A stronghold dungeon provides a secure base of operations for villains and monsters. It is usually ruled by a powerful individual, such as a wizard, vampire, or dragon, and it is larger and more complex than a simple lair."
+    },
+    "12": {
+        "purpose": "Stronghold",
+        "description": "A stronghold dungeon provides a secure base of operations for villains and monsters. It is usually ruled by a powerful individual, such as a wizard, vampire, or dragon, and it is larger and more complex than a simple lair."
+    },
+    "13": {
+        "purpose": "Stronghold",
+        "description": "A stronghold dungeon provides a secure base of operations for villains and monsters. It is usually ruled by a powerful individual, such as a wizard, vampire, or dragon, and it is larger and more complex than a simple lair."
+    },
+    "14": {
+        "purpose": "Stronghold",
+        "description": "A stronghold dungeon provides a secure base of operations for villains and monsters. It is usually ruled by a powerful individual, such as a wizard, vampire, or dragon, and it is larger and more complex than a simple lair."
+    },
+    "15": {
+        "purpose": "Temple or shrine",
+        "description": "This dungeon is consecrated to a deity or other planar entity. The entity’s worshipers control the dungeon and conduct their rites there."
+    },
+    "16": {
+        "purpose": "Temple or shrine",
+        "description": "This dungeon is consecrated to a deity or other planar entity. The entity’s worshipers control the dungeon and conduct their rites there."
+    },
+    "17": {
+        "purpose": "Temple or shrine",
+        "description": "This dungeon is consecrated to a deity or other planar entity. The entity’s worshipers control the dungeon and conduct their rites there."
+    },
+    "18": {
+        "purpose": "Tomb",
+        "description": "Tombs are magnets for treasure hunters, as well as monsters that hunger for the bones of the dead."
+    },
+    "19": {
+        "purpose": "Tomb",
+        "description": "Tombs are magnets for treasure hunters, as well as monsters that hunger for the bones of the dead."
+    },
+    "20": {
+        "purpose": "Treasure vault",
+        "description": "Built to protect powerful magic items and great material wealth, treasure vault dungeons are heavily guarded by monsters and traps."
+    }
+};
+
+const table_dungeon_purpose_count = Object.keys(table_dungeon_purpose).length;
+
+const table_dungeon_history = {
+    "1": {
+        "history": "Abandoned by creators"
+    },
+    "2": {
+        "history": "Abandoned by creators"
+    },
+    "3": {
+        "history": "Abandoned by creators"
+    },
+    "4": {
+        "history": "Abandoned due to plague"
+    },
+    "5": {
+        "history": "Conquered by invaders"
+    },
+    "6": {
+        "history": "Conquered by invaders"
+    },
+    "7": {
+        "history": "Conquered by invaders"
+    },
+    "8": {
+        "history": "Conquered by invaders"
+    },
+    "9": {
+        "history": "Creators destroyed by attacking raiders"
+    },
+    "10": {
+        "history": "Creators destroyed by attacking raiders"
+    },
+    "11": {
+        "history": "Creators destroyed by discovery made within the site"
+    },
+    "12": {
+        "history": "Creators destroyed by internal conflict"
+    },
+    "13": {
+        "history": "Creators destroyed by magical catastrophe"
+    },
+    "14": {
+        "history": "Creators destroyed by natural disaster"
+    },
+    "15": {
+        "history": "Creators destroyed by natural disaster"
+    },
+    "16": {
+        "history": "Location cursed by the gods and shunned"
+    },
+    "17": {
+        "history": "Original creator still in control"
+    },
+    "18": {
+        "history": "Original creator still in control"
+    },
+    "19": {
+        "history": "Overrun by planar creatures"
+    },
+    "20": {
+        "history": "Site of a great miracle"
+    }
+};
+
+const table_dungeon_history_count = Object.keys(table_dungeon_history).length;
+
+const table_dungeon_size = {
+    "1": {
+        "size": "Tiny",
+        "rooms": 3
+    },
+    "2": {
+        "size": "Tiny",
+        "rooms": 4
+    },
+    "3": {
+        "size": "Tiny",
+        "rooms": 5
+    },
+    "4": {
+        "size": "Small",
+        "rooms": 6
+    },
+    "5": {
+        "size": "Small",
+        "rooms": 7
+    },
+    "6": {
+        "size": "Small",
+        "rooms": 8
+    },
+    "7": {
+        "size": "Small",
+        "rooms": 9
+    },
+    "8": {
+        "size": "Small",
+        "rooms": 10
+    },
+    "9": {
+        "size": "Medium",
+        "rooms": 13
+    },
+    "10": {
+        "size": "Medium",
+        "rooms": 14
+    },
+    "11": {
+        "size": "Medium",
+        "rooms": 15
+    },
+    "12": {
+        "size": "Medium",
+        "rooms": 16
+    },
+    "13": {
+        "size": "Medium",
+        "rooms": 17
+    },
+    "14": {
+        "size": "Medium",
+        "rooms": 18
+    },
+    "15": {
+        "size": "Medium",
+        "rooms": 19
+    },
+    "16": {
+        "size": "Medium",
+        "rooms": 20
+    },
+    "17": {
+        "size": "Large",
+        "rooms": 28
+    },
+    "18": {
+        "size": "Large",
+        "rooms": 29
+    },
+    "19": {
+        "size": "Huge",
+        "rooms": 55
+    },
+    "20": {
+        "size": "Limitless",
+        "rooms": "Until goal achieved"
+    }
+};
+
+const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
+
+const table_dungeon_start_area = {
+    "1": {
+      "configuration": "Square",
+      "size": "20 × 20 ft.",
+      "exit_left": "passage",
+      "exit_opposite": "passage",
+      "exit_right": "passage"
+    },
+    "2": {
+      "configuration": "Square",
+      "size": "20 × 20 ft.",
+      "exit_left": "door",
+      "exit_opposite": "passage",
+      "exit_right": "door"
+    },
+    "3": {
+      "configuration": "Square",
+      "size": "40 × 40 ft.",
+      "exit_left": "door",
+      "exit_opposite": "door",
+      "exit_right": "door"
+    },
+    "4": {
+      "configuration": "Rectangle",
+      "size": "60 × 20 ft.",
+      "exit_left": "door",
+      "exit_opposite": "passage",
+      "exit_right": "door"
+    },
+    "5": {
+      "configuration": "Rectangle",
+      "size": "20 × 40 ft.",
+      "exit_left": "passage",
+      "exit_opposite": "passage",
+      "exit_right": "passage"
+    },
+    "6": {
+      "configuration": "Circle",
+      "size": "40 ft. diameter",
+      "exit_left": "passage",
+      "exit_opposite": "passage",
+      "exit_right": "passage"
+    },
+    "7": {
+      "configuration": "Passage, T intersection",
+      "size": "10 ft. wide",
+      "exit_left": "passage",
+      "exit_opposite": "FALSE",
+      "exit_right": "passage"
+    },
+    "8": {
+      "configuration": "Passage, four-way intersection",
+      "size": "10 ft. wide",
+      "exit_left": "passage",
+      "exit_opposite": "passage",
+      "exit_right": "passage"
+    }
+  };
+
+const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
+
+// Shared Tables
+
+const table_creature_type = {
+    "1": {
+        "creature_type": "Aberration"
+    },
+    "2": {
+        "creature_type": "Beast"
+    },
+    "3": {
+        "creature_type": "Celestial"
+    },
+    "4": {
+        "creature_type": "Construct"
+    },
+    "5": {
+        "creature_type": "Dragon"
+    },
+    "6": {
+        "creature_type": "Elemental"
+    },
+    "7": {
+        "creature_type": "Fey"
+    },
+    "8": {
+        "creature_type": "Fiend"
+    },
+    "9": {
+        "creature_type": "Giant"
+    },
+    "10": {
+        "creature_type": "Humanoid"
+    },
+    "11": {
+        "creature_type": "Monstrosity"
+    },
+    "12": {
+        "creature_type": "Ooze"
+    },
+    "13": {
+        "creature_type": "Plant"
+    },
+    "14": {
+        "creature_type": "Undead"
+    }
+};
+
+const table_creature_type_count = Object.keys(table_creature_type).length;

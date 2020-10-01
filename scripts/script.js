@@ -61,6 +61,7 @@ var button_feature_dungeon_design = document.getElementById("button_feature_dung
 var button_feature_dungeon_room = document.getElementById("button_feature_dungeon_room");
 var button_feature_dungeon_passage = document.getElementById("button_feature_dungeon_passage");
 var button_feature_dungeon_door = document.getElementById("button_feature_dungeon_door");
+var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 
 var div_feature_dungeon_design = document.getElementById("div_feature_dungeon_design");
 var div_feature_dungeon_room = document.getElementById("div_feature_dungeon_room");
@@ -385,6 +386,59 @@ button_feature_dungeon_door.onclick = function() {
     showFeatureDiv(div_feature_dungeon_door);
     applyActiveStyleToFeatureButton(this);
 }
+
+button_generate_dungeon.onclick = function() {
+    var dungeonDesign = getDungeonDesign();
+    setDungeonDesign(dungeonDesign);
+}
+
+
+function getDungeonDesign() {
+    
+    var dungeonDesign = {};
+    dungeonDesign.location = table_dungeon_locations[getRandomInt(1, table_dungeon_locations_count)].location;
+    dungeonDesign.creator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)].creator;
+    dungeonDesign.purpose = table_dungeon_purpose[getRandomInt(1, table_dungeon_purpose_count)].purpose;
+    dungeonDesign.history = table_dungeon_history[getRandomInt(1, table_dungeon_history_count)].history;
+    dungeonDesign.size = table_dungeon_size[getRandomInt(1, table_dungeon_size_count)];
+    dungeonDesign.dominantCreatureType = table_creature_type[getRandomInt(1, table_creature_type_count)].creature_type;
+    dungeonDesign.start_area = table_dungeon_start_area[getRandomInt(1, table_dungeon_start_area_count)];
+    
+
+    var exits = ""; // Think below should be refactored into a standalone funciotn then can be re-used for dungeon rooms other than the start area
+    (dungeonDesign.start_area.exit_left !== "FALSE") ? exits += dungeonDesign.start_area.exit_left + " left, " : "";
+    (dungeonDesign.start_area.exit_opposite !== "FALSE") ? exits += dungeonDesign.start_area.exit_opposite + " opposite, " : "";
+    (dungeonDesign.start_area.exit_right !== "FALSE") ? exits += dungeonDesign.start_area.exit_right + " right, " : "";
+    exits = (exits.length > 0) ? exits.substring(0, exits.length - 2) : "";
+    exits = exits.charAt(0).toUpperCase() + exits.slice(1);
+    dungeonDesign.start_area.exits = exits;
+    return dungeonDesign;
+}
+
+
+function setDungeonDesign(dungeonObject) {
+    var dungeonDesign = "Dungeon Design";
+    dungeonDesign += "<br />Location: " + dungeonObject.location;
+    dungeonDesign += "<br />Created By: " + dungeonObject.creator;
+    dungeonDesign += "<br />Purpose: " + dungeonObject.purpose;
+    dungeonDesign += "<br />History: " + dungeonObject.history;
+    dungeonDesign += "<br />Size: " + dungeonObject.size.size + " (" + dungeonObject.size.rooms + ")";
+    dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
+    dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
+
+    /*if(dungeonObject.start_area.exits.length > 0) {
+        dungeonDesign += ", " + dungeonObject.start_area.exits;
+    }*/
+
+    if(dungeonObject.start_area.exits.length > 0) {
+        
+        dungeonDesign += "<br />Starting Area Exits: " + dungeonObject.start_area.exits
+    }
+
+    writeToJournal(dungeonDesign);
+}
+
+
 
 
 // Wilderness Functions
