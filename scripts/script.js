@@ -179,11 +179,8 @@ button_journal_clear.onclick = function () {
 function appendJournalTextToLog() {
     var journalText = input_journal_entry_textarea.value;
     journalText = journalText.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    var journalTextHTML = document.createElement("p");
-    journalTextHTML.innerHTML = journalText;
-    div_journal_log.appendChild(journalTextHTML);
     input_journal_entry_textarea.value = "";
-    div_journal_log.scrollTop = div_journal_log.scrollHeight;
+    writeToJournal(journalText);
 }
 
 function eraseJournalEntryTextArea() {
@@ -259,22 +256,15 @@ function askquestion() {
 
 function setQuestionOutput(questionResult, question) {
 
-    //var questionOutput = question;
     var questionOutput = (question === "") ? "" : question + "<br />";
     questionOutput += "Likelihood: " + questionResult.likelihood;
     questionOutput += "<br />Roll: " + questionResult.firstRoll;
-
     if (questionResult.likelihood !== "50/50") {
         questionOutput += " & " + questionResult.secondRoll;
     }
 
     questionOutput += "<br />Answer: " + questionResult.answer;
-
-    var result_node = document.createElement('p');
-    result_node.innerHTML = questionOutput;
-    div_journal_log.appendChild(result_node);
-    div_journal_log.scrollTop = div_journal_log.scrollHeight;
-
+    writeToJournal(questionOutput)
 }
 
 function getquestionResult() {
@@ -332,16 +322,13 @@ function getPortentResult() {
 }
 
 function setPortentResult(portentResult) {
-    var portentOutput = "Portent: ";
+    var portentOutput = "Portent:<br />";
     for (var i = 0; i < portentResult.length; i++) {
         portentOutput += portentResult[i];
         portentOutput += (i !== portentResult.length - 1) ? ", " : "";
     }
     
-    var result_node = document.createElement('p');
-    result_node.innerHTML = portentOutput;
-    div_journal_log.appendChild(result_node);
-    div_journal_log.scrollTop = div_journal_log.scrollHeight;
+    writeToJournal(portentOutput);
 }
 
 function getRandomEvent() {
@@ -403,15 +390,6 @@ function getDungeonDesign() {
     dungeonDesign.size = table_dungeon_size[getRandomInt(1, table_dungeon_size_count)];
     dungeonDesign.dominantCreatureType = table_creature_type[getRandomInt(1, table_creature_type_count)].creature_type;
     dungeonDesign.start_area = table_dungeon_start_area[getRandomInt(1, table_dungeon_start_area_count)];
-    
-
-    var exits = ""; // Think below should be refactored into a standalone funciotn then can be re-used for dungeon rooms other than the start area
-    (dungeonDesign.start_area.exit_left !== "FALSE") ? exits += dungeonDesign.start_area.exit_left + " left, " : "";
-    (dungeonDesign.start_area.exit_opposite !== "FALSE") ? exits += dungeonDesign.start_area.exit_opposite + " opposite, " : "";
-    (dungeonDesign.start_area.exit_right !== "FALSE") ? exits += dungeonDesign.start_area.exit_right + " right, " : "";
-    exits = (exits.length > 0) ? exits.substring(0, exits.length - 2) : "";
-    exits = exits.charAt(0).toUpperCase() + exits.slice(1);
-    dungeonDesign.start_area.exits = exits;
     return dungeonDesign;
 }
 
@@ -425,20 +403,21 @@ function setDungeonDesign(dungeonObject) {
     dungeonDesign += "<br />Size: " + dungeonObject.size.size + " (" + dungeonObject.size.rooms + ")";
     dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
     dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
-
-    /*if(dungeonObject.start_area.exits.length > 0) {
-        dungeonDesign += ", " + dungeonObject.start_area.exits;
-    }*/
-
-    if(dungeonObject.start_area.exits.length > 0) {
-        
-        dungeonDesign += "<br />Starting Area Exits: " + dungeonObject.start_area.exits
-    }
-
+    dungeonObject.start_area.exits = setDungeonExits({exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right});
+    dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Starting Area Exits: " + dungeonObject.start_area.exits : "";
     writeToJournal(dungeonDesign);
 }
 
+function setDungeonExits(inputObject) {
+    var exits = ""; 
 
+    (inputObject.exit_left !== "FALSE") ? exits += inputObject.exit_left + " left, " : "";
+    (inputObject.exit_opposite !== "FALSE") ? exits += inputObject.exit_opposite + " opposite, " : "";
+    (inputObject.exit_right !== "FALSE") ? exits += inputObject.exit_right + " right, " : "";
+    exits = (exits.length > 0) ? exits.substring(0, exits.length - 2) : "";
+    exits = exits.charAt(0).toUpperCase() + exits.slice(1);
+    return exits;
+}
 
 
 // Wilderness Functions
