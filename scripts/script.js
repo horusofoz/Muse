@@ -61,13 +61,14 @@ var button_feature_dungeon_design = document.getElementById("button_feature_dung
 var button_feature_dungeon_room = document.getElementById("button_feature_dungeon_room");
 var button_feature_dungeon_passage = document.getElementById("button_feature_dungeon_passage");
 var button_feature_dungeon_door = document.getElementById("button_feature_dungeon_door");
-var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 
 var div_feature_dungeon_design = document.getElementById("div_feature_dungeon_design");
 var div_feature_dungeon_room = document.getElementById("div_feature_dungeon_room");
 var div_feature_dungeon_passage = document.getElementById("div_feature_dungeon_passage");
 var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door");
 
+var button_generate_dungeon = document.getElementById("button_generate_dungeon");
+var button_generate_door = document.getElementById("button_generate_door");
 
 
 // Wilderness Elements
@@ -322,7 +323,7 @@ function getPortentResult() {
 }
 
 function setPortentResult(portentResult) {
-    var portentOutput = "Portent:<br />";
+    var portentOutput = "Portent<br />";
     for (var i = 0; i < portentResult.length; i++) {
         portentOutput += portentResult[i];
         portentOutput += (i !== portentResult.length - 1) ? ", " : "";
@@ -379,6 +380,11 @@ button_generate_dungeon.onclick = function() {
     setDungeonDesign(dungeonDesign);
 }
 
+button_generate_door.onclick = function() {
+    var dungeonDoor = getDungeonDoor();
+    dungeonDoor = setDungeonDoor(dungeonDoor);
+    writeToJournal(dungeonDoor);
+}
 
 function getDungeonDesign() {
     
@@ -393,7 +399,6 @@ function getDungeonDesign() {
     return dungeonDesign;
 }
 
-
 function setDungeonDesign(dungeonObject) {
     var dungeonDesign = "Dungeon Design";
     dungeonDesign += "<br />Location: " + dungeonObject.location;
@@ -404,7 +409,7 @@ function setDungeonDesign(dungeonObject) {
     dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
     dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
     dungeonObject.start_area.exits = setDungeonExits({exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right});
-    dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Starting Area Exits: " + dungeonObject.start_area.exits : "";
+    dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Exits: " + dungeonObject.start_area.exits : "";
     writeToJournal(dungeonDesign);
 }
 
@@ -418,6 +423,24 @@ function setDungeonExits(inputObject) {
     exits = exits.charAt(0).toUpperCase() + exits.slice(1);
     return exits;
 }
+
+function getDungeonDoor() {
+    var dungeonDoor = table_dungeon_door[getRandomInt(1, table_dungeon_door_count)];
+    return dungeonDoor;
+}
+
+function setDungeonDoor(inputDoor, title = "") {
+    var dungeonDoor = "";
+    dungeonDoor += (title !== "") ? tile + "<br />" : "";
+    dungeonDoor += inputDoor.type;
+    dungeonDoor += (inputDoor.locked !== "FALSE") ? ", locked" : "";
+    dungeonDoor += (inputDoor.trapped !== "FALSE") ? ", trapped" : "";
+    return dungeonDoor;
+}
+
+
+
+
 
 
 // Wilderness Functions

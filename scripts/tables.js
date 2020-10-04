@@ -2432,6 +2432,511 @@ const table_dungeon_start_area = {
 
 const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
 
+const table_dungeon_door = {
+    "1": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "2": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "3": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "4": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "5": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "6": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "7": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "8": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "9": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "10": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "11": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "12": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "13": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "14": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "15": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "16": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "17": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "18": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "19": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "20": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "21": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "22": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "23": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "24": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "25": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "26": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "27": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "28": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "29": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "30": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "31": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "32": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "33": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "34": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "35": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "36": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "37": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "38": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "39": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "40": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "41": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "42": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "43": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "44": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "45": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "46": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "47": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "48": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "49": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "50": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "51": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "52": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "53": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "54": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "55": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "56": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "57": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "58": {
+      "type": "Wooden door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "59": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    },
+    "60": {
+      "type": "Wooden door",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    },
+    "61": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "62": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "63": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "64": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "65": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "66": {
+      "type": "Stone door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "67": {
+      "type": "Stone door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "68": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "69": {
+      "type": "Stone door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "70": {
+      "type": "Stone door",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    },
+    "71": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "72": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "73": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "74": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "75": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "76": {
+      "type": "Iron door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "77": {
+      "type": "Iron door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "78": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "79": {
+      "type": "Iron door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "80": {
+      "type": "Iron door",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    },
+    "81": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "82": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "83": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "84": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "85": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "86": {
+      "type": "Portcullis",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "87": {
+      "type": "Portcullis",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "88": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "89": {
+      "type": "Portcullis",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "90": {
+      "type": "Portcullis",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    },
+    "91": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "92": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "93": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "94": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "95": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "FALSE"
+    },
+    "96": {
+      "type": "Secret door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "97": {
+      "type": "Secret door",
+      "locked": "TRUE",
+      "trapped": "FALSE"
+    },
+    "98": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "99": {
+      "type": "Secret door",
+      "locked": "FALSE",
+      "trapped": "TRUE"
+    },
+    "100": {
+      "type": "Secret door",
+      "locked": "TRUE",
+      "trapped": "TRUE"
+    }
+  };
+
+const table_dungeon_door_count = Object.keys(table_dungeon_door).length;
+
 // Shared Tables
 
 const table_creature_type = {
