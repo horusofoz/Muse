@@ -24,19 +24,13 @@ var div_hidden_sidebars = document.getElementById("div_hidden_sidebars");
 
 
 // Journal Elements
-//var button_journal_append = document.getElementById("button_journal_append");
-//var button_journal_entry_erase = document.getElementById("button_journal_entry_erase");
+var button_journal_append = document.getElementById("button_journal_append");
 var button_feature_journal_write = document.getElementById("button_feature_journal_write");
-
-
+var button_journal_entry_erase = document.getElementById("button_journal_entry_erase");
 var button_feature_journal_read = document.getElementById("button_feature_journal_read");
 var button_journal_undo = document.getElementById("button_journal_undo");
 var button_journal_copy = document.getElementById("button_journal_copy");
 var button_journal_clear = document.getElementById("button_journal_clear");
-var button_journal_edit = document.getElementById("button_journal_edit");
-
-var button_journal_save = document.getElementById("button_journal_save");
-
 
 var div_feature_journal_write = document.getElementById("div_feature_journal_write");
 var div_feature_journal_read = document.getElementById("div_feature_journal_read");
@@ -77,10 +71,10 @@ var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door
 
 
 // Wilderness Elements
-var button_feature_wilderness_terrain = document.getElementById("button_feature_wilderness_terrain");
-var button_feature_wilderness_feature = document.getElementById("button_feature_wilderness_feature");
-var button_feature_wilderness_encounter = document.getElementById("button_feature_wilderness_encounter");
-var button_feature_wilderness_complication = document.getElementById("button_feature_wilderness_complication");
+var button_feature_wilderness_terrain  = document.getElementById("button_feature_wilderness_terrain");
+var button_feature_wilderness_feature  = document.getElementById("button_feature_wilderness_feature");
+var button_feature_wilderness_encounter  = document.getElementById("button_feature_wilderness_encounter");
+var button_feature_wilderness_complication  = document.getElementById("button_feature_wilderness_complication");
 
 var div_feature_wilderness_terrain = document.getElementById("div_feature_wilderness_terrain");
 var div_feature_wilderness_feature = document.getElementById("div_feature_wilderness_feature");
@@ -89,10 +83,10 @@ var div_feature_wilderness_complication = document.getElementById("div_feature_w
 
 
 // Combat Elements
-var button_feature_combat_difficulty = document.getElementById("button_feature_combat_difficulty");
-var button_feature_combat_intention = document.getElementById("button_feature_combat_intention");
-var button_feature_combat_reaction = document.getElementById("button_feature_combat_reaction");
-var button_feature_combat_complication = document.getElementById("button_feature_combat_complication");
+var button_feature_combat_difficulty  = document.getElementById("button_feature_combat_difficulty");
+var button_feature_combat_intention  = document.getElementById("button_feature_combat_intention");
+var button_feature_combat_reaction  = document.getElementById("button_feature_combat_reaction");
+var button_feature_combat_complication  = document.getElementById("button_feature_combat_complication");
 
 var div_feature_combat_difficulty = document.getElementById("div_feature_combat_difficulty");
 var div_feature_combat_feature = document.getElementById("div_feature_combat_feature");
@@ -157,9 +151,9 @@ button_feature_journal_write.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 };
 
-// button_journal_append.onclick = function () {
-//     appendJournalTextToLog();
-// };
+button_journal_append.onclick = function () {
+    appendJournalTextToLog();
+};
 
 button_feature_journal_read.onclick = function () {
     showFeatureDiv(div_feature_journal_read);
@@ -170,9 +164,9 @@ button_journal_undo.onclick = function () {
     undoLastJournalEntry();
 };
 
-// button_journal_entry_erase.onclick = function () {
-//     eraseJournalEntryTextArea();
-// };
+button_journal_entry_erase.onclick = function () {
+    eraseJournalEntryTextArea();
+};
 
 button_journal_copy.onclick = function () {
     copyJournalLog();
@@ -181,14 +175,6 @@ button_journal_copy.onclick = function () {
 button_journal_clear.onclick = function () {
     clearJournalLog();
 };
-
-button_journal_edit.onclick = function () {
-    editJournalLog();
-};
-
-button_journal_save.onclick = function () {
-    saveJournalEdit();
-}
 
 function appendJournalTextToLog() {
     var journalText = input_journal_entry_textarea.value;
@@ -222,25 +208,6 @@ function undoLastJournalEntry() {
     }
 }
 
-function editJournalLog() {
-    div_journal_log.setAttribute("contenteditable", "true");
-    if (div_journal_log.innerHTML.length < 1) {
-        div_journal_log.focus();
-    } else {
-        var lastParagraph = div_journal_log.lastElementChild;
-        var range = document.createRange();
-        range.selectNodeContents(lastParagraph);
-        range.collapse(false);
-        var sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
-
-}
-
-function saveJournalEdit() {
-    div_journal_log.setAttribute("contenteditable", "false");
-}
 
 
 // Oracle Functions
@@ -360,18 +327,18 @@ function setPortentResult(portentResult) {
         portentOutput += portentResult[i];
         portentOutput += (i !== portentResult.length - 1) ? ", " : "";
     }
-
+    
     writeToJournal(portentOutput);
 }
 
 function getRandomEvent() {
-
+    
     var randomEvent = {
-        focus: table_event_focus[getRandomInt(1, table_event_focus_count)].focus,
-        subject: table_event_subject[getRandomInt(1, table_event_subject_count)].subject,
-        action: table_verb[getRandomInt(1, table_verb_count)].verb
+        focus : table_event_focus[getRandomInt(1,table_event_focus_count)].focus,
+        subject : table_event_subject[getRandomInt(1,table_event_subject_count)].subject,
+        action : table_verb[getRandomInt(1, table_verb_count)].verb
     };
-
+    
     return randomEvent;
 }
 
@@ -387,34 +354,34 @@ function setRandomEvent(randomEvent) {
 
 
 // Dungeon Features
-button_feature_dungeon_design.onclick = function () {
+button_feature_dungeon_design.onclick = function() {
     showFeatureDiv(div_feature_dungeon_design);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_room.onclick = function () {
+button_feature_dungeon_room.onclick = function() {
     showFeatureDiv(div_feature_dungeon_room);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_passage.onclick = function () {
+button_feature_dungeon_passage.onclick = function() {
     showFeatureDiv(div_feature_dungeon_passage);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_door.onclick = function () {
+button_feature_dungeon_door.onclick = function() {
     showFeatureDiv(div_feature_dungeon_door);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_generate_dungeon.onclick = function () {
+button_generate_dungeon.onclick = function() {
     var dungeonDesign = getDungeonDesign();
     setDungeonDesign(dungeonDesign);
 }
 
 
 function getDungeonDesign() {
-
+    
     var dungeonDesign = {};
     dungeonDesign.location = table_dungeon_locations[getRandomInt(1, table_dungeon_locations_count)].location;
     dungeonDesign.creator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)].creator;
@@ -434,15 +401,15 @@ function setDungeonDesign(dungeonObject) {
     dungeonDesign += "<br />Purpose: " + dungeonObject.purpose;
     dungeonDesign += "<br />History: " + dungeonObject.history;
     dungeonDesign += "<br />Size: " + dungeonObject.size.size + " (" + dungeonObject.size.rooms + ")";
-    dungeonDesign += "<br />Dominant Creature Type: " + dungeonObject.dominantCreatureType;
+    dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
     dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
-    dungeonObject.start_area.exits = setDungeonExits({ exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right });
+    dungeonObject.start_area.exits = setDungeonExits({exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right});
     dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Starting Area Exits: " + dungeonObject.start_area.exits : "";
     writeToJournal(dungeonDesign);
 }
 
 function setDungeonExits(inputObject) {
-    var exits = "";
+    var exits = ""; 
 
     (inputObject.exit_left !== "FALSE") ? exits += inputObject.exit_left + " left, " : "";
     (inputObject.exit_opposite !== "FALSE") ? exits += inputObject.exit_opposite + " opposite, " : "";
@@ -454,22 +421,22 @@ function setDungeonExits(inputObject) {
 
 
 // Wilderness Functions
-button_feature_wilderness_terrain.onclick = function () {
+button_feature_wilderness_terrain.onclick = function() {
     showFeatureDiv(div_feature_wilderness_terrain);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_feature.onclick = function () {
+button_feature_wilderness_feature.onclick = function() {
     showFeatureDiv(div_feature_wilderness_feature);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_encounter.onclick = function () {
+button_feature_wilderness_encounter.onclick = function() {
     showFeatureDiv(div_feature_wilderness_encounter);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_complication.onclick = function () {
+button_feature_wilderness_complication.onclick = function() {
     showFeatureDiv(div_feature_wilderness_complication);
     applyActiveStyleToFeatureButton(this);
 }
@@ -477,22 +444,22 @@ button_feature_wilderness_complication.onclick = function () {
 
 
 // Combat Functions
-button_feature_combat_difficulty.onclick = function () {
+button_feature_combat_difficulty.onclick = function() {
     showFeatureDiv(div_feature_combat_difficulty);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_intention.onclick = function () {
+button_feature_combat_intention.onclick = function() {
     showFeatureDiv(div_feature_combat_intention);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_reaction.onclick = function () {
+button_feature_combat_reaction.onclick = function() {
     showFeatureDiv(div_feature_combat_reaction);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_complication.onclick = function () {
+button_feature_combat_complication.onclick = function() {
     showFeatureDiv(div_feature_combat_complication);
     applyActiveStyleToFeatureButton(this);
 }
