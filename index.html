@@ -39,6 +39,7 @@
           <button class="button" id="button_journal_undo">Undo</button>
           <button class="button" id="button_journal_copy">Copy</button>
           <button class="button" id="button_journal_clear">Clear</button>
+          <button class="button" id="button_journal_edit">Edit</button>
         </div>
       </div>
 
@@ -46,18 +47,19 @@
         <div id="div_active_feature">
           <div id="div_feature_journal_write">
             <div class="div_feature_row">
-              <button class="button" id="button_journal_append">Append</button>
-              <button class="button" id="button_journal_entry_erase">Erase</button>
+              <!--<button class="button" id="button_journal_append">Append</button>
+              <button class="button" id="button_journal_entry_erase">Erase</button>-->
+              <button class="button" id="button_journal_save">Save</button>
             </div>
             <div class="div_feature_row">
-              <textarea class="input_journal_entry_textarea textarea" id="input_journal_entry_textarea"
-                name="input_journal_entry_textarea" placeholder="Journal entry goes here..."></textarea>
+              <!--<textarea class="input_journal_entry_textarea textarea" id="input_journal_entry_textarea"
+                name="input_journal_entry_textarea" placeholder="Journal entry goes here..."></textarea>-->
             </div>
           </div>
         </div>
 
         <div id="div_container_journal_log">
-          <div id="div_journal_log"></div>
+          <div id="div_journal_log" contenteditable="false"></div>
         </div>
 
       </div>
