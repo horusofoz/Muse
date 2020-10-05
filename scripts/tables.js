@@ -2373,1708 +2373,1866 @@ const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
 
 const table_dungeon_start_area = {
     "1": {
-      "configuration": "Square",
-      "size": "20 × 20 ft.",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "configuration": "Square",
+        "size": "20 × 20 ft.",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "2": {
-      "configuration": "Square",
-      "size": "20 × 20 ft.",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "configuration": "Square",
+        "size": "20 × 20 ft.",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "3": {
-      "configuration": "Square",
-      "size": "40 × 40 ft.",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "configuration": "Square",
+        "size": "40 × 40 ft.",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "4": {
-      "configuration": "Rectangle",
-      "size": "60 × 20 ft.",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "configuration": "Rectangle",
+        "size": "60 × 20 ft.",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "5": {
-      "configuration": "Rectangle",
-      "size": "20 × 40 ft.",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "configuration": "Rectangle",
+        "size": "20 × 40 ft.",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "6": {
-      "configuration": "Circle",
-      "size": "40 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "configuration": "Circle",
+        "size": "40 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "7": {
-      "configuration": "Passage, T intersection",
-      "size": "10 ft. wide",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "configuration": "Passage, T intersection",
+        "size": "10 ft. wide",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "8": {
-      "configuration": "Passage, four-way intersection",
-      "size": "10 ft. wide",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "configuration": "Passage, four-way intersection",
+        "size": "10 ft. wide",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     }
-  };
+};
 
 const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
 
 const table_dungeon_door = {
     "1": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "2": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "3": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "4": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "5": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "6": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "7": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "8": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "9": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "10": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "11": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "12": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "13": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "14": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "15": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "16": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "17": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "18": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "19": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "20": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "21": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "22": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "23": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "24": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "25": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "26": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "27": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "28": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "29": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "30": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "31": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "32": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "33": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "34": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "35": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "36": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "37": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "38": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "39": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "40": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "41": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "42": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "43": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "44": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "45": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "46": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "47": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "48": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "49": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "50": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "51": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "52": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "53": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "54": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "55": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "56": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "57": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "58": {
-      "type": "Wooden door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "59": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     },
     "60": {
-      "type": "Wooden door",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Wooden door",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     },
     "61": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "62": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "63": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "64": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "65": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "66": {
-      "type": "Stone door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "67": {
-      "type": "Stone door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Stone door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "68": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "69": {
-      "type": "Stone door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Stone door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "70": {
-      "type": "Stone door",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Stone door",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     },
     "71": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "72": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "73": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "74": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "75": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "76": {
-      "type": "Iron door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "77": {
-      "type": "Iron door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Iron door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "78": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "79": {
-      "type": "Iron door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Iron door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "80": {
-      "type": "Iron door",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Iron door",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     },
     "81": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "82": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "83": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "84": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "85": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "86": {
-      "type": "Portcullis",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "87": {
-      "type": "Portcullis",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Portcullis",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "88": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "89": {
-      "type": "Portcullis",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Portcullis",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "90": {
-      "type": "Portcullis",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Portcullis",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     },
     "91": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "92": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "93": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "94": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "95": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "FALSE"
     },
     "96": {
-      "type": "Secret door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "97": {
-      "type": "Secret door",
-      "locked": "TRUE",
-      "trapped": "FALSE"
+        "type": "Secret door",
+        "locked": "TRUE",
+        "trapped": "FALSE"
     },
     "98": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "99": {
-      "type": "Secret door",
-      "locked": "FALSE",
-      "trapped": "TRUE"
+        "type": "Secret door",
+        "locked": "FALSE",
+        "trapped": "TRUE"
     },
     "100": {
-      "type": "Secret door",
-      "locked": "TRUE",
-      "trapped": "TRUE"
+        "type": "Secret door",
+        "locked": "TRUE",
+        "trapped": "TRUE"
     }
-  };
+};
 
 const table_dungeon_door_count = Object.keys(table_dungeon_door).length;
 
 const table_dungeon_room_layout = {
     "1": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "2": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "3": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "4": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "5": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "6": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "7": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "8": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "9": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "10": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "11": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "12": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "13": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "14": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "15": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "16": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "17": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "18": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "19": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "20": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "21": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "22": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "23": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "24": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "25": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "26": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "27": {
-      "layout": "Square, 20 × 20 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Square, 20 × 20 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "28": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "29": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "30": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "31": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "32": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "33": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "34": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "35": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "36": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "37": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "38": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "39": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "40": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "41": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "42": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "43": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "44": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "45": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "46": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "47": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "48": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "49": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "50": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "51": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "52": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "53": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "54": {
-      "layout": "Square, 30 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Square, 30 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "55": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "56": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "57": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "58": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "59": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "60": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "61": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "62": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "63": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "64": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "65": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "66": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "67": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "68": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "69": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "70": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "71": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "72": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "73": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "74": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "75": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "76": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "77": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "78": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "79": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "80": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "81": {
-      "layout": "Rectangle, 20 × 30 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Rectangle, 20 × 30 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "82": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "83": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "84": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "85": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "86": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "87": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "88": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "89": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "90": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "91": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "92": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "93": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "94": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "95": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "96": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "97": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "98": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "99": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "100": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "101": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "102": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "103": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "104": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "105": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "106": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "107": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "108": {
-      "layout": "Circle, 30 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Circle, 30 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "109": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "110": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "111": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "112": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "113": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "114": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "115": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "116": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "117": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "118": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "119": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "120": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "121": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "122": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "123": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "124": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "125": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "126": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "127": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "128": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "129": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "130": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "131": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "132": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "133": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "134": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "135": {
-      "layout": "Circle, 50 ft. diameter",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Circle, 50 ft. diameter",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "136": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "137": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "138": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "139": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "140": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "141": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "142": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "143": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "144": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "145": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "146": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "147": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "148": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "149": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "150": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "151": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "152": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "153": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "154": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "155": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "156": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "157": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "158": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "159": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "160": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "161": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "162": {
-      "layout": "Octagon, 40 × 40 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Octagon, 40 × 40 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "163": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "164": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "165": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "166": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "167": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "FALSE"
     },
     "168": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "169": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "170": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "171": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "172": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "FALSE"
     },
     "173": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "FALSE"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "FALSE"
     },
     "174": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "175": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "176": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "177": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "FALSE",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "FALSE",
+        "exit_opposite": "door",
+        "exit_right": "door"
     },
     "178": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "179": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "passage"
     },
     "180": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "181": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "FALSE",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "FALSE",
+        "exit_right": "door"
     },
     "182": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "183": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "184": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "passage"
     },
     "185": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "186": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "passage"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "passage"
     },
     "187": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "passage",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "passage",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "188": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "passage",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "passage",
+        "exit_right": "door"
     },
     "189": {
-      "layout": "Trapezoid, roughly 40 × 60 ft",
-      "exit_left": "door",
-      "exit_opposite": "door",
-      "exit_right": "door"
+        "layout": "Trapezoid, roughly 40 × 60 ft",
+        "exit_left": "door",
+        "exit_opposite": "door",
+        "exit_right": "door"
+    }
+};
+
+const table_dungeon_room_layout_count = Object.keys(table_dungeon_room_layout).length;
+
+const table_dungeon_trap_stat = {
+    "1": {
+        "setback": "1d4",
+        "dangerous": "2d4",
+        "deadly": "4d6",
+        "dc": 9,
+        "dc_modifier": 3
+    },
+    "2": {
+        "setback": "2d6",
+        "dangerous": "4d6",
+        "deadly": "10d8",
+        "dc": 12,
+        "dc_modifier": 4
+    },
+    "3": {
+        "setback": "4d8",
+        "dangerous": "10d8",
+        "deadly": "18d8",
+        "dc": 15,
+        "dc_modifier": 7
+    },
+    "4": {
+        "setback": "6d10",
+        "dangerous": "10d10",
+        "deadly": "20d10",
+        "dc": 15,
+        "dc_modifier": 10
+    }
+};
+
+const table_dungeon_trap_stat_count = Object.keys(table_dungeon_trap_stat).length;
+
+const table_dungeon_trap_trigger = {
+    "1": {
+        "trigger": "pressure"
+    },
+    "2": {
+        "trigger": "trip wire"
+    }
+};
+
+const table_dungeon_trap_trigger_count = Object.keys(table_dungeon_trap_trigger).length;
+
+const table_dungeon_trap_mundane = {
+    "1": {
+      "type": "pit",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "2": {
+      "type": "spiked pit",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "3": {
+      "type": "poison darts",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "TRUE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "poisoned"
+    },
+    "4": {
+      "type": "poison needle",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "TRUE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "poisoned"
+    },
+    "5": {
+      "type": "crossbow",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "6": {
+      "type": "spikes",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "7": {
+      "type": "poison gas",
+      "damage": "TRUE",
+      "save_dexterity": "FALSE",
+      "save_constitution": "TRUE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "poisoned"
     }
   };
 
-  const table_dungeon_room_layout_count = Object.keys(table_dungeon_room_layout).length;
+const table_dungeon_trap_mundane_count = Object.keys(table_dungeon_trap_mundane).length;
+
+const table_dungeon_trap_magic = {
+    "1": {
+      "type": "alarm",
+      "damage": "FALSE",
+      "save_dexterity": "FALSE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "2": {
+      "type": "magic missile",
+      "damage": "TRUE",
+      "save_dexterity": "FALSE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "3": {
+      "type": "blindness",
+      "damage": "TRUE",
+      "save_dexterity": "FALSE",
+      "save_constitution": "TRUE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "blinded"
+    },
+    "4": {
+      "type": "fireball",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "5": {
+      "type": "lightning",
+      "damage": "TRUE",
+      "save_dexterity": "TRUE",
+      "save_constitution": "FALSE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    },
+    "6": {
+      "type": "poison spray",
+      "damage": "TRUE",
+      "save_dexterity": "FALSE",
+      "save_constitution": "TRUE",
+      "save_wisdom": "FALSE",
+      "apply_condition": "FALSE"
+    }
+  };
+
+  const table_dungeon_trap_magic_count = Object.keys(table_dungeon_trap_magic).length;
 
 // Shared Tables
 
@@ -4124,3 +4282,39 @@ const table_creature_type = {
 };
 
 const table_creature_type_count = Object.keys(table_creature_type).length;
+
+
+const table_severity = {
+    "1": {
+      "severity": "setback"
+    },
+    "2": {
+      "severity": "setback"
+    },
+    "3": {
+      "severity": "setback"
+    },
+    "4": {
+      "severity": "setback"
+    },
+    "5": {
+      "severity": "setback"
+    },
+    "6": {
+      "severity": "dangerous"
+    },
+    "7": {
+      "severity": "dangerous"
+    },
+    "8": {
+      "severity": "dangerous"
+    },
+    "9": {
+      "severity": "dangerous"
+    },
+    "10": {
+      "severity": "deadly"
+    }
+  };
+
+  const table_severity_count = Object.keys(table_severity).length;

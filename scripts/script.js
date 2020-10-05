@@ -66,16 +66,22 @@ var div_feature_dungeon_design = document.getElementById("div_feature_dungeon_de
 var div_feature_dungeon_room = document.getElementById("div_feature_dungeon_room");
 var div_feature_dungeon_passage = document.getElementById("div_feature_dungeon_passage");
 var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door");
+var div_feature_dungeon_trap = document.getElementById("div_feature_dungeon_trap");
 
 var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 var button_generate_door = document.getElementById("button_generate_door");
+var button_generate_trap = document.getElementById("button_generate_trap");
+
+var input_trap_tier = document.getElementById("input_trap_tier");
+var input_trap_severity = document.getElementById("input_trap_severity");
+var input_trap_magic_or_mundane = document.getElementById("input_trap_magic_or_mundane");
 
 
 // Wilderness Elements
-var button_feature_wilderness_terrain  = document.getElementById("button_feature_wilderness_terrain");
-var button_feature_wilderness_feature  = document.getElementById("button_feature_wilderness_feature");
-var button_feature_wilderness_encounter  = document.getElementById("button_feature_wilderness_encounter");
-var button_feature_wilderness_complication  = document.getElementById("button_feature_wilderness_complication");
+var button_feature_wilderness_terrain = document.getElementById("button_feature_wilderness_terrain");
+var button_feature_wilderness_feature = document.getElementById("button_feature_wilderness_feature");
+var button_feature_wilderness_encounter = document.getElementById("button_feature_wilderness_encounter");
+var button_feature_wilderness_complication = document.getElementById("button_feature_wilderness_complication");
 
 var div_feature_wilderness_terrain = document.getElementById("div_feature_wilderness_terrain");
 var div_feature_wilderness_feature = document.getElementById("div_feature_wilderness_feature");
@@ -84,10 +90,10 @@ var div_feature_wilderness_complication = document.getElementById("div_feature_w
 
 
 // Combat Elements
-var button_feature_combat_difficulty  = document.getElementById("button_feature_combat_difficulty");
-var button_feature_combat_intention  = document.getElementById("button_feature_combat_intention");
-var button_feature_combat_reaction  = document.getElementById("button_feature_combat_reaction");
-var button_feature_combat_complication  = document.getElementById("button_feature_combat_complication");
+var button_feature_combat_difficulty = document.getElementById("button_feature_combat_difficulty");
+var button_feature_combat_intention = document.getElementById("button_feature_combat_intention");
+var button_feature_combat_reaction = document.getElementById("button_feature_combat_reaction");
+var button_feature_combat_complication = document.getElementById("button_feature_combat_complication");
 
 var div_feature_combat_difficulty = document.getElementById("div_feature_combat_difficulty");
 var div_feature_combat_feature = document.getElementById("div_feature_combat_feature");
@@ -328,18 +334,17 @@ function setPortentResult(portentResult) {
         portentOutput += portentResult[i];
         portentOutput += (i !== portentResult.length - 1) ? ", " : "";
     }
-    
     writeToJournal(portentOutput);
 }
 
 function getRandomEvent() {
-    
+
     var randomEvent = {
-        focus : table_event_focus[getRandomInt(1,table_event_focus_count)].focus,
-        subject : table_event_subject[getRandomInt(1,table_event_subject_count)].subject,
-        action : table_verb[getRandomInt(1, table_verb_count)].verb
+        focus: table_event_focus[getRandomInt(1, table_event_focus_count)].focus,
+        subject: table_event_subject[getRandomInt(1, table_event_subject_count)].subject,
+        action: table_verb[getRandomInt(1, table_verb_count)].verb
     };
-    
+
     return randomEvent;
 }
 
@@ -355,39 +360,50 @@ function setRandomEvent(randomEvent) {
 
 
 // Dungeon Features
-button_feature_dungeon_design.onclick = function() {
+button_feature_dungeon_design.onclick = function () {
     showFeatureDiv(div_feature_dungeon_design);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_room.onclick = function() {
+button_feature_dungeon_room.onclick = function () {
     showFeatureDiv(div_feature_dungeon_room);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_passage.onclick = function() {
+button_feature_dungeon_passage.onclick = function () {
     showFeatureDiv(div_feature_dungeon_passage);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_door.onclick = function() {
+button_feature_dungeon_door.onclick = function () {
     showFeatureDiv(div_feature_dungeon_door);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_generate_dungeon.onclick = function() {
+button_feature_dungeon_trap.onclick = function () {
+    showFeatureDiv(div_feature_dungeon_trap);
+    applyActiveStyleToFeatureButton(this);
+}
+
+button_generate_dungeon.onclick = function () {
     var dungeonDesign = getDungeonDesign();
     setDungeonDesign(dungeonDesign);
 }
 
-button_generate_door.onclick = function() {
+button_generate_door.onclick = function () {
     var dungeonDoor = getDungeonDoor();
     dungeonDoor = setDungeonDoor(dungeonDoor);
     writeToJournal(dungeonDoor);
 }
 
+button_generate_trap.onclick = function () {
+    var dungeonTrap = getDungeonTrap();
+    dungeonTrap = setDungeonTrap(dungeonTrap);
+    writeToJournal(dungeonTrap);
+}
+
 function getDungeonDesign() {
-    
+
     var dungeonDesign = {};
     dungeonDesign.location = table_dungeon_locations[getRandomInt(1, table_dungeon_locations_count)].location;
     dungeonDesign.creator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)].creator;
@@ -408,13 +424,13 @@ function setDungeonDesign(dungeonObject) {
     dungeonDesign += "<br />Size: " + dungeonObject.size.size + " (" + dungeonObject.size.rooms + ")";
     dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
     dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
-    dungeonObject.start_area.exits = setDungeonExits({exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right});
+    dungeonObject.start_area.exits = setDungeonExits({ exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right });
     dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Exits: " + dungeonObject.start_area.exits : "";
     writeToJournal(dungeonDesign);
 }
 
 function setDungeonExits(inputObject) {
-    var exits = ""; 
+    var exits = "";
 
     (inputObject.exit_left !== "FALSE") ? exits += inputObject.exit_left + " left, " : "";
     (inputObject.exit_opposite !== "FALSE") ? exits += inputObject.exit_opposite + " opposite, " : "";
@@ -438,28 +454,99 @@ function setDungeonDoor(inputDoor, title = "") {
     return dungeonDoor;
 }
 
+function getDungeonTrap() {
 
+    var dungeonTrap = {};
+    // Get trap tier
+    var trapTier = input_trap_tier.options[input_trap_tier.selectedIndex].text;
 
+    // get trap severity
+    var trapSeverity = getSeverity(input_trap_severity.options[input_trap_severity.selectedIndex].value);
 
+    // get trap magic/mundane
+    var trapMagicOrMundane = getMagicOrMundane(input_trap_magic_or_mundane.options[input_trap_magic_or_mundane.selectedIndex].text)
+
+    // get trap type
+    var trapType = (trapMagicOrMundane === "Magic") ? table_dungeon_trap_magic[getRandomInt(1, table_dungeon_trap_magic_count)] : table_dungeon_trap_mundane[getRandomInt(1, table_dungeon_trap_mundane_count)];
+
+    // get trap trigger
+    var trapTrigger = table_dungeon_trap_trigger[getRandomInt(1, table_dungeon_trap_trigger_count)].trigger;
+
+    // get trap stats
+    var trapStatsTemplate = table_dungeon_trap_stat[trapTier];
+    var trapDamage = (trapType.damage !== "FALSE") ? trapStatsTemplate[trapSeverity] : "FALSE";
+    var trapDetectDC = trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']);
+    var trapDisarmDC = trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']);
+
+    // get trap condition applied
+    var trapCondition = trapType['apply_condition'];
+
+    // get trap save DCs
+    var trapDexteritySaveDC = (trapType.save_dexterity === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
+    var trapConstitutionSaveDC = (trapType.save_constitution === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
+    var trapWisdomSaveDC = (trapType.save_wisdom === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
+
+    // output
+    dungeonTrap.type = trapType.type;
+    dungeonTrap.trigger = trapTrigger;
+    dungeonTrap.damage = trapDamage;
+    dungeonTrap.detectDC = trapDetectDC;
+    dungeonTrap.disarmDC = trapDisarmDC;
+    dungeonTrap.condition = trapCondition;
+    dungeonTrap.dexSaveDC = trapDexteritySaveDC;
+    dungeonTrap.conSaveDC = trapConstitutionSaveDC;
+    dungeonTrap.wisSaveDC = trapWisdomSaveDC;
+    return dungeonTrap;
+}
+
+function setDungeonTrap(input) {
+    var trap = "";
+    trap += capitalize(input.type) + " trap";
+    trap += "<br />Trigger: " + capitalize(input.trigger);
+    trap += (input.damage !== "FALSE") ? "<br />" + input.damage + " damage" : "";
+    trap += "<br />Detect DC: " + input.detectDC;
+    trap += "<br />Disarm DC: " + input.disarmDC;
+    trap += (input.dexSaveDC !== "") ? "<br />Dexterity Save: " + input.dexSaveDC : "";
+    trap += (input.conSaveDC !== "") ? "<br />Constitution Save: " + input.conSaveDC : "";
+    trap += (input.wisSaveDC !== "") ? "<br />Wisdom Save: " + input.wisSaveDC : "";
+    trap += (input.condition !== "FALSE") ? "<br />Failed save applies " + input.condition + " condition" : "";
+
+    return trap;
+}
+
+function getSeverity(severity) {
+    if (severity === "random") {
+        severity = table_severity[getRandomInt(1, table_severity_count)].severity;
+    }
+    return severity;
+}
+
+function getMagicOrMundane(input) {
+    var result = input;
+    if (result === "Random") {
+        result = (getRandomInt(1, 2) === 1) ? "Magic" : "Mundane";
+    }
+    return result;
+}
 
 
 // Wilderness Functions
-button_feature_wilderness_terrain.onclick = function() {
+button_feature_wilderness_terrain.onclick = function () {
     showFeatureDiv(div_feature_wilderness_terrain);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_feature.onclick = function() {
+button_feature_wilderness_feature.onclick = function () {
     showFeatureDiv(div_feature_wilderness_feature);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_encounter.onclick = function() {
+button_feature_wilderness_encounter.onclick = function () {
     showFeatureDiv(div_feature_wilderness_encounter);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_wilderness_complication.onclick = function() {
+button_feature_wilderness_complication.onclick = function () {
     showFeatureDiv(div_feature_wilderness_complication);
     applyActiveStyleToFeatureButton(this);
 }
@@ -467,22 +554,22 @@ button_feature_wilderness_complication.onclick = function() {
 
 
 // Combat Functions
-button_feature_combat_difficulty.onclick = function() {
+button_feature_combat_difficulty.onclick = function () {
     showFeatureDiv(div_feature_combat_difficulty);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_intention.onclick = function() {
+button_feature_combat_intention.onclick = function () {
     showFeatureDiv(div_feature_combat_intention);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_reaction.onclick = function() {
+button_feature_combat_reaction.onclick = function () {
     showFeatureDiv(div_feature_combat_reaction);
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_combat_complication.onclick = function() {
+button_feature_combat_complication.onclick = function () {
     showFeatureDiv(div_feature_combat_complication);
     applyActiveStyleToFeatureButton(this);
 }
@@ -577,4 +664,11 @@ function applyActiveStyleToFeatureButton(activeFeatureButton) {
     });
 
     activeFeatureButton.classList.add("active_button");
+}
+
+function capitalize (inputString) {
+    if(typeof inputString !== 'string') {
+        return "";
+    }
+    return inputString.charAt(0).toUpperCase() + inputString.slice(1);
 }
