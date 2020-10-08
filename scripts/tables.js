@@ -4078,34 +4078,34 @@ const table_dungeon_room_layout_count = Object.keys(table_dungeon_room_layout).l
 
 const table_dungeon_trap_stat = {
     "1": {
-        "setback": "1d4",
-        "dangerous": "2d4",
-        "deadly": "4d6",
-        "dc": 9,
-        "dc_modifier": 3
+      "setback": "1d4",
+      "dangerous": "2d4",
+      "deadly": "4d6",
+      "dc": 9,
+      "dc_modifier": 3
     },
     "2": {
-        "setback": "2d6",
-        "dangerous": "4d6",
-        "deadly": "10d8",
-        "dc": 12,
-        "dc_modifier": 4
+      "setback": "2d6",
+      "dangerous": "4d6",
+      "deadly": "10d8",
+      "dc": 12,
+      "dc_modifier": 6
     },
     "3": {
-        "setback": "4d8",
-        "dangerous": "10d8",
-        "deadly": "18d8",
-        "dc": 15,
-        "dc_modifier": 7
+      "setback": "4d8",
+      "dangerous": "10d8",
+      "deadly": "18d8",
+      "dc": 15,
+      "dc_modifier": 9
     },
     "4": {
-        "setback": "6d10",
-        "dangerous": "10d10",
-        "deadly": "20d10",
-        "dc": 15,
-        "dc_modifier": 10
+      "setback": "6d10",
+      "dangerous": "10d10",
+      "deadly": "20d10",
+      "dc": 15,
+      "dc_modifier": 12
     }
-};
+  };
 
 const table_dungeon_trap_stat_count = Object.keys(table_dungeon_trap_stat).length;
 
