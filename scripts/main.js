@@ -70,11 +70,6 @@ var div_feature_dungeon_trap = document.getElementById("div_feature_dungeon_trap
 
 var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 var button_generate_door = document.getElementById("button_generate_door");
-var button_generate_trap = document.getElementById("button_generate_trap");
-
-var input_trap_tier = document.getElementById("input_trap_tier");
-var input_trap_severity = document.getElementById("input_trap_severity");
-var input_trap_magic_or_mundane = document.getElementById("input_trap_magic_or_mundane");
 
 
 // Wilderness Elements

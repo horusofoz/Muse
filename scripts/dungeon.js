@@ -36,13 +36,6 @@ button_generate_door.onclick = function () {
     writeToJournal(dungeonDoor);
 }
 
-button_generate_trap.onclick = function () {
-    var dungeonTrap = getDungeonTrap();
-    dungeonTrap = setDungeonTrap(dungeonTrap);
-    writeToJournal(dungeonTrap);
-}
-
-
 // Dungeon Functions
 
 function getDungeonDesign() {
@@ -87,7 +80,6 @@ function getDungeonSize() {
     return dungeonSize;
 }
 
-
 function setDungeonExits(inputObject) {
     var exits = "";
 
@@ -112,82 +104,6 @@ function setDungeonDoor(inputDoor, title = "") {
     dungeonDoor += (inputDoor.trapped !== "FALSE") ? ", trapped" : "";
     return dungeonDoor;
 }
-
-function getDungeonTrap() {
-
-    var dungeonTrap = {};
-    // Get trap tier
-    var trapTier = input_trap_tier.options[input_trap_tier.selectedIndex].text;
-
-    // get trap severity
-    var trapSeverity = getSeverity(input_trap_severity.options[input_trap_severity.selectedIndex].value);
-
-    // get trap magic/mundane
-    var trapMagicOrMundane = getMagicOrMundane(input_trap_magic_or_mundane.options[input_trap_magic_or_mundane.selectedIndex].text)
-
-    // get trap type
-    var trapType = (trapMagicOrMundane === "Magic") ? table_dungeon_trap_magic[getRandomInt(1, table_dungeon_trap_magic_count)] : table_dungeon_trap_mundane[getRandomInt(1, table_dungeon_trap_mundane_count)];
-
-    // get trap trigger
-    var trapTrigger = table_dungeon_trap_trigger[getRandomInt(1, table_dungeon_trap_trigger_count)].trigger;
-
-    // get trap stats
-    var trapStatsTemplate = table_dungeon_trap_stat[trapTier];
-    var trapDamage = (trapType.damage !== "FALSE") ? trapStatsTemplate[trapSeverity] : "FALSE";
-    var trapDetectDC = trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']);
-    var trapDisarmDC = trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']);
-
-    // get trap condition applied
-    var trapCondition = trapType['apply_condition'];
-
-    // get trap save DCs
-    var trapDexteritySaveDC = (trapType.save_dexterity === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
-    var trapConstitutionSaveDC = (trapType.save_constitution === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
-    var trapWisdomSaveDC = (trapType.save_wisdom === "TRUE") ? trapStatsTemplate['dc'] + getRandomInt(0, trapStatsTemplate['dc_modifier']) : "";
-
-    // output
-    dungeonTrap.type = trapType.type;
-    dungeonTrap.trigger = trapTrigger;
-    dungeonTrap.damage = trapDamage;
-    dungeonTrap.detectDC = trapDetectDC;
-    dungeonTrap.disarmDC = trapDisarmDC;
-    dungeonTrap.condition = trapCondition;
-    dungeonTrap.dexSaveDC = trapDexteritySaveDC;
-    dungeonTrap.conSaveDC = trapConstitutionSaveDC;
-    dungeonTrap.wisSaveDC = trapWisdomSaveDC;
-    return dungeonTrap;
-}
-
-function setDungeonTrap(input) {
-    var trap = "";
-    trap += capitalize(input.type) + " trap";
-    trap += "<br />Trigger: " + capitalize(input.trigger);
-    trap += (input.damage !== "FALSE") ? "<br />" + input.damage + " damage" : "";
-    trap += "<br />Detect DC: " + input.detectDC;
-    trap += "<br />Disarm DC: " + input.disarmDC;
-    trap += (input.dexSaveDC !== "") ? "<br />Dexterity Save: " + input.dexSaveDC : "";
-    trap += (input.conSaveDC !== "") ? "<br />Constitution Save: " + input.conSaveDC : "";
-    trap += (input.wisSaveDC !== "") ? "<br />Wisdom Save: " + input.wisSaveDC : "";
-    trap += (input.condition !== "FALSE") ? "<br />Failed save applies " + input.condition + " condition" : "";
-
-    return trap;
-}
-
-function getSeverity(severity) {
-    if (severity === "random") {
-        severity = table_severity[getRandomInt(1, table_severity_count)].severity;
-    }
-    return severity;
-}
-
-function getMagicOrMundane(input) {
-    var result = input;
-    if (result === "Random") {
-        result = (getRandomInt(1, 2) === 1) ? "Magic" : "Mundane";
-    }
-    return result;
-}
-
 
 // Dungeon Tables
 
@@ -2185,165 +2101,6 @@ const table_dungeon_room_layout = {
 };
 
 const table_dungeon_room_layout_count = Object.keys(table_dungeon_room_layout).length;
-
-const table_dungeon_trap_stat = {
-    "1": {
-      "setback": "1d4",
-      "dangerous": "2d4",
-      "deadly": "4d6",
-      "dc": 9,
-      "dc_modifier": 3
-    },
-    "2": {
-      "setback": "2d6",
-      "dangerous": "4d6",
-      "deadly": "10d8",
-      "dc": 12,
-      "dc_modifier": 6
-    },
-    "3": {
-      "setback": "4d8",
-      "dangerous": "10d8",
-      "deadly": "18d8",
-      "dc": 15,
-      "dc_modifier": 9
-    },
-    "4": {
-      "setback": "6d10",
-      "dangerous": "10d10",
-      "deadly": "20d10",
-      "dc": 15,
-      "dc_modifier": 12
-    }
-  };
-
-const table_dungeon_trap_stat_count = Object.keys(table_dungeon_trap_stat).length;
-
-const table_dungeon_trap_trigger = {
-    "1": {
-        "trigger": "pressure"
-    },
-    "2": {
-        "trigger": "trip wire"
-    }
-};
-
-const table_dungeon_trap_trigger_count = Object.keys(table_dungeon_trap_trigger).length;
-
-const table_dungeon_trap_mundane = {
-    "1": {
-      "type": "pit",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "2": {
-      "type": "spiked pit",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "3": {
-      "type": "poison darts",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "TRUE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "poisoned"
-    },
-    "4": {
-      "type": "poison needle",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "TRUE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "poisoned"
-    },
-    "5": {
-      "type": "crossbow",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "6": {
-      "type": "spikes",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "7": {
-      "type": "poison gas",
-      "damage": "TRUE",
-      "save_dexterity": "FALSE",
-      "save_constitution": "TRUE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "poisoned"
-    }
-  };
-
-const table_dungeon_trap_mundane_count = Object.keys(table_dungeon_trap_mundane).length;
-
-const table_dungeon_trap_magic = {
-    "1": {
-      "type": "alarm",
-      "damage": "FALSE",
-      "save_dexterity": "FALSE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "2": {
-      "type": "magic missile",
-      "damage": "TRUE",
-      "save_dexterity": "FALSE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "3": {
-      "type": "blindness",
-      "damage": "TRUE",
-      "save_dexterity": "FALSE",
-      "save_constitution": "TRUE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "blinded"
-    },
-    "4": {
-      "type": "fireball",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "5": {
-      "type": "lightning",
-      "damage": "TRUE",
-      "save_dexterity": "TRUE",
-      "save_constitution": "FALSE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    },
-    "6": {
-      "type": "poison spray",
-      "damage": "TRUE",
-      "save_dexterity": "FALSE",
-      "save_constitution": "TRUE",
-      "save_wisdom": "FALSE",
-      "apply_condition": "FALSE"
-    }
-  };
-
-const table_dungeon_trap_magic_count = Object.keys(table_dungeon_trap_magic).length;
-
 
 const table_dungeon_size = {
     "1": {
