@@ -24,7 +24,7 @@ button_get_encounter_trap.onclick = function () {
 
 // Encounter Functions
 
-function getEncounterDifficultyClass() {
+function getDifficultyClass() {
     var dcTemplate = table_encounter_difficulty_class[getPartyTier()];
     return dcTemplate.dc_base + getRandomInt(0, dcTemplate.dc_modifier);
 }
@@ -38,7 +38,7 @@ function setEncounterCombat(encounterCombat) {
     return encounterString;
 }
 
-function getTrap() {
+function getTrap(location = "room") {
     var trap = {};
 
     trap.type = getTrapType();
@@ -47,11 +47,11 @@ function getTrap() {
     var template = table_trap_type_details[trap.type];
     var trapSeverity = table_trap_severity[getRandomInt(1, table_trap_severity_count)].severity;
 
-    trap.noticeDC = getEncounterDifficultyClass();
-    trap.disarmDC = getEncounterDifficultyClass();
+    trap.noticeDC = getDifficultyClass();
+    trap.disarmDC = getDifficultyClass();
 
     if (template.is_evade_save_required === "TRUE") {
-        trap.evadeSaveDC = getEncounterDifficultyClass();
+        trap.evadeSaveDC = getDifficultyClass();
         trap.evadeSaveType = template.evade_save_type;
     }
 
@@ -61,7 +61,7 @@ function getTrap() {
     }
 
     if (template.is_secondary_save_required === "TRUE") {
-        trap.secondarySaveDC = getEncounterDifficultyClass();
+        trap.secondarySaveDC = getDifficultyClass();
         trap.secondarySaveType = template.secondary_save_type;
     }
 
@@ -78,11 +78,10 @@ function getTrap() {
         trap.notes = template.notes;
     }
 
-    console.log(trap);
     return trap;
 }
 
-function getTrapType(location = "room") {
+function getTrapType(location) {
     var trapType = "";
 
     switch (location) {
@@ -140,6 +139,12 @@ function setTrap(trap) {
     }
 
     return trapString;
+}
+
+function buildTrap(location) {
+    var trap = getTrap(location);
+    trap = setTrap(trap);
+    return trap;
 }
 
 // Encounter Tables

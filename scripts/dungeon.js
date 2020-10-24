@@ -61,11 +61,11 @@ function setDungeonDesign(dungeonObject) {
 }
 
 function getDungeonSize() {
-    
+
     var dungeonSize = {};
 
     // get size
-    var size = table_dungeon_size[getRandomInt(1,table_dungeon_size_count)];
+    var size = table_dungeon_size[getRandomInt(1, table_dungeon_size_count)];
     dungeonSize.size = size.size;
     // get rooms
 
@@ -87,17 +87,46 @@ function setDungeonExits(inputObject) {
 }
 
 function getDungeonDoor() {
-    var dungeonDoor = table_dungeon_door[getRandomInt(1, table_dungeon_door_count)];
-    return dungeonDoor;
+
+    var door = {};
+    // Get type
+    var template = table_dungeon_door_type[getRandomInt(1,table_dungeon_door_type_count)];
+    door.type = template.type;
+
+    // Get locked
+    door.locked = rollPercentileTrueFalse(template.locked);
+    if(door.locked) {
+        door.pickLockDC = getDifficultyClass();
+        door.forceDoorDC = getDifficultyClass();
+    }
+    
+    // Get trapped
+    door.trapped = rollPercentileTrueFalse(template.trapped);
+    if(door.trapped) {
+        door.trapDetails = buildTrap("door");
+    }
+
+    // Get width
+    door.width = table_dungeon_door_width[getRandomInt(1, table_dungeon_door_width_count)].width;
+    return door;
 }
 
-function setDungeonDoor(inputDoor, title = "") {
-    var dungeonDoor = "";
-    dungeonDoor += (title !== "") ? tile + "<br />" : "";
-    dungeonDoor += inputDoor.type;
-    dungeonDoor += (inputDoor.locked !== "FALSE") ? ", locked" : "";
-    dungeonDoor += (inputDoor.trapped !== "FALSE") ? ", trapped" : "";
-    return dungeonDoor;
+
+function setDungeonDoor(door) {
+
+    var doorString = "";
+ 
+    doorString += door.type + ", " + door.width + " feet wide";
+
+    if(door.locked) {
+        doorString += "<br />Locked, DC" + door.pickLockDC + " Thieves' Tools check to pick lock, DC" + door.forceDoorDC + " Athletics check to force door";
+    }
+
+    if(door.trapped) {
+        doorString += "<br/>Trapped, " + door.trapDetails;
+    }
+    
+    return doorString;
 }
 
 // Dungeon Tables
@@ -453,510 +482,6 @@ const table_dungeon_start_area = {
 
 const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
 
-const table_dungeon_door = {
-    "1": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "2": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "3": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "4": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "5": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "6": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "7": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "8": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "9": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "10": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "11": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "12": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "13": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "14": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "15": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "16": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "17": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "18": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "19": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "20": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "21": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "22": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "23": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "24": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "25": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "26": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "27": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "28": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "29": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "30": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "31": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "32": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "33": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "34": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "35": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "36": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "37": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "38": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "39": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "40": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "41": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "42": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "43": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "44": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "45": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "46": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "47": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "48": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "49": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "50": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "51": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "52": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "53": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "54": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "55": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "56": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "57": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "58": {
-        "type": "Wooden door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "59": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    },
-    "60": {
-        "type": "Wooden door",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    },
-    "61": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "62": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "63": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "64": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "65": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "66": {
-        "type": "Stone door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "67": {
-        "type": "Stone door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "68": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "69": {
-        "type": "Stone door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "70": {
-        "type": "Stone door",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    },
-    "71": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "72": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "73": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "74": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "75": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "76": {
-        "type": "Iron door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "77": {
-        "type": "Iron door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "78": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "79": {
-        "type": "Iron door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "80": {
-        "type": "Iron door",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    },
-    "81": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "82": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "83": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "84": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "85": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "86": {
-        "type": "Portcullis",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "87": {
-        "type": "Portcullis",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "88": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "89": {
-        "type": "Portcullis",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "90": {
-        "type": "Portcullis",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    },
-    "91": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "92": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "93": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "94": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "95": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "FALSE"
-    },
-    "96": {
-        "type": "Secret door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "97": {
-        "type": "Secret door",
-        "locked": "TRUE",
-        "trapped": "FALSE"
-    },
-    "98": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "99": {
-        "type": "Secret door",
-        "locked": "FALSE",
-        "trapped": "TRUE"
-    },
-    "100": {
-        "type": "Secret door",
-        "locked": "TRUE",
-        "trapped": "TRUE"
-    }
-};
-
-const table_dungeon_door_count = Object.keys(table_dungeon_door).length;
 
 const table_dungeon_room_layout = {
     "1": {
@@ -2099,125 +1624,191 @@ const table_dungeon_room_layout_count = Object.keys(table_dungeon_room_layout).l
 
 const table_dungeon_size = {
     "1": {
-      "size": "Tiny",
-      "dice_to_roll": 1,
-      "dice_type": 4,
-      "modifier": 2
+        "size": "Tiny",
+        "dice_to_roll": 1,
+        "dice_type": 4,
+        "modifier": 2
     },
     "2": {
-      "size": "Tiny",
-      "dice_to_roll": 1,
-      "dice_type": 4,
-      "modifier": 2
+        "size": "Tiny",
+        "dice_to_roll": 1,
+        "dice_type": 4,
+        "modifier": 2
     },
     "3": {
-      "size": "Tiny",
-      "dice_to_roll": 1,
-      "dice_type": 4,
-      "modifier": 2
+        "size": "Tiny",
+        "dice_to_roll": 1,
+        "dice_type": 4,
+        "modifier": 2
     },
     "4": {
-      "size": "Small",
-      "dice_to_roll": 2,
-      "dice_type": 6,
-      "modifier": 3
+        "size": "Small",
+        "dice_to_roll": 2,
+        "dice_type": 6,
+        "modifier": 3
     },
     "5": {
-      "size": "Small",
-      "dice_to_roll": 2,
-      "dice_type": 6,
-      "modifier": 3
+        "size": "Small",
+        "dice_to_roll": 2,
+        "dice_type": 6,
+        "modifier": 3
     },
     "6": {
-      "size": "Small",
-      "dice_to_roll": 2,
-      "dice_type": 6,
-      "modifier": 3
+        "size": "Small",
+        "dice_to_roll": 2,
+        "dice_type": 6,
+        "modifier": 3
     },
     "7": {
-      "size": "Small",
-      "dice_to_roll": 2,
-      "dice_type": 6,
-      "modifier": 3
+        "size": "Small",
+        "dice_to_roll": 2,
+        "dice_type": 6,
+        "modifier": 3
     },
     "8": {
-      "size": "Small",
-      "dice_to_roll": 2,
-      "dice_type": 6,
-      "modifier": 3
+        "size": "Small",
+        "dice_to_roll": 2,
+        "dice_type": 6,
+        "modifier": 3
     },
     "9": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "10": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "11": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "12": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "13": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "14": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "15": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "16": {
-      "size": "Medium",
-      "dice_to_roll": 3,
-      "dice_type": 8,
-      "modifier": 5
+        "size": "Medium",
+        "dice_to_roll": 3,
+        "dice_type": 8,
+        "modifier": 5
     },
     "17": {
-      "size": "Large",
-      "dice_to_roll": 4,
-      "dice_type": 10,
-      "modifier": 8
+        "size": "Large",
+        "dice_to_roll": 4,
+        "dice_type": 10,
+        "modifier": 8
     },
     "18": {
-      "size": "Large",
-      "dice_to_roll": 4,
-      "dice_type": 10,
-      "modifier": 8
+        "size": "Large",
+        "dice_to_roll": 4,
+        "dice_type": 10,
+        "modifier": 8
     },
     "19": {
-      "size": "Huge",
-      "dice_to_roll": 5,
-      "dice_type": 12,
-      "modifier": 10
+        "size": "Huge",
+        "dice_to_roll": 5,
+        "dice_type": 12,
+        "modifier": 10
     },
     "20": {
-      "size": "Huge",
-      "dice_to_roll": 5,
-      "dice_type": 12,
-      "modifier": 10
+        "size": "Huge",
+        "dice_to_roll": 5,
+        "dice_type": 12,
+        "modifier": 10
+    }
+};
+
+const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
+
+const table_dungeon_door_type = {
+    "1": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "2": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "3": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "4": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "5": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "6": {
+        "type": "Wooden door",
+        "locked": 10,
+        "trapped": 10
+    },
+    "7": {
+        "type": "Stone door",
+        "locked": 15,
+        "trapped": 15
+    },
+    "8": {
+        "type": "Iron door",
+        "locked": 20,
+        "trapped": 20
+    },
+    "9": {
+        "type": "Portcullis",
+        "locked": 25,
+        "trapped": 25
+    },
+    "10": {
+        "type": "Secret door",
+        "locked": 50,
+        "trapped": 50
+    }
+};
+
+const table_dungeon_door_type_count = Object.keys(table_dungeon_door_type).length;
+
+const table_dungeon_door_width = {
+    "1": {
+      "width": 5
+    },
+    "2": {
+      "width": 10
     }
   };
 
-const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
+  const table_dungeon_door_width_count = Object.keys(table_dungeon_door_width).length;

@@ -216,3 +216,8 @@ function rollDiceForumla(diceCount, diceType, modifier) {
     result += modifier;
     return result;
 }
+
+function rollPercentileTrueFalse(chance) {
+    var roll = getRandomInt(1, 100);
+    return (roll <= chance);
+}
