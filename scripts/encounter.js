@@ -1,4 +1,4 @@
-// Shared Tables
+// Encounter Tables
 
 const table_creature_type = {
     "1": {
@@ -46,39 +46,3 @@ const table_creature_type = {
 };
 
 const table_creature_type_count = Object.keys(table_creature_type).length;
-
-
-const table_severity = {
-    "1": {
-      "severity": "setback"
-    },
-    "2": {
-      "severity": "setback"
-    },
-    "3": {
-      "severity": "setback"
-    },
-    "4": {
-      "severity": "setback"
-    },
-    "5": {
-      "severity": "setback"
-    },
-    "6": {
-      "severity": "dangerous"
-    },
-    "7": {
-      "severity": "dangerous"
-    },
-    "8": {
-      "severity": "dangerous"
-    },
-    "9": {
-      "severity": "dangerous"
-    },
-    "10": {
-      "severity": "deadly"
-    }
-  };
-
-  const table_severity_count = Object.keys(table_severity).length;
