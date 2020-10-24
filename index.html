@@ -18,8 +18,8 @@
     <div id="div_top_menu">
       <button class="button active_button" id="button_menu_journal"><img class="button_icon" src="images/quill.png"
           alt="quill image"><span class="menu text"><br />Journal</span></button>
-      <button class="button" id="button_menu_oracle"><img class="button_icon" src="images/eye.png"
-          alt="eye image"><span class="menu text"><br />Oracle</span></button>
+      <button class="button" id="button_menu_oracle"><img class="button_icon" src="images/eye.png" alt="eye image"><span
+          class="menu text"><br />Oracle</span></button>
       <button class="button" id="button_menu_dungeon"><img class="button_icon" src="images/torch.png"
           alt="torch image"><span class="menu text"><br />Dungeon</span></button>
       <button class="button" id="button_menu_wilderness"><img class="button_icon" src="images/tree.png"
@@ -229,6 +229,52 @@
 
 
     <!--About Features-->
+
+    <div id="div_feature_about_settings">
+      <div class="div_feature_row">
+        <div class="label">Party Tier</div>
+        <select name="input_trap_tier" id="input_trap_tier" class="selector">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="bordered div_feature_row">
+        <div class="div_text_only">
+          <table class="display_table">
+            <tr>
+              <td>Tier</td>
+              <td>Character Level</td>
+            </tr>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>1st–4th</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>5th–10th</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>11th–16th</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>17th–20th</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="div_text_only">
+          <p>Party tier refers to the level of the party in play.</p>
+          <p>This is used to set level appropriate difficulty classes and consequences for traps.</p>
+        </div>
+
+      </div>
+    </div>
+
     <div id="div_feature_about_general" class="bordered div_text_only_container">
       <div class="div_text_only">
         <p>Wish is a tool for tabletop role-playing games.</p>
@@ -324,10 +370,6 @@
     <div id="div_feature_about_combat" class="bordered div_text_only">
       <p>Will outline functions for Combat</p>
     </div>
-
-
-
-
   </div>
 
   <div id="div_hidden_sidebars" class="hidden">
@@ -360,6 +402,7 @@
     </div>
 
     <div id="div_sidebar_about">
+      <button class="button" id="button_feature_about_settings">Settings</button>
       <button class="button" id="button_feature_about_general">General</button>
       <button class="button" id="button_feature_about_journal">Journal</button>
       <button class="button" id="button_feature_about_oracle">Oracle</button>

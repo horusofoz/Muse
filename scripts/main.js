@@ -101,8 +101,8 @@ var div_feature_combat_reaction = document.getElementById("div_feature_combat_re
 var div_feature_combat_complication = document.getElementById("div_feature_combat_complication");
 
 
-
 // About Elements
+var button_feature_about_settings = document.getElementById("button_feature_about_settings");
 var button_feature_about_general = document.getElementById("button_feature_about_general");
 var button_feature_about_journal = document.getElementById("button_feature_about_journal");
 var button_feature_about_oracle = document.getElementById("button_feature_about_oracle");
@@ -110,6 +110,7 @@ var button_feature_about_dungeon = document.getElementById("button_feature_about
 var button_feature_about_wilderness = document.getElementById("button_feature_about_wilderness");
 var button_feature_about_combat = document.getElementById("button_feature_about_combat");
 
+var div_feature_about_settings = document.getElementById("div_feature_about_settings");
 var div_feature_about_general = document.getElementById("div_feature_about_general");
 var div_feature_about_journal = document.getElementById("div_feature_about_journal");
 var div_feature_about_oracle = document.getElementById("div_feature_about_oracle");

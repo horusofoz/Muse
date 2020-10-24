@@ -30,8 +30,6 @@ body, html {
   width: 100%;
 }
 
-
-
 #div_active_feature {
   display: flex;
   flex-direction: column;
@@ -64,10 +62,8 @@ body, html {
   border: #f0f0f0 .2em solid;
   background-color: black;
   color: #f0f0f0;
-  height: 4.70em; /* "Hack" to line labels up with buttons sizes :( */
+  height: 4.69em; /* "Hack" to line labels up with buttons sizes :( */
 }
-
-
 
 .div_active_sidebar {
   width: 20%;

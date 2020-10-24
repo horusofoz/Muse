@@ -1,5 +1,10 @@
 // About Event Handlers
 
+button_feature_about_settings.onclick = function () {
+    showFeatureDiv(div_feature_about_settings);
+    applyActiveStyleToFeatureButton(this);
+};
+
 button_feature_about_general.onclick = function () {
     showFeatureDiv(div_feature_about_general);
     applyActiveStyleToFeatureButton(this);
