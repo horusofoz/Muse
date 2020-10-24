@@ -20,11 +20,6 @@ button_feature_dungeon_door.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 }
 
-button_feature_dungeon_trap.onclick = function () {
-    showFeatureDiv(div_feature_dungeon_trap);
-    applyActiveStyleToFeatureButton(this);
-}
-
 button_generate_dungeon.onclick = function () {
     var dungeonDesign = getDungeonDesign();
     setDungeonDesign(dungeonDesign);
