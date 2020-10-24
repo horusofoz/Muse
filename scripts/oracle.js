@@ -31,7 +31,8 @@ button_receive_portent.onclick = function () {
 
 button_initiate_event.onclick = function () {
     var randomEvent = getRandomEvent();
-    setRandomEvent(randomEvent);
+    randomEvent = setRandomEvent(randomEvent);
+    writeToJournal(randomEvent);
 };
 
 function askquestion() {
@@ -135,11 +136,14 @@ function setRandomEvent(randomEvent) {
     eventResult += "<br />Focus: " + randomEvent.focus;
     eventResult += "<br />Subject: " + randomEvent.subject;
     eventResult += "<br />Action: " + randomEvent.action;
-
-    writeToJournal(eventResult);
+    return eventResult;
 }
 
-
+function initiateEvent() {
+    var randomEvent = getRandomEvent();
+    randomEvent = setRandomEvent(randomEvent);
+    return randomEvent;
+}
 
 // Oracle Tables
 

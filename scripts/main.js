@@ -70,6 +70,7 @@ var div_feature_dungeon_trap = document.getElementById("div_feature_dungeon_trap
 
 var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 var button_generate_door = document.getElementById("button_generate_door");
+var button_generate_passage = document.getElementById("button_generate_passage");
 
 
 // Wilderness Elements

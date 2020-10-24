@@ -31,6 +31,12 @@ button_generate_door.onclick = function () {
     writeToJournal(dungeonDoor);
 }
 
+button_generate_passage.onclick = function () {
+    var passage = getDungeonPassage();
+    passage = setDungeonPassage(passage);
+    writeToJournal(passage);
+}
+
 // Dungeon Functions
 
 function getDungeonDesign() {
@@ -90,19 +96,19 @@ function getDungeonDoor() {
 
     var door = {};
     // Get type
-    var template = table_dungeon_door_type[getRandomInt(1,table_dungeon_door_type_count)];
+    var template = table_dungeon_door_type[getRandomInt(1, table_dungeon_door_type_count)];
     door.type = template.type;
 
     // Get locked
     door.locked = rollPercentileTrueFalse(template.locked);
-    if(door.locked) {
+    if (door.locked) {
         door.pickLockDC = getDifficultyClass();
         door.forceDoorDC = getDifficultyClass();
     }
-    
+
     // Get trapped
     door.trapped = rollPercentileTrueFalse(template.trapped);
-    if(door.trapped) {
+    if (door.trapped) {
         door.trapDetails = buildTrap("door");
     }
 
@@ -111,22 +117,90 @@ function getDungeonDoor() {
     return door;
 }
 
-
 function setDungeonDoor(door) {
 
     var doorString = "";
- 
+
     doorString += door.type + ", " + door.width + " feet wide";
 
-    if(door.locked) {
+    if (door.locked) {
         doorString += "<br />Locked, DC" + door.pickLockDC + " Thieves' Tools check to pick lock, DC" + door.forceDoorDC + " Athletics check to force door";
     }
 
-    if(door.trapped) {
+    if (door.trapped) {
         doorString += "<br/>Trapped, " + door.trapDetails;
     }
-    
+
     return doorString;
+}
+
+function getDungeonPassage() {
+    var passage = {};
+
+    // Get Type
+    passage.type = table_dungeon_passage_type[getRandomInt(1, table_dungeon_passage_type_count)].type;
+
+    // Handler for Room or Stairs
+    if (passage.type === "Room") {
+        return "Room";
+    }
+
+    if (passage.type === "Stairs") {
+        return "Stairs";
+    }
+
+    // Get Width
+    passage.width = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width;
+
+    // Get Content
+    passage.trapped = rollPercentileTrueFalse(table_dungeon_passage_content.Trap.chance);
+    if (passage.trapped) {
+        passage.trap = buildTrap("passage");
+    }
+
+    passage.eventOccurs = rollPercentileTrueFalse(table_dungeon_passage_content.Event.chance);
+    if (passage.eventOccurs) {
+        passage.event = (initiateEvent()).replace("Random Event", "");
+    }
+
+    passage.combatOccurs = rollPercentileTrueFalse(table_dungeon_passage_content.Combat.chance);
+    if (passage.combatOccurs) {
+        passage.combatDifficulty = (getEncounterCombat()).difficulty;
+    }
+
+    passage.lootEncountered = rollPercentileTrueFalse(table_dungeon_passage_content.Combat.chance);
+
+    return passage;
+}
+
+function setDungeonPassage(passage) {
+    if (passage === "Room" || passage === "Stairs") {
+        return "Passage lead to " + passage;
+    }
+
+    var passageString = "";
+
+    passageString += passage.width + " feet wide passage ";
+    passageString += passage.type;
+
+    if(passage.trapped) {
+        passageString += "<br />Passage is trapped, " + passage.trap;
+    }
+
+    if(passage.combatOccurs) {
+        passageString += "<br />" + passage.combatDifficulty + " combat encounter in passage"
+    }
+
+    if(passage.lootEncountered) {
+        passageString += "<br />Loot found in passage"
+    }
+
+    if(passage.eventOccurs) {
+        passageString += "<br />Random event occurs in passage";
+        passageString += passage.event;
+    }
+
+    return passageString;
 }
 
 // Dungeon Tables
@@ -418,7 +492,6 @@ const table_dungeon_history = {
     }
 };
 
-
 const table_dungeon_history_count = Object.keys(table_dungeon_history).length;
 
 const table_dungeon_start_area = {
@@ -481,7 +554,6 @@ const table_dungeon_start_area = {
 };
 
 const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
-
 
 const table_dungeon_room_layout = {
     "1": {
@@ -1804,11 +1876,104 @@ const table_dungeon_door_type_count = Object.keys(table_dungeon_door_type).lengt
 
 const table_dungeon_door_width = {
     "1": {
-      "width": 5
+        "width": 5
     },
     "2": {
-      "width": 10
+        "width": 10
+    }
+};
+
+const table_dungeon_door_width_count = Object.keys(table_dungeon_door_width).length;
+
+const table_dungeon_passage_type = {
+    "1": {
+      "type": "continues straight 30 ft., no doors or side passages"
+    },
+    "2": {
+      "type": "continues straight 30 ft., no doors or side passages"
+    },
+    "3": {
+      "type": "continues straight 20 ft., door to the right, then an additional 10 ft. ahead"
+    },
+    "4": {
+      "type": "continues straight 20 ft., door to the left, then an additional 10 ft. ahead"
+    },
+    "5": {
+      "type": "continues straight 20 ft.; passage ends in a door"
+    },
+    "6": {
+      "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
+    },
+    "7": {
+      "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
+    },
+    "8": {
+      "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
+    },
+    "9": {
+      "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
+    },
+    "10": {
+      "type": "continues straight 20 ft., comes to a dead end"
+    },
+    "11": {
+      "type": "continues straight 20 ft., then the passage turns left and continuess 10 ft."
+    },
+    "12": {
+      "type": "continues straight 20 ft., then the passage turns left and continuess 10 ft."
+    },
+    "13": {
+      "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
+    },
+    "14": {
+      "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
+    },
+    "15": {
+      "type": "Room"
+    },
+    "16": {
+      "type": "Room"
+    },
+    "17": {
+      "type": "Room"
+    },
+    "18": {
+      "type": "Room"
+    },
+    "19": {
+      "type": "Room"
+    },
+    "20": {
+      "type": "Stairs"
     }
   };
 
-  const table_dungeon_door_width_count = Object.keys(table_dungeon_door_width).length;
+const table_dungeon_passage_type_count = Object.keys(table_dungeon_passage_type).length;
+
+const table_dungeon_passage_width = {
+    "1": {
+        "width": 5
+    },
+    "2": {
+        "width": 10
+    }
+};
+
+const table_dungeon_passage_width_count = Object.keys(table_dungeon_passage_width).length;
+
+const table_dungeon_passage_content = {
+    "Trap": {
+        "chance": 10
+    },
+    "Event": {
+        "chance": 10
+    },
+    "Combat": {
+        "chance": 25
+    },
+    "Loot": {
+        "chance": 10
+    }
+};
+
+const table_dungeon_passage_content_count = Object.keys(table_dungeon_passage_content).length;
