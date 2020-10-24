@@ -246,7 +246,6 @@ function getDungeonRoom() {
     room.state = table_dungeon_room_state[getRandomInt(1, table_dungeon_room_state_count)].state;
 
     // Purpose
-    console.log(room);
     return room;
 }
 

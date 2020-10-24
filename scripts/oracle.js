@@ -36,28 +36,33 @@ button_initiate_event.onclick = function () {
 };
 
 function askquestion() {
-
-    var question = input_oracle_question.value;
-    var questionResult = getquestionResult();
-    setQuestionOutput(questionResult, question);
+    var response = getquestionResult();
+    setQuestionOutput(response);
     resetquestionInputs();
     return;
 }
 
-function setQuestionOutput(questionResult, question) {
+function setQuestionOutput(response) {
 
-    var questionOutput = (question === "") ? "" : question + "<br />";
-    questionOutput += "Likelihood: " + questionResult.likelihood;
-    questionOutput += "<br />Roll: " + questionResult.firstRoll;
-    if (questionResult.likelihood !== "50/50") {
-        questionOutput += " & " + questionResult.secondRoll;
+    var questionOutput = (response.question === "") ? "" : response.question + "<br />";
+    questionOutput += "Likelihood: " + response.likelihood;
+    questionOutput += "<br />Roll: " + response.firstRoll;
+    if (response.likelihood !== "50/50") {
+        questionOutput += " & " + response.secondRoll;
+    }
+    questionOutput += "<br />Answer: " + response.answer;
+
+    if(response.event === true) {
+        questionOutput += initiateEvent().replace("Random Event", "<br /><br />Random event triggered by Oracle");
     }
 
-    questionOutput += "<br />Answer: " + questionResult.answer;
     writeToJournal(questionOutput)
 }
 
 function getquestionResult() {
+
+    result = {};
+
     var question_likelihood = input_question_likelihood.options[input_question_likelihood.selectedIndex].text;
     var firstRoll = getRandomInt(1, table_question_count);
     var secondRoll = getRandomInt(1, table_question_count);
@@ -77,14 +82,13 @@ function getquestionResult() {
             break;
     }
 
-    var answer = table_question[rollResult].answer;
-
-    return {
-        answer: answer,
-        firstRoll: firstRoll,
-        secondRoll: secondRoll,
-        likelihood: question_likelihood
-    };
+    result.question = input_oracle_question.value;
+    result.answer = table_question[rollResult].answer;
+    result.firstRoll = firstRoll;
+    result.secondRoll = secondRoll;
+    result.likelihood = question_likelihood;
+    result.event = (firstRoll === secondRoll) && (question_likelihood != "50/50");
+    return result;
 }
 
 function resetquestionInputs() {
