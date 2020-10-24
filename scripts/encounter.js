@@ -1,3 +1,14 @@
+// Encounter Event Handlers
+
+button_feature_encounter_combat.onclick = function () {
+    showFeatureDiv(div_feature_encounter_combat);
+    applyActiveStyleToFeatureButton(this);
+}
+
+
+// Encounter Functions
+
+
 // Encounter Tables
 
 const table_creature_type = {

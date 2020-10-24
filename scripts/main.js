@@ -3,7 +3,7 @@ var button_menu_journal = document.getElementById("button_menu_journal");
 var button_menu_oracle = document.getElementById("button_menu_oracle");
 var button_menu_dungeon = document.getElementById("button_menu_dungeon");
 var button_menu_wilderness = document.getElementById("button_menu_wilderness");
-var button_menu_combat = document.getElementById("button_menu_combat");
+var button_menu_encounter = document.getElementById("button_menu_encounter");
 var button_menu_about = document.getElementById("button_menu_about");
 
 
@@ -12,7 +12,7 @@ var div_sidebar_journal = document.getElementById("div_sidebar_journal");
 var div_sidebar_oracle = document.getElementById("div_sidebar_oracle");
 var div_sidebar_dungeon = document.getElementById("div_sidebar_dungeon");
 var div_sidebar_wilderness = document.getElementById("div_sidebar_wilderness");
-var div_sidebar_combat = document.getElementById("div_sidebar_combat");
+var div_sidebar_encounter = document.getElementById("div_sidebar_encounter");
 var div_sidebar_about = document.getElementById("div_sidebar_about");
 
 
@@ -84,17 +84,10 @@ var div_feature_wilderness_encounter = document.getElementById("div_feature_wild
 var div_feature_wilderness_complication = document.getElementById("div_feature_wilderness_complication");
 
 
-// Combat Elements
-var button_feature_combat_difficulty = document.getElementById("button_feature_combat_difficulty");
-var button_feature_combat_intention = document.getElementById("button_feature_combat_intention");
-var button_feature_combat_reaction = document.getElementById("button_feature_combat_reaction");
-var button_feature_combat_complication = document.getElementById("button_feature_combat_complication");
+// Encounter Elements
+var button_feature_encounter_combat = document.getElementById("button_feature_encounter_combat");
 
-var div_feature_combat_difficulty = document.getElementById("div_feature_combat_difficulty");
-var div_feature_combat_feature = document.getElementById("div_feature_combat_feature");
-var div_feature_combat_reaction = document.getElementById("div_feature_combat_reaction");
-var div_feature_combat_complication = document.getElementById("div_feature_combat_complication");
-
+var div_feature_encounter_combat = document.getElementById("div_feature_encounter_combat");
 
 // About Elements
 var button_feature_about_settings = document.getElementById("button_feature_about_settings");
@@ -137,8 +130,8 @@ button_menu_wilderness.onclick = function () {
     applyActiveStyleToMenuButton(this);
 };
 
-button_menu_combat.onclick = function () {
-    showFeatureSetSidebar(div_sidebar_combat);
+button_menu_encounter.onclick = function () {
+    showFeatureSetSidebar(div_sidebar_encounter);
     applyActiveStyleToMenuButton(this);
 };
 

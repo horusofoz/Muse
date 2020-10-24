@@ -30,8 +30,8 @@ button_feature_about_wilderness.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 };
 
-button_feature_about_combat.onclick = function () {
-    showFeatureDiv(div_feature_about_combat);
+button_feature_about_encounter.onclick = function () {
+    showFeatureDiv(button_feature_about_encounter);
     applyActiveStyleToFeatureButton(this);
 };
 
