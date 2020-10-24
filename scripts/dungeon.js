@@ -52,7 +52,7 @@ function getDungeonDesign() {
     dungeonDesign.creator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)].creator;
     dungeonDesign.purpose = table_dungeon_purpose[getRandomInt(1, table_dungeon_purpose_count)].purpose;
     dungeonDesign.history = table_dungeon_history[getRandomInt(1, table_dungeon_history_count)].history;
-    dungeonDesign.size = table_dungeon_size[getRandomInt(1, table_dungeon_size_count)];
+    dungeonDesign.size = getDungeonSize();
     dungeonDesign.dominantCreatureType = table_creature_type[getRandomInt(1, table_creature_type_count)].creature_type;
     dungeonDesign.start_area = table_dungeon_start_area[getRandomInt(1, table_dungeon_start_area_count)];
     return dungeonDesign;
@@ -71,6 +71,22 @@ function setDungeonDesign(dungeonObject) {
     dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Exits: " + dungeonObject.start_area.exits : "";
     writeToJournal(dungeonDesign);
 }
+
+function getDungeonSize() {
+    
+    var dungeonSize = {};
+
+    // get size
+    var size = table_dungeon_size[getRandomInt(1,table_dungeon_size_count)];
+    dungeonSize.size = size.size;
+    // get rooms
+
+    var rooms = rollDiceForumla(size.dice_to_roll, size.dice_type, size.modifier);
+    dungeonSize.rooms = rooms;
+
+    return dungeonSize;
+}
+
 
 function setDungeonExits(inputObject) {
     var exits = "";
@@ -462,92 +478,8 @@ const table_dungeon_history = {
     }
 };
 
+
 const table_dungeon_history_count = Object.keys(table_dungeon_history).length;
-
-const table_dungeon_size = {
-    "1": {
-        "size": "Tiny",
-        "rooms": 3
-    },
-    "2": {
-        "size": "Tiny",
-        "rooms": 4
-    },
-    "3": {
-        "size": "Tiny",
-        "rooms": 5
-    },
-    "4": {
-        "size": "Small",
-        "rooms": 6
-    },
-    "5": {
-        "size": "Small",
-        "rooms": 7
-    },
-    "6": {
-        "size": "Small",
-        "rooms": 8
-    },
-    "7": {
-        "size": "Small",
-        "rooms": 9
-    },
-    "8": {
-        "size": "Small",
-        "rooms": 10
-    },
-    "9": {
-        "size": "Medium",
-        "rooms": 13
-    },
-    "10": {
-        "size": "Medium",
-        "rooms": 14
-    },
-    "11": {
-        "size": "Medium",
-        "rooms": 15
-    },
-    "12": {
-        "size": "Medium",
-        "rooms": 16
-    },
-    "13": {
-        "size": "Medium",
-        "rooms": 17
-    },
-    "14": {
-        "size": "Medium",
-        "rooms": 18
-    },
-    "15": {
-        "size": "Medium",
-        "rooms": 19
-    },
-    "16": {
-        "size": "Medium",
-        "rooms": 20
-    },
-    "17": {
-        "size": "Large",
-        "rooms": 28
-    },
-    "18": {
-        "size": "Large",
-        "rooms": 29
-    },
-    "19": {
-        "size": "Huge",
-        "rooms": 55
-    },
-    "20": {
-        "size": "Limitless",
-        "rooms": "Until goal achieved"
-    }
-};
-
-const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
 
 const table_dungeon_start_area = {
     "1": {
@@ -2410,4 +2342,130 @@ const table_dungeon_trap_magic = {
     }
   };
 
-  const table_dungeon_trap_magic_count = Object.keys(table_dungeon_trap_magic).length;
+const table_dungeon_trap_magic_count = Object.keys(table_dungeon_trap_magic).length;
+
+
+const table_dungeon_size = {
+    "1": {
+      "size": "Tiny",
+      "dice_to_roll": 1,
+      "dice_type": 4,
+      "modifier": 2
+    },
+    "2": {
+      "size": "Tiny",
+      "dice_to_roll": 1,
+      "dice_type": 4,
+      "modifier": 2
+    },
+    "3": {
+      "size": "Tiny",
+      "dice_to_roll": 1,
+      "dice_type": 4,
+      "modifier": 2
+    },
+    "4": {
+      "size": "Small",
+      "dice_to_roll": 2,
+      "dice_type": 6,
+      "modifier": 3
+    },
+    "5": {
+      "size": "Small",
+      "dice_to_roll": 2,
+      "dice_type": 6,
+      "modifier": 3
+    },
+    "6": {
+      "size": "Small",
+      "dice_to_roll": 2,
+      "dice_type": 6,
+      "modifier": 3
+    },
+    "7": {
+      "size": "Small",
+      "dice_to_roll": 2,
+      "dice_type": 6,
+      "modifier": 3
+    },
+    "8": {
+      "size": "Small",
+      "dice_to_roll": 2,
+      "dice_type": 6,
+      "modifier": 3
+    },
+    "9": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "10": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "11": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "12": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "13": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "14": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "15": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "16": {
+      "size": "Medium",
+      "dice_to_roll": 3,
+      "dice_type": 8,
+      "modifier": 5
+    },
+    "17": {
+      "size": "Large",
+      "dice_to_roll": 4,
+      "dice_type": 10,
+      "modifier": 8
+    },
+    "18": {
+      "size": "Large",
+      "dice_to_roll": 4,
+      "dice_type": 10,
+      "modifier": 8
+    },
+    "19": {
+      "size": "Huge",
+      "dice_to_roll": 5,
+      "dice_type": 12,
+      "modifier": 10
+    },
+    "20": {
+      "size": "Huge",
+      "dice_to_roll": 5,
+      "dice_type": 12,
+      "modifier": 10
+    }
+  };
+
+const table_dungeon_size_count = Object.keys(table_dungeon_size).length;

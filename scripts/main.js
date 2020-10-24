@@ -214,3 +214,12 @@ function capitalize (inputString) {
     }
     return inputString.charAt(0).toUpperCase() + inputString.slice(1);
 }
+
+function rollDiceForumla(diceCount, diceType, modifier) {
+    var result = 0;
+    for (var i = 0; i <= diceCount; i++) {
+        result += getRandomInt(1, diceType);
+    }
+    result += modifier;
+    return result;
+}
