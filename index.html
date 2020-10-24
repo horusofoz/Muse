@@ -114,10 +114,23 @@
       </div>
     </div>
 
-    <div id="div_feature_dungeon_room" class="bordered">
+    <div id="div_feature_dungeon_room">
+      <div class="bordered div_text_only">
+        <p>Set Dungeon Purpose below to build related rooms. Alternatively leave as random for higher variability.</p>
+      </div>
       <div class="div_feature_row">
-        <img src="images/construction.png" alt="construction image">
-        <p><br />Under construction...</p>
+        <button class="button" id="button_generate_room">Build</button>
+        <select name="input_dungeon_type_for_room_purpose" id="input_dungeon_type_for_room_purpose" class="selector">
+          <option value="Death trap">Death trap</option>
+          <option value="Lair">Lair</option>
+          <option value="Mine">Mine</option>
+          <option value="Planar gate">Planar gate</option>
+          <option value="Random" selected>Random</option>
+          <option value="Stronghold">Stronghold</option>
+          <option value="Temple">Temple</option>
+          <option value="Tomb">Tomb</option>
+          <option value="Treasure vault">Treasure vault</option>
+        </select>
       </div>
     </div>
 
@@ -126,8 +139,6 @@
         <button class="button" id="button_generate_passage">Generate</button>
       </div>
     </div>
-
-
 
     <div id="div_feature_dungeon_door">
       <div class="div_feature_row">
@@ -174,6 +185,9 @@
     </div>
 
     <div id="div_feature_encounter_trap">
+      <div class="bordered div_text_only">
+        <p>Set the party tier in <strong>About > Settings</strong> for level appropriate traps.</p>
+      </div>
       <div class="div_feature_row">
         <button class="button" id="button_get_encounter_trap">Roll</button>
       </div>
@@ -220,7 +234,7 @@
         </div>
         <div class="div_text_only">
           <p>Party tier refers to the level of the party in play.</p>
-          <p>This is used to set level appropriate difficulty classes and consequences for traps.</p>
+          <p>This is used to set level appropriate difficulty classes and consequences for skill challenges and saving throws.</p>
         </div>
 
       </div>

@@ -30,11 +30,11 @@ function getDifficultyClass() {
 }
 
 function getEncounterCombat() {
-    return table_encounter_combat[getRandomInt(1, table_encounter_combat_count)];
+    return table_encounter_combat[getRandomInt(1, table_encounter_combat_count)].difficulty;
 }
 
 function setEncounterCombat(encounterCombat) {
-    var encounterString = encounterCombat.difficulty + " combat encounter";
+    var encounterString = encounterCombat + " combat encounter";
     return encounterString;
 }
 
