@@ -34,7 +34,7 @@ function getEncounterCombat() {
 }
 
 function setEncounterCombat(encounterCombat) {
-    var encounterString = "Combat Difficulty: " + encounterCombat.difficulty;
+    var encounterString = encounterCombat.difficulty + " combat encounter";
     return encounterString;
 }
 
