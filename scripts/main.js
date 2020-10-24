@@ -86,8 +86,11 @@ var div_feature_wilderness_complication = document.getElementById("div_feature_w
 
 // Encounter Elements
 var button_feature_encounter_combat = document.getElementById("button_feature_encounter_combat");
+var button_feature_encounter_trap = document.getElementById("button_feature_encounter_trap");
 
 var div_feature_encounter_combat = document.getElementById("div_feature_encounter_combat");
+var div_feature_encounter_trap = document.getElementById("div_feature_encounter_trap");
+
 
 // About Elements
 var button_feature_about_settings = document.getElementById("button_feature_about_settings");
