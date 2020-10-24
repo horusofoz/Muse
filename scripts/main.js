@@ -113,6 +113,7 @@ var div_feature_about_dungeon = document.getElementById("div_feature_about_dunge
 var div_feature_about_wilderness = document.getElementById("div_feature_about_wilderness");
 var div_feature_about_combat = document.getElementById("div_feature_about_combat");
 
+var input_party_tier = document.getElementById("input_party_tier");
 
 
 // Menu Navigation

@@ -34,3 +34,9 @@ button_feature_about_combat.onclick = function () {
     showFeatureDiv(div_feature_about_combat);
     applyActiveStyleToFeatureButton(this);
 };
+
+
+// About Functions
+function getPartyTier() {
+    return input_party_tier.options[input_party_tier.selectedIndex].value;
+}
