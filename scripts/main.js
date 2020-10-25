@@ -79,6 +79,7 @@ var button_generate_stair = document.getElementById("button_generate_stair");
 var button_generate_beyond = document.getElementById("button_generate_beyond");
 
 var input_dungeon_type_for_room_purpose = document.getElementById("input_dungeon_type_for_room_purpose");
+var input_dungeon_passage_width = document.getElementById("input_dungeon_passage_width");
 
 
 // Wilderness Elements

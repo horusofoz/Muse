@@ -183,7 +183,12 @@ function getDungeonPassage() {
     passage.type = table_dungeon_passage_type[getRandomInt(1, table_dungeon_passage_type_count)].type;
 
     // Get Width
-    passage.width = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width;
+    if(getDungeonPassageWidthInput() === "Random") {
+        passage.width = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width;
+    } else {
+        passage.width = getDungeonPassageWidthInput();
+    }
+    
 
     // Get Content
     passage.trapped = rollPercentileTrueFalse(table_dungeon_passage_content.Trap.chance);
@@ -241,6 +246,10 @@ function buildDungeonPassage() {
     var passage = getDungeonPassage();
     passage = setDungeonPassage(passage);
     return passage;
+}
+
+function getDungeonPassageWidthInput() {
+    return input_dungeon_passage_width.options[input_dungeon_passage_width.selectedIndex].value;
 }
 
 function getDungeonTypeInput() {
