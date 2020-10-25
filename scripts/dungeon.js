@@ -107,7 +107,7 @@ function setDungeonDesign(dungeon) {
         dungeonString += " Populated mostly by " + dungeon.dominantCreatureType + " denizens."
     }
 
-    dungeonString += " " + dungeon.size.size + " site with " + dungeon.size.rooms;
+    dungeonString += " " + dungeon.size.size + " site with " + dungeon.size.rooms + " rooms";
 
     dungeonString += "<br /><br />Start area is a " + dungeon.startRoom;
 
