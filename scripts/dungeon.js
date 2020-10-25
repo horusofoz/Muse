@@ -20,6 +20,11 @@ button_feature_dungeon_door.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 }
 
+button_feature_dungeon_stair.onclick = function () {
+    showFeatureDiv(div_feature_dungeon_stair);
+    applyActiveStyleToFeatureButton(this);
+}
+
 button_generate_dungeon.onclick = function () {
     var dungeonDesign = getDungeonDesign();
     setDungeonDesign(dungeonDesign);
@@ -41,6 +46,11 @@ button_generate_passage.onclick = function () {
     var passage = getDungeonPassage();
     passage = setDungeonPassage(passage);
     writeToJournal(passage);
+}
+
+button_generate_stair.onclick = function () {
+    var stair = buildDungeonStair();
+    writeToJournal(stair);
 }
 
 // Dungeon Functions
@@ -251,11 +261,25 @@ function getDungeonRoom() {
 
 function getDungeonRoomExit() {
     var exitType = table_dungeon_room_exit_type[getRandomInt(1, table_dungeon_room_exit_type_count)].type;
-    if (exitType === "passage") {
-        return table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width + " feet wide, 10 feet long passage";
+
+    var exit = {};
+
+    switch (exitType) {
+        case "passage":
+            exit = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width + " feet wide, 10 feet long passage";
+            break;
+        case "door":
+            exit = buildDungeonDoor();
+            break;
+        case "stair":
+            exit = buildDungeonStair();
+            break;
+        default:
+            throw "Exit Type not recognised."
+            break;
     }
 
-    return buildDungeonDoor();
+    return exit;
 }
 
 function getDungeonRoomPurpose() {
@@ -335,6 +359,51 @@ function setDungeonRoom(room) {
     }
 
     return roomString;
+}
+
+function getDungeonStair() {
+    var stair = {};
+
+    stair.size = table_dungeon_stair_size[getRandomInt(1, table_dungeon_stair_size_count)].size;
+    stair.direction = table_dungeon_stair_direction[getRandomInt(1, table_dungeon_stair_direction_count)].direction;
+    stair.trap = (rollPercentileTrueFalse(table_dungeon_stair_content.trap.chance)) ? buildTrap("stair") : false;
+    stair.event = (rollPercentileTrueFalse(table_dungeon_stair_content.event.chance)) ? initiateEvent().replace("Random Event", "") : false;
+    stair.combat = (rollPercentileTrueFalse(table_dungeon_stair_content.combat.chance)) ? getEncounterCombat() : false;
+    stair.loot = (rollPercentileTrueFalse(table_dungeon_stair_content.loot.chance)) ? true : false;
+
+    return stair;
+}
+
+function setDungeonStair(stair) {
+    console.log(stair);
+    var stairString = "";
+
+    stairString += stair.size + " feet stair going " + stair.direction;
+
+    if (stair.trap) {
+        stairString += "<br />Stair contains a " + stair.trap;
+    }
+
+    if (stair.event) {
+        stairString += "<br />A random event occurs on stair" + stair.event;
+    }
+
+    if (stair.combat) {
+        stairString += "<br />Stair contains " + stair.combat + " combat encounter";
+    }
+
+    if (stair.loot) {
+        stairString += "<br />Loot found on stair";
+    }
+
+    console.log(stairString);
+    return stairString;
+}
+
+function buildDungeonStair() {
+    var stair = getDungeonStair();
+    stair = setDungeonStair(stair);
+    return stair
 }
 
 // Dungeon Tables
@@ -1955,6 +2024,7 @@ const table_dungeon_size_count = Object.keys(table_dungeon_size).length;
 
 
 // Door Tables
+
 const table_dungeon_door_type = {
     "1": {
         "type": "Wooden door",
@@ -2086,6 +2156,7 @@ const table_dungeon_passage_type = {
 
 
 // Passage Tables
+
 const table_dungeon_passage_type_count = Object.keys(table_dungeon_passage_type).length;
 
 const table_dungeon_passage_width = {
@@ -2224,7 +2295,31 @@ const table_dungeon_room_exit_type = {
         "type": "door"
     },
     "2": {
+        "type": "door"
+    },
+    "3": {
+        "type": "door"
+    },
+    "4": {
+        "type": "door"
+    },
+    "5": {
         "type": "passage"
+    },
+    "6": {
+        "type": "passage"
+    },
+    "7": {
+        "type": "passage"
+    },
+    "8": {
+        "type": "passage"
+    },
+    "9": {
+        "type": "passage"
+    },
+    "10": {
+        "type": "stair"
     }
 };
 
@@ -5642,3 +5737,46 @@ table_dungeon_room_purpose_treasure_vault = {
 };
 
 const table_dungeon_room_purpose_treasure_vault_count = Object.keys(table_dungeon_room_purpose_treasure_vault).length;
+
+
+// Stair Tables
+
+const table_dungeon_stair_size = {
+    "1": {
+        "size": "5 x 5"
+    },
+    "2": {
+        "size": "5 x 10"
+    },
+    "3": {
+        "size": "10 x 10"
+    }
+};
+
+const table_dungeon_stair_size_count = Object.keys(table_dungeon_stair_size).length;
+
+const table_dungeon_stair_direction = {
+    "1": {
+        "direction": "up"
+    },
+    "2": {
+        "direction": "down"
+    }
+};
+
+const table_dungeon_stair_direction_count = Object.keys(table_dungeon_stair_direction).length;
+
+const table_dungeon_stair_content = {
+    "trap": {
+        "chance": 5
+    },
+    "event": {
+        "chance": 5
+    },
+    "combat": {
+        "chance": 5
+    },
+    "loot": {
+        "chance": 5
+    }
+};

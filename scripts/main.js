@@ -61,17 +61,19 @@ var button_feature_dungeon_design = document.getElementById("button_feature_dung
 var button_feature_dungeon_room = document.getElementById("button_feature_dungeon_room");
 var button_feature_dungeon_passage = document.getElementById("button_feature_dungeon_passage");
 var button_feature_dungeon_door = document.getElementById("button_feature_dungeon_door");
+var button_feature_dungeon_stair = document.getElementById("button_feature_dungeon_stair");
 
 var div_feature_dungeon_design = document.getElementById("div_feature_dungeon_design");
 var div_feature_dungeon_room = document.getElementById("div_feature_dungeon_room");
 var div_feature_dungeon_passage = document.getElementById("div_feature_dungeon_passage");
 var div_feature_dungeon_door = document.getElementById("div_feature_dungeon_door");
-var div_feature_dungeon_trap = document.getElementById("div_feature_dungeon_trap");
+var div_feature_dungeon_stair = document.getElementById("div_feature_dungeon_stair");
 
 var button_generate_dungeon = document.getElementById("button_generate_dungeon");
 var button_generate_room = document.getElementById("button_generate_room");
 var button_generate_door = document.getElementById("button_generate_door");
 var button_generate_passage = document.getElementById("button_generate_passage");
+var button_generate_stair = document.getElementById("button_generate_stair");
 
 var input_dungeon_type_for_room_purpose = document.getElementById("input_dungeon_type_for_room_purpose");
 
