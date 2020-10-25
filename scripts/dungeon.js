@@ -86,7 +86,6 @@ function getDungeonDesign() {
     // Set Start Area
     dungeon.startRoom = getDungeonStartRoom();
 
-    console.log(dungeon)
     return dungeon;
 }
 
