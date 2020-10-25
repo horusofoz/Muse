@@ -31,8 +31,7 @@ button_feature_dungeon_beyond.onclick = function () {
 }
 
 button_generate_dungeon.onclick = function () {
-    var dungeonDesign = getDungeonDesign();
-    setDungeonDesign(dungeonDesign);
+    writeToJournal(buildDungeonDesign());
 }
 
 button_generate_room.onclick = function () {
@@ -46,7 +45,7 @@ button_generate_door.onclick = function () {
 }
 
 button_generate_passage.onclick = function () {
-    
+
     writeToJournal(buildDungeonPassage());
 }
 
@@ -62,31 +61,57 @@ button_generate_beyond.onclick = function () {
 
 // Dungeon Functions
 
-function getDungeonDesign() {
-
-    var dungeonDesign = {};
-    dungeonDesign.location = table_dungeon_locations[getRandomInt(1, table_dungeon_locations_count)].location;
-    dungeonDesign.creator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)].creator;
-    dungeonDesign.purpose = table_dungeon_purpose[getRandomInt(1, table_dungeon_purpose_count)].purpose;
-    dungeonDesign.history = table_dungeon_history[getRandomInt(1, table_dungeon_history_count)].history;
-    dungeonDesign.size = getDungeonSize();
-    dungeonDesign.dominantCreatureType = table_creature_type[getRandomInt(1, table_creature_type_count)].creature_type;
-    dungeonDesign.start_area = table_dungeon_start_area[getRandomInt(1, table_dungeon_start_area_count)];
-    return dungeonDesign;
+function buildDungeonDesign() {
+    var design = getDungeonDesign();
+    return setDungeonDesign(design);
 }
 
-function setDungeonDesign(dungeonObject) {
-    var dungeonDesign = "Dungeon Design";
-    dungeonDesign += "<br />Location: " + dungeonObject.location;
-    dungeonDesign += "<br />Created By: " + dungeonObject.creator;
-    dungeonDesign += "<br />Purpose: " + dungeonObject.purpose;
-    dungeonDesign += "<br />History: " + dungeonObject.history;
-    dungeonDesign += "<br />Size: " + dungeonObject.size.size + " (" + dungeonObject.size.rooms + ")";
-    dungeonDesign += "<br />Dominant Creatue Type: " + dungeonObject.dominantCreatureType;
-    dungeonDesign += "<br />Starting Area: " + dungeonObject.start_area.size + " " + dungeonObject.start_area.configuration;
-    dungeonObject.start_area.exits = setDungeonExits({ exit_left: dungeonObject.start_area.exit_left, exit_opposite: dungeonObject.start_area.exit_opposite, exit_right: dungeonObject.start_area.exit_right });
-    dungeonDesign += (dungeonObject.start_area.exits.length > 0) ? "<br />Exits: " + dungeonObject.start_area.exits : "";
-    writeToJournal(dungeonDesign);
+function getDungeonDesign() {
+
+    var dungeon = {};
+
+    dungeon.purpose = table_dungeon_purpose[getRandomInt(1, table_dungeon_purpose_count)].purpose;
+    var dungeonCreator = table_dungeon_creator[getRandomInt(1, table_dungeon_creator_count)];
+    dungeon.creator = dungeonCreator.creator;
+
+    dungeon.location = table_dungeon_locations[getRandomInt(1, table_dungeon_locations_count)].location;
+    dungeon.history = table_dungeon_history[getRandomInt(1, table_dungeon_history_count)].history;
+    dungeon.size = getDungeonSize();
+    if (dungeon.history === "Original creator still in control") {
+        dungeon.dominantCreatureType = dungeonCreator.denizens;
+    } else {
+        dungeon.dominantCreatureType = table_creature_type[getRandomInt(1, table_creature_type_count)].creature_type;
+    }
+    
+    // Set Start Area
+    dungeon.startRoom = getDungeonStartRoom();
+
+    console.log(dungeon)
+    return dungeon;
+}
+
+function getDungeonStartRoom() {
+    var room = getDungeonRoom();
+    room.exit_left = getDungeonRoomExit();
+    room.exit_opposite = getDungeonRoomExit();
+    room.exit_right = getDungeonRoomExit();
+    return setDungeonRoom(room);
+}
+
+function setDungeonDesign(dungeon) {
+    var dungeonString = dungeon.purpose + " built by " + dungeon.creator + " " + dungeon.location + ".";
+    dungeonString += " " + dungeon.history + ".";
+    if (!(dungeon.history === "Original creator still in control") && !(dungeon.history === "Site of a great miracle")) {
+        dungeonString += " Populated mostly by " + dungeon.dominantCreatureType + " denizens."
+    } else {
+        dungeonString += " Populated mostly by " + dungeon.dominantCreatureType + " denizens."
+    }
+
+    dungeonString += " " + dungeon.size.size + " site with " + dungeon.size.rooms;
+
+    dungeonString += "<br /><br />Start area is a " + dungeon.startRoom;
+
+    return dungeonString
 }
 
 function getDungeonSize() {
@@ -102,17 +127,6 @@ function getDungeonSize() {
     dungeonSize.rooms = rooms;
 
     return dungeonSize;
-}
-
-function setDungeonExits(inputObject) {
-    var exits = "";
-
-    (inputObject.exit_left !== "FALSE") ? exits += inputObject.exit_left + " left, " : "";
-    (inputObject.exit_opposite !== "FALSE") ? exits += inputObject.exit_opposite + " opposite, " : "";
-    (inputObject.exit_right !== "FALSE") ? exits += inputObject.exit_right + " right, " : "";
-    exits = (exits.length > 0) ? exits.substring(0, exits.length - 2) : "";
-    exits = exits.charAt(0).toUpperCase() + exits.slice(1);
-    return exits;
 }
 
 function getDungeonDoor() {
@@ -170,7 +184,7 @@ function getDungeonPassage() {
     passage.type = table_dungeon_passage_type[getRandomInt(1, table_dungeon_passage_type_count)].type;
 
     // Get Width
-    passage.width = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width;   
+    passage.width = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width;
 
     // Get Content
     passage.trapped = rollPercentileTrueFalse(table_dungeon_passage_content.Trap.chance);
@@ -194,11 +208,11 @@ function getDungeonPassage() {
 }
 
 function setDungeonPassage(passage) {
-    
-    var passageString = "";    
+
+    var passageString = "";
 
     if (passage.type === "room" || passage.type === "stair") {
-        passageString += passage.width + " feet wide, 10 feet long passage leading to a " + passage.type; 
+        passageString += passage.width + " feet wide, 10 feet long passage leading to a " + passage.type;
     } else {
         passageString += passage.width + " feet wide passage ";
         passageString += passage.type;
@@ -455,73 +469,304 @@ function setDungeonBeyond(beyond) {
 
 const table_dungeon_locations = {
     "1": {
-        "location": "A building in a city"
+        "location": "in a building in a city"
     },
     "2": {
-        "location": "Catacombs or sewers beneath a city"
+        "location": "in a building in a city"
     },
     "3": {
-        "location": "Beneath a farmhouse"
+        "location": "in a building in a city"
     },
     "4": {
-        "location": "Beneath a graveyard"
+        "location": "in a building in a city"
     },
     "5": {
-        "location": "Beneath a ruined castle"
+        "location": "in catacombs beneath a city"
     },
     "6": {
-        "location": "Beneath a ruined city"
+        "location": "in catacombs beneath a city"
     },
     "7": {
-        "location": "Beneath a temple"
+        "location": "in sewers beneath a city"
     },
     "8": {
-        "location": "In a chasm"
+        "location": "in sewers beneath a city"
     },
     "9": {
-        "location": "In a cliff face"
+        "location": "beneath a farmhouse"
     },
     "10": {
-        "location": "In a desert"
+        "location": "beneath a farmhouse"
     },
     "11": {
-        "location": "In a forest"
+        "location": "beneath a farmhouse"
     },
     "12": {
-        "location": "In a glacier"
+        "location": "beneath a farmhouse"
     },
     "13": {
-        "location": "In a gorge"
+        "location": "beneath a graveyard"
     },
     "14": {
-        "location": "In a jungle"
+        "location": "beneath a graveyard"
     },
     "15": {
-        "location": "In a mountain pass"
+        "location": "beneath a graveyard"
     },
     "16": {
-        "location": "In a swamp"
+        "location": "beneath a graveyard"
     },
     "17": {
-        "location": "Beneath or on top of a mesa"
+        "location": "beneath a ruined castle"
     },
     "18": {
-        "location": "In sea caves"
+        "location": "beneath a ruined castle"
     },
     "19": {
-        "location": "In several connected mesas"
+        "location": "beneath a ruined castle"
     },
     "20": {
-        "location": "On a mountain peak"
+        "location": "beneath a ruined castle"
     },
     "21": {
-        "location": "On a promontory"
+        "location": "beneath a ruined castle"
     },
     "22": {
-        "location": "On an island"
+        "location": "beneath a ruined castle"
     },
     "23": {
-        "location": "Underwater"
+        "location": "beneath a ruined city"
+    },
+    "24": {
+        "location": "beneath a ruined city"
+    },
+    "25": {
+        "location": "beneath a ruined city"
+    },
+    "26": {
+        "location": "beneath a ruined city"
+    },
+    "27": {
+        "location": "beneath a temple"
+    },
+    "28": {
+        "location": "beneath a temple"
+    },
+    "29": {
+        "location": "beneath a temple"
+    },
+    "30": {
+        "location": "beneath a temple"
+    },
+    "31": {
+        "location": "in a chasm"
+    },
+    "32": {
+        "location": "in a chasm"
+    },
+    "33": {
+        "location": "in a chasm"
+    },
+    "34": {
+        "location": "in a chasm"
+    },
+    "35": {
+        "location": "within a cliff face"
+    },
+    "36": {
+        "location": "within a cliff face"
+    },
+    "37": {
+        "location": "within a cliff face"
+    },
+    "38": {
+        "location": "within a cliff face"
+    },
+    "39": {
+        "location": "in a desert"
+    },
+    "40": {
+        "location": "in a desert"
+    },
+    "41": {
+        "location": "in a desert"
+    },
+    "42": {
+        "location": "in a desert"
+    },
+    "43": {
+        "location": "in a forest"
+    },
+    "44": {
+        "location": "in a forest"
+    },
+    "45": {
+        "location": "in a forest"
+    },
+    "46": {
+        "location": "in a forest"
+    },
+    "47": {
+        "location": "in a glacier"
+    },
+    "48": {
+        "location": "in a glacier"
+    },
+    "49": {
+        "location": "in a glacier"
+    },
+    "50": {
+        "location": "in a glacier"
+    },
+    "51": {
+        "location": "in a gorge"
+    },
+    "52": {
+        "location": "in a gorge"
+    },
+    "53": {
+        "location": "in a gorge"
+    },
+    "54": {
+        "location": "in a gorge"
+    },
+    "55": {
+        "location": "in a jungle"
+    },
+    "56": {
+        "location": "in a jungle"
+    },
+    "57": {
+        "location": "in a jungle"
+    },
+    "58": {
+        "location": "in a jungle"
+    },
+    "59": {
+        "location": "in a mountain pass"
+    },
+    "60": {
+        "location": "in a mountain pass"
+    },
+    "61": {
+        "location": "in a mountain pass"
+    },
+    "62": {
+        "location": "in a mountain pass"
+    },
+    "63": {
+        "location": "in a swamp"
+    },
+    "64": {
+        "location": "in a swamp"
+    },
+    "65": {
+        "location": "in a swamp"
+    },
+    "66": {
+        "location": "in a swamp"
+    },
+    "67": {
+        "location": "beneath a mesa"
+    },
+    "68": {
+        "location": "beneath a mesa"
+    },
+    "69": {
+        "location": "on top of a mesa"
+    },
+    "70": {
+        "location": "on top of a mesa"
+    },
+    "71": {
+        "location": "in sea caves"
+    },
+    "72": {
+        "location": "in sea caves"
+    },
+    "73": {
+        "location": "in sea caves"
+    },
+    "74": {
+        "location": "in sea caves"
+    },
+    "75": {
+        "location": "under several connected mesas"
+    },
+    "76": {
+        "location": "under several connected mesas"
+    },
+    "77": {
+        "location": "on several connected mesas"
+    },
+    "78": {
+        "location": "on several connected mesas"
+    },
+    "79": {
+        "location": "on a mountain peak"
+    },
+    "80": {
+        "location": "on a mountain peak"
+    },
+    "81": {
+        "location": "on a mountain peak"
+    },
+    "82": {
+        "location": "on a mountain peak"
+    },
+    "83": {
+        "location": "on a promontory"
+    },
+    "84": {
+        "location": "on a promontory"
+    },
+    "85": {
+        "location": "on a promontory"
+    },
+    "86": {
+        "location": "on a promontory"
+    },
+    "87": {
+        "location": "on an island"
+    },
+    "88": {
+        "location": "on an island"
+    },
+    "89": {
+        "location": "on an island"
+    },
+    "90": {
+        "location": "on an island"
+    },
+    "91": {
+        "location": "in an underwater cave"
+    },
+    "92": {
+        "location": "in an underwater cave"
+    },
+    "93": {
+        "location": "in an underwater cave"
+    },
+    "94": {
+        "location": "in an underwater cave"
+    },
+    "95": {
+        "location": "in an underwater cave"
+    },
+    "96": {
+        "location": "in a cave hidden behind a waterfall"
+    },
+    "97": {
+        "location": "in a structure sunken a swamp"
+    },
+    "98": {
+        "location": "on a demiplane"
+    },
+    "99": {
+        "location": "in the Feywild"
+    },
+    "100": {
+        "location": "in the Shadowfell"
     }
 };
 
@@ -529,64 +774,80 @@ const table_dungeon_locations_count = Object.keys(table_dungeon_locations).lengt
 
 const table_dungeon_creator = {
     "1": {
-        "creator": "Beholder"
+        "creator": "Beholder",
+        "denizens": "Beholderkin"
     },
     "2": {
-        "creator": "Cult or religious group"
+        "creator": "Evil Cult",
+        "denizens": "cult members"
     },
     "3": {
-        "creator": "Cult or religious group"
+        "creator": "Neutral Cult",
+        "denizens": "cult members"
     },
     "4": {
-        "creator": "Cult or religious group"
+        "creator": "Good Cult",
+        "denizens": "cult members"
     },
     "5": {
-        "creator": "Dwarves"
+        "creator": "Dwarves",
+        "denizens": "Dwarves"
     },
     "6": {
-        "creator": "Dwarves"
+        "creator": "Dwarves",
+        "denizens": "Dwarves"
     },
     "7": {
-        "creator": "Dwarves"
+        "creator": "Dwarves",
+        "denizens": "Dwarves"
     },
     "8": {
-        "creator": "Dwarves"
+        "creator": "Dwarves",
+        "denizens": "Dwarves"
     },
     "9": {
-        "creator": "Elves (including drow)"
+        "creator": "Elves",
+        "denizens": "Elves"
     },
     "10": {
-        "creator": "Giants"
+        "creator": "Giants",
+        "denizens": "Giants"
     },
     "11": {
-        "creator": "Hobgoblins"
+        "creator": "Hobgoblins",
+        "denizens": "Goblinoids ruled by Hobgoblins"
     },
     "12": {
-        "creator": "Humans"
+        "creator": "Humans",
+        "denizens": "Humans"
     },
     "13": {
-        "creator": "Humans"
+        "creator": "Humans",
+        "denizens": "Humans"
     },
     "14": {
-        "creator": "Humans"
+        "creator": "Humans",
+        "denizens": "Humans"
     },
     "15": {
-        "creator": "Humans"
+        "creator": "Humans",
+        "denizens": "Humans"
     },
     "16": {
-        "creator": "Kuo-toa"
+        "creator": "Kuo-toa",
+        "denizens": "Kuo-toa"
     },
     "17": {
-        "creator": "Lich"
+        "creator": "Lich",
+        "denizens": "Undead and Constructs"
     },
     "18": {
-        "creator": "Mind flayers"
+        "creator": "Mind flayers",
+        "denizens": "thralls of all races and Mind Flayer masters"
     },
     "19": {
-        "creator": "Yuan-ti"
-    },
-    "20": {
-        "creator": "No creator (natural caverns)"
+        "creator": "Yuan-ti",
+        "denizens": "Yuan-ti and their slaves or all races"
     }
 };
 
@@ -703,10 +964,10 @@ const table_dungeon_history = {
         "history": "Conquered by invaders"
     },
     "9": {
-        "history": "Creators destroyed by attacking raiders"
+        "history": "Creators destroyed by raiders"
     },
     "10": {
-        "history": "Creators destroyed by attacking raiders"
+        "history": "Creators destroyed by raiders"
     },
     "11": {
         "history": "Creators destroyed by discovery made within the site"
@@ -741,67 +1002,6 @@ const table_dungeon_history = {
 };
 
 const table_dungeon_history_count = Object.keys(table_dungeon_history).length;
-
-const table_dungeon_start_area = {
-    "1": {
-        "configuration": "Square",
-        "size": "20 × 20 ft.",
-        "exit_left": "passage",
-        "exit_opposite": "passage",
-        "exit_right": "passage"
-    },
-    "2": {
-        "configuration": "Square",
-        "size": "20 × 20 ft.",
-        "exit_left": "door",
-        "exit_opposite": "passage",
-        "exit_right": "door"
-    },
-    "3": {
-        "configuration": "Square",
-        "size": "40 × 40 ft.",
-        "exit_left": "door",
-        "exit_opposite": "door",
-        "exit_right": "door"
-    },
-    "4": {
-        "configuration": "Rectangle",
-        "size": "60 × 20 ft.",
-        "exit_left": "door",
-        "exit_opposite": "passage",
-        "exit_right": "door"
-    },
-    "5": {
-        "configuration": "Rectangle",
-        "size": "20 × 40 ft.",
-        "exit_left": "passage",
-        "exit_opposite": "passage",
-        "exit_right": "passage"
-    },
-    "6": {
-        "configuration": "Circle",
-        "size": "40 ft. diameter",
-        "exit_left": "passage",
-        "exit_opposite": "passage",
-        "exit_right": "passage"
-    },
-    "7": {
-        "configuration": "Passage, T intersection",
-        "size": "10 ft. wide",
-        "exit_left": "passage",
-        "exit_opposite": "FALSE",
-        "exit_right": "passage"
-    },
-    "8": {
-        "configuration": "Passage, four-way intersection",
-        "size": "10 ft. wide",
-        "exit_left": "passage",
-        "exit_opposite": "passage",
-        "exit_right": "passage"
-    }
-};
-
-const table_dungeon_start_area_count = Object.keys(table_dungeon_start_area).length;
 
 const table_dungeon_room_layout = {
     "1": {
@@ -2141,66 +2341,66 @@ const table_dungeon_door_width_count = Object.keys(table_dungeon_door_width).len
 
 const table_dungeon_passage_type = {
     "1": {
-      "type": "continues straight 30 ft., no doors or side passages"
+        "type": "continues straight 30 ft., no doors or side passages"
     },
     "2": {
-      "type": "continues straight 30 ft., no doors or side passages"
+        "type": "continues straight 30 ft., no doors or side passages"
     },
     "3": {
-      "type": "continues straight 20 ft., door to the right, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., door to the right, then an additional 10 ft. ahead"
     },
     "4": {
-      "type": "continues straight 20 ft., door to the left, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., door to the left, then an additional 10 ft. ahead"
     },
     "5": {
-      "type": "continues straight 20 ft., leading to a door"
+        "type": "continues straight 20 ft., leading to a door"
     },
     "6": {
-      "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
     },
     "7": {
-      "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., side passage to the right, then an additional 10 ft. ahead"
     },
     "8": {
-      "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
     },
     "9": {
-      "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
+        "type": "continues straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
     },
     "10": {
-      "type": "continues straight 20 ft., comes to a dead end"
+        "type": "continues straight 20 ft., comes to a dead end"
     },
     "11": {
-      "type": "continues straight 20 ft., then the passage turns left and continues 10 ft."
+        "type": "continues straight 20 ft., then the passage turns left and continues 10 ft."
     },
     "12": {
-      "type": "continues straight 20 ft., then the passage turns left and continues 10 ft."
+        "type": "continues straight 20 ft., then the passage turns left and continues 10 ft."
     },
     "13": {
-      "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
+        "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
     },
     "14": {
-      "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
+        "type": "continues straight 20 ft., then the passage turns right and continues 10 ft."
     },
     "15": {
-      "type": "room"
+        "type": "room"
     },
     "16": {
-      "type": "room"
+        "type": "room"
     },
     "17": {
-      "type": "room"
+        "type": "room"
     },
     "18": {
-      "type": "room"
+        "type": "room"
     },
     "19": {
-      "type": "room"
+        "type": "room"
     },
     "20": {
-      "type": "stair"
+        "type": "stair"
     }
-  };
+};
 
 const table_dungeon_passage_type_count = Object.keys(table_dungeon_passage_type).length;
 
@@ -2593,7 +2793,7 @@ const table_dungeon_room_purpose_death_trap_count = Object.keys(table_dungeon_ro
 
 const table_dungeon_room_purpose_lair = {
     "1": {
-        "purpose": "armory stocked with weapons and armor",
+        "purpose": "armory",
         "trap_chance_modifider": 0,
         "event_chance_modifider": 0,
         "combat_chance_modifider": 0,
@@ -2649,7 +2849,7 @@ const table_dungeon_room_purpose_lair = {
         "loot_chance_modifider": 0
     },
     "8": {
-        "purpose": "guardroom for the defense of the lair",
+        "purpose": "guardroom",
         "trap_chance_modifider": 0,
         "event_chance_modifider": 0,
         "combat_chance_modifider": 100,
@@ -2657,7 +2857,7 @@ const table_dungeon_room_purpose_lair = {
         "loot_chance_modifider": 0
     },
     "9": {
-        "purpose": "guardroom for the defense of the lair",
+        "purpose": "guardroom",
         "trap_chance_modifider": 20,
         "event_chance_modifider": 0,
         "combat_chance_modifider": 100,
@@ -2721,7 +2921,7 @@ const table_dungeon_room_purpose_lair = {
         "loot_chance_modifider": 0
     },
     "17": {
-        "purpose": "training and exercise room",
+        "purpose": "training room",
         "trap_chance_modifider": 20,
         "event_chance_modifider": 0,
         "combat_chance_modifider": 20,
@@ -4698,758 +4898,758 @@ const table_dungeon_room_purpose_stronghold_count = Object.keys(table_dungeon_ro
 
 table_dungeon_room_purpose_temple = {
     "1": {
-      "purpose": "armory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "armory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "2": {
-      "purpose": "armory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "armory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "3": {
-      "purpose": "armory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "armory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "4": {
-      "purpose": "audience chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "audience chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "5": {
-      "purpose": "audience chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "audience chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "6": {
-      "purpose": "banquet hall",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "banquet hall",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "7": {
-      "purpose": "banquet hall",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "banquet hall",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "8": {
-      "purpose": "barracks",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 60,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "barracks",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 60,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "9": {
-      "purpose": "barracks",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 60,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "barracks",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 60,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "10": {
-      "purpose": "barracks",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 60,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "barracks",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 60,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "11": {
-      "purpose": "acolyte cells",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "acolyte cells",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "12": {
-      "purpose": "acolyte cells",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "acolyte cells",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "13": {
-      "purpose": "acolyte cells",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "acolyte cells",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "14": {
-      "purpose": "acolyte cells",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "acolyte cells",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "15": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "16": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "17": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "18": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "19": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "20": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "21": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "22": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "23": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "24": {
-      "purpose": "ritual chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 25,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 25,
-      "loot_chance_modifider": 10
+        "purpose": "ritual chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 25,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 25,
+        "loot_chance_modifider": 10
     },
     "25": {
-      "purpose": "minor shrine",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 5,
-      "loot_chance_modifider": 5
+        "purpose": "minor shrine",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 5,
+        "loot_chance_modifider": 5
     },
     "26": {
-      "purpose": "minor shrine",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 5,
-      "loot_chance_modifider": 5
+        "purpose": "minor shrine",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 5,
+        "loot_chance_modifider": 5
     },
     "27": {
-      "purpose": "minor shrine",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 5,
-      "loot_chance_modifider": 5
+        "purpose": "minor shrine",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 5,
+        "loot_chance_modifider": 5
     },
     "28": {
-      "purpose": "minor shrine",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 5,
-      "loot_chance_modifider": 5
+        "purpose": "minor shrine",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 5,
+        "loot_chance_modifider": 5
     },
     "29": {
-      "purpose": "classroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 5
+        "purpose": "classroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 5
     },
     "30": {
-      "purpose": "classroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 5
+        "purpose": "classroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 5
     },
     "31": {
-      "purpose": "classroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 5
+        "purpose": "classroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 5
     },
     "32": {
-      "purpose": "conjuring room",
-      "trap_chance_modifider": 10,
-      "event_chance_modifider": 30,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "conjuring room",
+        "trap_chance_modifider": 10,
+        "event_chance_modifider": 30,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "33": {
-      "purpose": "conjuring room",
-      "trap_chance_modifider": 10,
-      "event_chance_modifider": 30,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "conjuring room",
+        "trap_chance_modifider": 10,
+        "event_chance_modifider": 30,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "34": {
-      "purpose": "conjuring room",
-      "trap_chance_modifider": 10,
-      "event_chance_modifider": 30,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "conjuring room",
+        "trap_chance_modifider": 10,
+        "event_chance_modifider": 30,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "35": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "36": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "37": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "38": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "39": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "40": {
-      "purpose": "crypt",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 60
+        "purpose": "crypt",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 60
     },
     "41": {
-      "purpose": "dining room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dining room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "42": {
-      "purpose": "dining room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dining room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "43": {
-      "purpose": "dining room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dining room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "44": {
-      "purpose": "divination room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "divination room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "45": {
-      "purpose": "divination room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "divination room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "46": {
-      "purpose": "divination room",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 30
+        "purpose": "divination room",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 30
     },
     "47": {
-      "purpose": "dormitory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dormitory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "48": {
-      "purpose": "dormitory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dormitory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "49": {
-      "purpose": "dormitory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dormitory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "50": {
-      "purpose": "dormitory",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "dormitory",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "51": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "52": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "53": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "54": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "55": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "56": {
-      "purpose": "guardroom",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 100,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "guardroom",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 100,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "57": {
-      "purpose": "kennel",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 60,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "kennel",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 60,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "58": {
-      "purpose": "kitchen",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "kitchen",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "59": {
-      "purpose": "kitchen",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "kitchen",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "60": {
-      "purpose": "kitchen",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 10
+        "purpose": "kitchen",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 10
     },
     "61": {
-      "purpose": "library",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "library",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "62": {
-      "purpose": "library",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "library",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "63": {
-      "purpose": "library",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "library",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "64": {
-      "purpose": "library",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "library",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "65": {
-      "purpose": "library",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 10,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 20
+        "purpose": "library",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 10,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 20
     },
     "66": {
-      "purpose": "prison",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 20,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "prison",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 20,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "67": {
-      "purpose": "prison",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 20,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "prison",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 20,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "68": {
-      "purpose": "prison",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 20,
-      "combat_chance_modifider": 20,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "prison",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 20,
+        "combat_chance_modifider": 20,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "69": {
-      "purpose": "storage",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 15
+        "purpose": "storage",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 15
     },
     "70": {
-      "purpose": "storage",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 15
+        "purpose": "storage",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 15
     },
     "71": {
-      "purpose": "storage",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 15
+        "purpose": "storage",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 15
     },
     "72": {
-      "purpose": "storage",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 15
+        "purpose": "storage",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 15
     },
     "73": {
-      "purpose": "storage",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 15
+        "purpose": "storage",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 15
     },
     "74": {
-      "purpose": "vault",
-      "trap_chance_modifider": 100,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 100
+        "purpose": "vault",
+        "trap_chance_modifider": 100,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 100
     },
     "75": {
-      "purpose": "torture chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 15,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "torture chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 15,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "76": {
-      "purpose": "torture chamber",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 15,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "torture chamber",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 15,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "77": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "78": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "79": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "80": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "81": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "82": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "83": {
-      "purpose": "trophy room",
-      "trap_chance_modifider": 50,
-      "event_chance_modifider": 15,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 40
+        "purpose": "trophy room",
+        "trap_chance_modifider": 50,
+        "event_chance_modifider": 15,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 40
     },
     "84": {
-      "purpose": "latrine",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "latrine",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "85": {
-      "purpose": "well",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "well",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "86": {
-      "purpose": "well",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "well",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "87": {
-      "purpose": "well",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "well",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "88": {
-      "purpose": "well",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 0,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 0
+        "purpose": "well",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 0,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 0
     },
     "89": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     },
     "90": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     },
     "91": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     },
     "92": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     },
     "93": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     },
     "94": {
-      "purpose": "workshop",
-      "trap_chance_modifider": 0,
-      "event_chance_modifider": 0,
-      "combat_chance_modifider": 5,
-      "feature_chance_modifider": 0,
-      "loot_chance_modifider": 25
+        "purpose": "workshop",
+        "trap_chance_modifider": 0,
+        "event_chance_modifider": 0,
+        "combat_chance_modifider": 5,
+        "feature_chance_modifider": 0,
+        "loot_chance_modifider": 25
     }
-  };
+};
 
 const table_dungeon_room_purpose_temple_count = Object.keys(table_dungeon_room_purpose_temple).length;
 

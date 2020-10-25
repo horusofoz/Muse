@@ -228,5 +228,7 @@ function rollDiceForumla(diceCount, diceType, modifier) {
 
 function rollPercentileTrueFalse(chance) {
     var roll = getRandomInt(1, 100);
+    roll = (roll < 1) ? 1 : roll;
+    roll = (roll > 100) ? 100 : roll;
     return (roll <= chance);
 }
