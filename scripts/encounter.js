@@ -232,7 +232,60 @@ const table_creature_type = {
 
 const table_creature_type_count = Object.keys(table_creature_type).length;
 
+const table_encounter_unmarked_settlement = {
+    "1": {
+      "type": "Large camp / caravan",
+      "population_min": 1,
+      "population_max": 20
+    },
+    "2": {
+      "type": "Cottage",
+      "population_min": 1,
+      "population_max": 10
+    },
+    "3": {
+      "type": "Large encampment",
+      "population_min": 50,
+      "population_max": 100
+    },
+    "4": {
+      "type": "Hamlet",
+      "population_min": 50,
+      "population_max": 150
+    },
+    "5": {
+      "type": "Work crew",
+      "population_min": 50,
+      "population_max": 200
+    },
+    "6": {
+      "type": "Stationed garrison",
+      "population_min": 100,
+      "population_max": 800
+    },
+    "7": {
+      "type": "Fort",
+      "population_min": 200,
+      "population_max": 400
+    },
+    "8": {
+      "type": "Village",
+      "population_min": 300,
+      "population_max": 100
+    },
+    "9": {
+      "type": "Encamped Army",
+      "population_min": 1000,
+      "population_max": 8000
+    },
+    "10": {
+      "type": "Refugee encampment",
+      "population_min": 500,
+      "population_max": 5000
+    }
+  };
 
+  const table_encounter_unmarked_settlement_count = Object.keys(table_encounter_unmarked_settlement).length;
 
 // Trap Tables
 const table_trap_location_door = {
