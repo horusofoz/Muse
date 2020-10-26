@@ -199,7 +199,30 @@
         <p>Set the party tier in <strong>About > Settings</strong> for level appropriate traps.</p>
       </div>
       <div class="div_feature_row">
-        <button class="button" id="button_get_encounter_trap">Roll</button>
+        <button class="button" id="button_encounter_get_trap">Roll</button>
+      </div>
+    </div>
+
+    <div id="div_feature_encounter_settlement">
+      <div class="bordered div_text_only">
+        <p>Set settlement to a specific type or random below.</p>
+      </div>
+      <div class="div_feature_row">
+        <button class="button" id="button_generate_settlement">Generate</button>
+        <select name="input_encounter_settlement_type" id="input_encounter_settlement_type" class="selector">
+          <option value="Random" selected>Random</option>
+          <option value="Campsite">Campsite</option>
+          <option value="Caravan">Caravan</option>
+          <option value="Cottage">Cottage</option>
+          <option value="Encamped Army">Encamped Army</option>
+          <option value="Fort">Fort</option>
+          <option value="Hamlet">Hamlet</option>
+          <option value="Large encampment">Large encampment</option>
+          <option value="Refugee encampment">Refugee encampment</option>
+          <option value="Stationed garrison">Stationed garrison</option>
+          <option value="Village">Village</option>
+          <option value="Work crew">Work crew</option>
+        </select>
       </div>
     </div>
 
@@ -371,6 +394,7 @@
     <div id="div_sidebar_encounter">
       <button class="button" id="button_feature_encounter_combat">Combat</button>
       <button class="button" id="button_feature_encounter_trap">Trap</button>
+      <button class="button" id="button_feature_encounter_settlement">Settlement</button>
     </div>
 
     <div id="div_sidebar_about">

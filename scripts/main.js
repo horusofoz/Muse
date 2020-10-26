@@ -94,10 +94,15 @@ var input_wilderness_travel_terrain = document.getElementById("input_wilderness_
 // Encounter Elements
 var button_feature_encounter_combat = document.getElementById("button_feature_encounter_combat");
 var button_feature_encounter_trap = document.getElementById("button_feature_encounter_trap");
+var button_feature_encounter_settlement = document.getElementById("button_feature_encounter_settlement");
 
 var div_feature_encounter_combat = document.getElementById("div_feature_encounter_combat");
 var div_feature_encounter_trap = document.getElementById("div_feature_encounter_trap");
+var div_feature_encounter_settlement = document.getElementById("div_feature_encounter_settlement");
 
+var button_generate_settlement = document.getElementById("button_generate_settlement");
+
+var input_encounter_settlement_type = document.getElementById("input_encounter_settlement_type");
 
 // About Elements
 var button_feature_about_settings = document.getElementById("button_feature_about_settings");

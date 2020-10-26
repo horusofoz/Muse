@@ -10,16 +10,25 @@ button_feature_encounter_trap.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 }
 
+button_feature_encounter_settlement.onclick = function () {
+    showFeatureDiv(div_feature_encounter_settlement);
+    applyActiveStyleToFeatureButton(this);
+}
+
 button_get_encounter_combat.onclick = function () {
     var encounterCombat = getEncounterCombat();
     encounterCombat = setEncounterCombat(encounterCombat);
     writeToJournal(encounterCombat);
 }
 
-button_get_encounter_trap.onclick = function () {
+button_encounter_get_trap.onclick = function () {
     var trap = getTrap();
     trap = setTrap(trap);
     writeToJournal(trap);
+}
+
+button_generate_settlement.onclick = function () {
+    writeToJournal(generateSettlement());
 }
 
 // Encounter Functions
@@ -131,11 +140,11 @@ function setTrap(trap) {
 
     if (trap.hasOwnProperty('conditionApplied')) {
 
-        if(trapString.slice(trapString.length - 9) == "on a fail") {
+        if (trapString.slice(trapString.length - 9) == "on a fail") {
             trapString += " and apply the " + capitalize(trap.conditionApplied) + " condition"
         } else {
             trapString += "<br />Apply the " + capitalize(trap.conditionApplied) + " condition on a fail"
-        }        
+        }
     }
 
     return trapString;
@@ -145,6 +154,47 @@ function buildTrap(location) {
     var trap = getTrap(location);
     trap = setTrap(trap);
     return trap;
+}
+
+function generateSettlement() {
+    var settlement = getSettlement();
+    return setSettlement(settlement);
+}
+
+function getSettlement() {
+
+    var settlement = {};
+    var template = {}
+
+    inputSettlementType = getEncounterSettlementTypeInput();
+    if (inputSettlementType === "Random") {
+        template = table_encounter_unmarked_settlement[getRandomInt(1, table_encounter_unmarked_settlement_count)];
+    }
+    else {
+        for (i = 1; i <= table_encounter_unmarked_settlement_count; i++) {
+            var currentSettlementRecord = table_encounter_unmarked_settlement[i];
+            if (currentSettlementRecord.type === inputSettlementType) {
+                template = currentSettlementRecord;
+                break;
+            }
+        }
+    }
+
+    settlement.type = template.type;
+    settlement.population = getRandomInt(template.population_min, template.population_max);
+
+    return settlement;
+}
+
+function setSettlement(settlement) {
+    settlementString = "";
+    settlementString += "Settlement Type: " + settlement.type;
+    settlementString += "<br />Population: " + settlement.population;
+    return settlementString;
+}
+
+function getEncounterSettlementTypeInput() {
+    return input_encounter_settlement_type.options[input_encounter_settlement_type.selectedIndex].value;
 }
 
 // Encounter Tables
@@ -234,58 +284,63 @@ const table_creature_type_count = Object.keys(table_creature_type).length;
 
 const table_encounter_unmarked_settlement = {
     "1": {
-      "type": "Large camp / caravan",
-      "population_min": 1,
-      "population_max": 20
+        "type": "Campsite",
+        "population_min": 1,
+        "population_max": 20
     },
     "2": {
-      "type": "Cottage",
-      "population_min": 1,
-      "population_max": 10
+        "type": "Caravan",
+        "population_min": 1,
+        "population_max": 20
     },
     "3": {
-      "type": "Large encampment",
-      "population_min": 50,
-      "population_max": 100
+        "type": "Cottage",
+        "population_min": 1,
+        "population_max": 10
     },
     "4": {
-      "type": "Hamlet",
-      "population_min": 50,
-      "population_max": 150
+        "type": "Encamped Army",
+        "population_min": 1000,
+        "population_max": 8000
     },
     "5": {
-      "type": "Work crew",
-      "population_min": 50,
-      "population_max": 200
+        "type": "Fort",
+        "population_min": 200,
+        "population_max": 400
     },
     "6": {
-      "type": "Stationed garrison",
-      "population_min": 100,
-      "population_max": 800
+        "type": "Hamlet",
+        "population_min": 50,
+        "population_max": 150
     },
     "7": {
-      "type": "Fort",
-      "population_min": 200,
-      "population_max": 400
+        "type": "Large encampment",
+        "population_min": 50,
+        "population_max": 100
     },
     "8": {
-      "type": "Village",
-      "population_min": 300,
-      "population_max": 100
+        "type": "Refugee encampment",
+        "population_min": 500,
+        "population_max": 5000
     },
     "9": {
-      "type": "Encamped Army",
-      "population_min": 1000,
-      "population_max": 8000
+        "type": "Stationed garrison",
+        "population_min": 100,
+        "population_max": 800
     },
     "10": {
-      "type": "Refugee encampment",
-      "population_min": 500,
-      "population_max": 5000
+        "type": "Village",
+        "population_min": 300,
+        "population_max": 100
+    },
+    "11": {
+        "type": "Work crew",
+        "population_min": 50,
+        "population_max": 200
     }
-  };
+};
 
-  const table_encounter_unmarked_settlement_count = Object.keys(table_encounter_unmarked_settlement).length;
+const table_encounter_unmarked_settlement_count = Object.keys(table_encounter_unmarked_settlement).length;
 
 // Trap Tables
 const table_trap_location_door = {
