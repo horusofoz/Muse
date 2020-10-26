@@ -83,16 +83,13 @@ var input_dungeon_passage_width = document.getElementById("input_dungeon_passage
 
 
 // Wilderness Elements
-var button_feature_wilderness_terrain = document.getElementById("button_feature_wilderness_terrain");
-var button_feature_wilderness_feature = document.getElementById("button_feature_wilderness_feature");
-var button_feature_wilderness_encounter = document.getElementById("button_feature_wilderness_encounter");
-var button_feature_wilderness_complication = document.getElementById("button_feature_wilderness_complication");
+var button_feature_wilderness_travel = document.getElementById("button_feature_wilderness_travel");
 
-var div_feature_wilderness_terrain = document.getElementById("div_feature_wilderness_terrain");
-var div_feature_wilderness_feature = document.getElementById("div_feature_wilderness_feature");
-var div_feature_wilderness_encounter = document.getElementById("div_feature_wilderness_encounter");
-var div_feature_wilderness_complication = document.getElementById("div_feature_wilderness_complication");
+var button_generate_travel = document.getElementById("button_generate_travel");
 
+var div_feature_wilderness_travel = document.getElementById("div_feature_wilderness_travel");
+
+var input_wilderness_travel_terrain = document.getElementById("input_wilderness_travel_terrain");
 
 // Encounter Elements
 var button_feature_encounter_combat = document.getElementById("button_feature_encounter_combat");

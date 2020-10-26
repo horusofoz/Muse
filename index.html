@@ -168,32 +168,22 @@
 
 
     <!--Wilderness Features-->
-    <div id="div_feature_wilderness_terrain" class="bordered">
-      <div class="div_feature_row">
-        <img src="images/construction.png" alt="construction image">
-        <p><br />Under construction...</p>
-      </div>
-    </div>
 
-    <div id="div_feature_wilderness_feature" class="bordered">
+    <div id="div_feature_wilderness_travel">
       <div class="div_feature_row">
-        <img src="images/construction.png" alt="construction image">
-        <p><br />Under construction...</p>
-      </div>
-    </div>
-
-
-    <div id="div_feature_wilderness_encounter" class="bordered">
-      <div class="div_feature_row">
-        <img src="images/construction.png" alt="construction image">
-        <p><br />Under construction...</p>
-      </div>
-    </div>
-
-    <div id="div_feature_wilderness_complication" class="bordered">
-      <div class="div_feature_row">
-        <img src="images/construction.png" alt="construction image">
-        <p><br />Under construction...</p>
+        <button class="button" id="button_generate_travel">Build</button>
+        <select name="input_wilderness_travel_terrain" id="input_wilderness_travel_terrain" class="selector">
+          <option value="random" selected>Random</option>
+          <option value="arctic">Arctic</option>
+          <option value="coast">Coast</option>
+          <option value="desert">Desert</option>
+          <option value="forest">Forest</option>
+          <option value="grassland">Grassland</option>
+          <option value="hills">Hills</option>
+          <option value="jungle">Jungle</option>
+          <option value="mountains">Mountains</option>
+          <option value="swamp">Swamp</option>
+        </select>
       </div>
     </div>
 
@@ -254,7 +244,8 @@
         </div>
         <div class="div_text_only">
           <p>Party tier refers to the level of the party in play.</p>
-          <p>This is used to set level appropriate difficulty classes and consequences for skill challenges and saving throws.</p>
+          <p>This is used to set level appropriate difficulty classes and consequences for skill challenges and saving
+            throws.</p>
         </div>
 
       </div>
@@ -374,10 +365,7 @@
     </div>
 
     <div id="div_sidebar_wilderness">
-      <button class="button" id="button_feature_wilderness_terrain">Terrain</button>
-      <button class="button" id="button_feature_wilderness_feature">Feature</button>
-      <button class="button" id="button_feature_wilderness_encounter">Encounter</button>
-      <button class="button" id="button_feature_wilderness_complication">Complication</button>
+      <button class="button" id="button_feature_wilderness_travel">Travel</button>
     </div>
 
     <div id="div_sidebar_encounter">
