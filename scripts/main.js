@@ -101,6 +101,7 @@ var div_feature_encounter_combat = document.getElementById("div_feature_encounte
 var div_feature_encounter_trap = document.getElementById("div_feature_encounter_trap");
 var div_feature_encounter_settlement = document.getElementById("div_feature_encounter_settlement");
 
+var button_generate_combat = document.getElementById("button_generate_combat");
 var button_generate_settlement = document.getElementById("button_generate_settlement");
 var button_generate_trap = document.getElementById("button_generate_trap");
 

@@ -15,16 +15,12 @@ button_feature_encounter_settlement.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 }
 
-button_get_encounter_combat.onclick = function () {
-    var encounterCombat = getEncounterCombat();
-    encounterCombat = setEncounterCombat(encounterCombat);
-    writeToJournal(encounterCombat);
+button_generate_combat.onclick = function () {
+    writeToJournal(generateCombat());
 }
 
 button_generate_trap.onclick = function () {
-    var trap = getTrap();
-    trap = setTrap(trap);
-    writeToJournal(trap);
+    writeToJournal(generateTrap());
 }
 
 button_generate_settlement.onclick = function () {
@@ -38,13 +34,23 @@ function getDifficultyClass() {
     return dcTemplate.dc_base + getRandomInt(0, dcTemplate.dc_modifier);
 }
 
-function getEncounterCombat() {
+function generateCombat() {
+    var combat = getCombat();
+    return setCombat(combat);
+}
+
+function getCombat() {
     return table_encounter_combat[getRandomInt(1, table_encounter_combat_count)].difficulty;
 }
 
-function setEncounterCombat(encounterCombat) {
+function setCombat(encounterCombat) {
     var encounterString = encounterCombat + " combat encounter";
     return encounterString;
+}
+
+function generateTrap() {
+    var trap = getTrap();
+    return setTrap(trap);
 }
 
 function getTrap(location = "room") {
