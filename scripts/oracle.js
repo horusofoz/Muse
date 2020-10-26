@@ -1,15 +1,5 @@
 // Oracle Functions
 
-button_ask_question.onclick = function () {
-    askquestion();
-};
-
-input_oracle_question.addEventListener("keydown", function (event) {
-    if (event.key === 'Enter') {
-        askquestion();
-    }
-});
-
 button_feature_question.onclick = function () {
     showFeatureDiv(div_feature_question);
     applyActiveStyleToFeatureButton(this);
@@ -25,38 +15,47 @@ button_feature_event.onclick = function () {
     applyActiveStyleToFeatureButton(this);
 };
 
-button_receive_portent.onclick = function () {
-    receivePortent();
+button_generate_question_answer.onclick = function () {
+    writeToJournal(generateQuestionAnswer());
 };
 
-button_initiate_event.onclick = function () {
+input_oracle_question.addEventListener("keydown", function (event) {
+    if (event.key === 'Enter') {
+        generateQuestionAnswer();
+    }
+});
+
+button_generate_portent.onclick = function () {
+    generatePortent();
+};
+
+button_generate_event.onclick = function () {
     var randomEvent = getRandomEvent();
     randomEvent = setRandomEvent(randomEvent);
     writeToJournal(randomEvent);
 };
 
-function askquestion() {
+function generateQuestionAnswer() {
     var response = getquestionResult();
-    setQuestionOutput(response);
     resetquestionInputs();
-    return;
+    return setQuestionOutput(response);
 }
 
 function setQuestionOutput(response) {
 
-    var questionOutput = (response.question === "") ? "" : response.question + "<br />";
-    questionOutput += "Likelihood: " + response.likelihood;
-    questionOutput += "<br />Roll: " + response.firstRoll;
+    var questionString = (response.question === "") ? "" : response.question + "<br />";
+    questionString += "Likelihood: " + response.likelihood;
+    questionString += "<br />Roll: " + response.firstRoll;
     if (response.likelihood !== "50/50") {
-        questionOutput += " & " + response.secondRoll;
+        questionString += " & " + response.secondRoll;
     }
-    questionOutput += "<br />Answer: " + response.answer;
+    questionString += "<br />Answer: " + response.answer;
 
     if(response.event === true) {
-        questionOutput += initiateEvent().replace("Random Event", "<br /><br />Random event triggered by Oracle");
+        questionString += initiateEvent().replace("Random Event", "<br /><br />Random event triggered by Oracle");
     }
 
-    writeToJournal(questionOutput)
+    return questionString;
 }
 
 function getquestionResult() {
@@ -96,7 +95,7 @@ function resetquestionInputs() {
     input_question_likelihood.value = "50/50";
 }
 
-function receivePortent() {
+function generatePortent() {
     var portentResult = getPortentResult();
     setPortentResult(portentResult);
 }

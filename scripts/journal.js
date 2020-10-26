@@ -64,3 +64,10 @@ function undoLastJournalEntry() {
         lastJournalEntry.remove();
     }
 }
+
+function writeToJournal(journalEntry) {
+    var result_node = document.createElement('p');
+    result_node.innerHTML = journalEntry;
+    div_journal_log.appendChild(result_node);
+    div_journal_log.scrollTop = div_journal_log.scrollHeight;
+}

@@ -43,9 +43,10 @@ var input_journal_entry_textarea = document.getElementById("input_journal_entry_
 var button_feature_question = document.getElementById("button_feature_question");
 var button_feature_portent = document.getElementById("button_feature_portent");
 var button_feature_event = document.getElementById("button_feature_event");
-var button_ask_question = document.getElementById("button_ask_question");
-var button_receive_portent = document.getElementById("button_receive_portent");
-var button_initiate_event = document.getElementById("button_initiate_event");
+
+var button_generate_question_answer = document.getElementById("button_generate_question_answer");
+var button_generate_portent = document.getElementById("button_generate_portent");
+var button_generate_event = document.getElementById("button_generate_event");
 
 var div_feature_question = document.getElementById("div_feature_question");
 var div_feature_portent = document.getElementById("div_feature_portent");
@@ -101,6 +102,7 @@ var div_feature_encounter_trap = document.getElementById("div_feature_encounter_
 var div_feature_encounter_settlement = document.getElementById("div_feature_encounter_settlement");
 
 var button_generate_settlement = document.getElementById("button_generate_settlement");
+var button_generate_trap = document.getElementById("button_generate_trap");
 
 var input_encounter_settlement_type = document.getElementById("input_encounter_settlement_type");
 
@@ -182,13 +184,6 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function writeToJournal(journalEntry) {
-    var result_node = document.createElement('p');
-    result_node.innerHTML = journalEntry;
-    div_journal_log.appendChild(result_node);
-    div_journal_log.scrollTop = div_journal_log.scrollHeight;
 }
 
 function applyActiveStyleToMenuButton(activeMenuButton) {

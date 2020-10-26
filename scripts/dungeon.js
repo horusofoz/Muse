@@ -31,37 +31,32 @@ button_feature_dungeon_beyond.onclick = function () {
 }
 
 button_generate_dungeon.onclick = function () {
-    writeToJournal(buildDungeonDesign());
+    writeToJournal(generateDungeonDesign());
 }
 
 button_generate_room.onclick = function () {
-    writeToJournal(buildDungeonRoom());
+    writeToJournal(generateDungeonRoom());
 }
 
 button_generate_door.onclick = function () {
-    var dungeonDoor = getDungeonDoor();
-    dungeonDoor = setDungeonDoor(dungeonDoor);
-    writeToJournal(dungeonDoor);
+    writeToJournal(generateDungeonDoor());
 }
 
 button_generate_passage.onclick = function () {
-
-    writeToJournal(buildDungeonPassage());
+    writeToJournal(generateDungeonPassage());
 }
 
 button_generate_stair.onclick = function () {
-    var stair = buildDungeonStair();
-    writeToJournal(stair);
+    writeToJournal(generateDungeonStair());
 }
 
 button_generate_beyond.onclick = function () {
-    var beyond = buildDungeonBeyond();
-    writeToJournal(beyond);
+    writeToJournal(generateDungeonBeyond());
 }
 
 // Dungeon Functions
 
-function buildDungeonDesign() {
+function generateDungeonDesign() {
     var design = getDungeonDesign();
     return setDungeonDesign(design);
 }
@@ -128,6 +123,11 @@ function getDungeonSize() {
     return dungeonSize;
 }
 
+function generateDungeonDoor() {
+    var dungeonDoor = getDungeonDoor();
+    return setDungeonDoor(dungeonDoor);
+}
+
 function getDungeonDoor() {
 
     var door = {};
@@ -145,7 +145,7 @@ function getDungeonDoor() {
     // Get trapped
     door.trapped = rollPercentileTrueFalse(template.trapped);
     if (door.trapped) {
-        door.trapDetails = buildTrap("door");
+        door.trapDetails = generateTrap("door");
     }
 
     // Get width
@@ -170,12 +170,6 @@ function setDungeonDoor(door) {
     return doorString;
 }
 
-function buildDungeonDoor() {
-    var dungeonDoor = getDungeonDoor();
-    dungeonDoor = setDungeonDoor(dungeonDoor);
-    return dungeonDoor;
-}
-
 function getDungeonPassage() {
     var passage = {};
 
@@ -193,7 +187,7 @@ function getDungeonPassage() {
     // Get Content
     passage.trapped = rollPercentileTrueFalse(table_dungeon_passage_content.Trap.chance);
     if (passage.trapped) {
-        passage.trap = buildTrap("passage");
+        passage.trap = generateTrap("passage");
     }
 
     passage.eventOccurs = rollPercentileTrueFalse(table_dungeon_passage_content.Event.chance);
@@ -242,7 +236,7 @@ function setDungeonPassage(passage) {
     return passageString;
 }
 
-function buildDungeonPassage() {
+function generateDungeonPassage() {
     var passage = getDungeonPassage();
     passage = setDungeonPassage(passage);
     return passage;
@@ -274,7 +268,7 @@ function getDungeonRoom() {
     room.exit_right = (rollPercentileTrueFalse(table_dungeon_room_exits.Exit_Right.chance)) ? getDungeonRoomExit() : false;
 
     // Content
-    room.trap = (rollPercentileTrueFalse(table_dungeon_room_content.Trap.chance + purpose.trap_chance_modifider)) ? buildTrap() : false;
+    room.trap = (rollPercentileTrueFalse(table_dungeon_room_content.Trap.chance + purpose.trap_chance_modifider)) ? generateTrap() : false;
     room.combat = (rollPercentileTrueFalse(table_dungeon_room_content.Combat.chance + purpose.combat_chance_modifider)) ? getEncounterCombat() : false;
     room.loot = rollPercentileTrueFalse(table_dungeon_room_content.Loot.chance + purpose.loot_chance_modifider);
     room.event = rollPercentileTrueFalse(table_dungeon_room_content.Event.chance + purpose.event_chance_modifider);
@@ -296,10 +290,10 @@ function getDungeonRoomExit() {
             exit = table_dungeon_passage_width[getRandomInt(1, table_dungeon_passage_width_count)].width + " feet wide, 10 feet long passage";
             break;
         case "door":
-            exit = buildDungeonDoor();
+            exit = generateDungeonDoor();
             break;
         case "stair":
-            exit = buildDungeonStair();
+            exit = generateDungeonStair();
             break;
         default:
             throw "Exit Type not recognised."
@@ -392,7 +386,7 @@ function setDungeonRoom(room) {
     return roomString;
 }
 
-function buildDungeonRoom() {
+function generateDungeonRoom() {
     var room = getDungeonRoom();
     room = setDungeonRoom(room);
     return room;
@@ -403,7 +397,7 @@ function getDungeonStair() {
 
     stair.size = table_dungeon_stair_size[getRandomInt(1, table_dungeon_stair_size_count)].size;
     stair.direction = table_dungeon_stair_direction[getRandomInt(1, table_dungeon_stair_direction_count)].direction;
-    stair.trap = (rollPercentileTrueFalse(table_dungeon_stair_content.trap.chance)) ? buildTrap("stair") : false;
+    stair.trap = (rollPercentileTrueFalse(table_dungeon_stair_content.trap.chance)) ? generateTrap("stair") : false;
     stair.event = (rollPercentileTrueFalse(table_dungeon_stair_content.event.chance)) ? initiateEvent().replace("Random Event", "") : false;
     stair.combat = (rollPercentileTrueFalse(table_dungeon_stair_content.combat.chance)) ? getEncounterCombat() : false;
     stair.loot = (rollPercentileTrueFalse(table_dungeon_stair_content.loot.chance)) ? true : false;
@@ -435,13 +429,13 @@ function setDungeonStair(stair) {
     return stairString;
 }
 
-function buildDungeonStair() {
+function generateDungeonStair() {
     var stair = getDungeonStair();
     stair = setDungeonStair(stair);
     return stair
 }
 
-function buildDungeonBeyond() {
+function generateDungeonBeyond() {
     var beyond = getDungeonBeyond();
     return setDungeonBeyond(beyond);
 }
@@ -452,13 +446,13 @@ function getDungeonBeyond() {
 
     switch (beyondType) {
         case "passage":
-            beyond = buildDungeonPassage();
+            beyond = generateDungeonPassage();
             break;
         case "room":
-            beyond = buildDungeonRoom();
+            beyond = generateDungeonRoom();
             break;
         case "stair":
-            beyond = buildDungeonStair();
+            beyond = generateDungeonStair();
             break;
         default:
             throw "Beyond Type not recognised."

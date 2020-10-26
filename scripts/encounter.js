@@ -21,7 +21,7 @@ button_get_encounter_combat.onclick = function () {
     writeToJournal(encounterCombat);
 }
 
-button_encounter_get_trap.onclick = function () {
+button_generate_trap.onclick = function () {
     var trap = getTrap();
     trap = setTrap(trap);
     writeToJournal(trap);
@@ -150,7 +150,7 @@ function setTrap(trap) {
     return trapString;
 }
 
-function buildTrap(location) {
+function generateTrap(location) {
     var trap = getTrap(location);
     trap = setTrap(trap);
     return trap;
