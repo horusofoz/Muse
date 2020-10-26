@@ -188,8 +188,7 @@ function getSettlement() {
 
 function setSettlement(settlement) {
     settlementString = "";
-    settlementString += "Settlement Type: " + settlement.type;
-    settlementString += "<br />Population: " + settlement.population;
+    settlementString += settlement.type + " with a population of " + settlement.population;
     return settlementString;
 }
 
