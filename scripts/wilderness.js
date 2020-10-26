@@ -6,77 +6,75 @@ button_feature_wilderness_travel.onclick = function () {
 }
 
 button_generate_travel.onclick = function () {
-    writeToJournal(generateWildernessTravel());
+    writeToJournal(generateTravel());
 }
 
 // Wilderness Functions
 
-function generateWildernessTravel() {
-    var travel = getWildernessTravel();
-    return setWildernessTravel(travel);
+function generateTravel() {
+    var travel = getTravel();
+    return setTravel(travel);
 }
 
-function getWildernessTravel() {
+function getTravel() {
     var travel = {};
 
-    // Get Terrain
+    var terrainType = getTravelTerrain();
 
+    travel.terrain = terrainType.type;
+    
+    var featureType = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)];
 
-    // Get Feature
+    travel.feature = featureType.feature;
+    travel.featureSize = featureType.size;
 
-    // Get Feature Details
+    console.log(travel.feature);
 
+    if(travel.feature !== "no feature") {
+        var featureDetails = getTravelFeatureDetails(travel.feature);
+        travel.featureDetails = featureDetails.type;
+        travel.featureNotes = featureDetails.notes;
+    }
+    
 
+    // Get feature details
 
     return travel;
 }
 
-function setWildernessTravel(travel) {
-    var travelString = getWildernessTravelTerrainInput();
-    return travelString;
+function getTravelTerrain() {
+    var inputTerrainType = getTravelTerrainInput();
+
+    if (inputTerrainType === "random") {
+        return table_wilderness_terrain_type[getRandomInt(1, table_wilderness_terrain_type_count)].table;
+    } else {
+        for (i = 1; i <= table_wilderness_terrain_type_count; i++) {
+            var currentTerrainRecord = table_wilderness_terrain_type[i];
+            if (currentTerrainRecord.type === inputTerrainType) {
+                return currentTerrainRecord;
+            }
+        }
+    }
 }
 
-function getWildernessTravelTerrainInput() {
+function getTravelTerrainInput() {
     return input_wilderness_travel_terrain.options[input_wilderness_travel_terrain.selectedIndex].value;
 }
 
+function getTravelFeatureDetails(type) {
 
+    var featureTable = table_wilderness_feature_type[type].table;
+    return featureDetails = featureTable[getRandomInt(1, Object.keys(featureTable).length)];
+     
+}
 
+function setTravel(travel) {
+    return JSON.stringify(travel);
+}
 
 // Wilderness Tables
 
 // Terrain Tables
-const table_wilderness_terrain_type = {
-    "1": {
-        "type": "arctic"
-    },
-    "2": {
-        "type": "coastal"
-    },
-    "3": {
-        "type": "desert"
-    },
-    "4": {
-        "type": "forest"
-    },
-    "5": {
-        "type": "jungle"
-    },
-    "6": {
-        "type": "grassland"
-    },
-    "7": {
-        "type": "hills"
-    },
-    "8": {
-        "type": "mountains"
-    },
-    "9": {
-        "type": "swamp"
-    }
-};
-
-const table_wilderness_terrain_type_count = Object.keys(table_wilderness_terrain_type).length;
 
 const table_wilderness_terrain_arctic = {
     "1": {
@@ -3317,6 +3315,47 @@ const table_wilderness_terrain_swamp = {
 };
 
 const table_wilderness_terrain_swamp_count = Object.keys(table_wilderness_terrain_swamp).length;
+
+const table_wilderness_terrain_type = {
+    "1": {
+        "type": "arctic",
+        "table": table_wilderness_terrain_arctic
+    },
+    "2": {
+        "type": "coastal",
+        "table": table_wilderness_terrain_coastal
+    },
+    "3": {
+        "type": "desert",
+        "table": table_wilderness_terrain_desert
+    },
+    "4": {
+        "type": "forest",
+        "table": table_wilderness_terrain_forest_jungle
+    },
+    "5": {
+        "type": "jungle",
+        "table": table_wilderness_terrain_forest_jungle
+    },
+    "6": {
+        "type": "grassland",
+        "table": table_wilderness_terrain_grassland
+    },
+    "7": {
+        "type": "hills",
+        "table": table_wilderness_terrain_hills
+    },
+    "8": {
+        "type": "mountains",
+        "table": table_wilderness_terrain_mountains
+    },
+    "9": {
+        "type": "swamp",
+        "table": table_wilderness_terrain_swamp
+    }
+};
+
+const table_wilderness_terrain_type_count = Object.keys(table_wilderness_terrain_type).length;
 
 // Feature Tables
 
@@ -6732,7 +6771,7 @@ const table_wilderness_feature_small_mountain_range_foothills = {
     }
 };
 
-const table_wilderness_feature_small_mountain_range_foothillscount = Object.keys(table_wilderness_feature_small_mountain_range_foothills).length;
+const table_wilderness_feature_small_mountain_range_foothills_count = Object.keys(table_wilderness_feature_small_mountain_range_foothills).length;
 
 const table_wilderness_feature_small_wood = {
     "1": {
@@ -8863,3 +8902,54 @@ const table_wilderness_active_discovery = {
 };
 
 const table_wilderness_active_discovery_count = Object.keys(table_wilderness_active_discovery).length;
+
+const table_wilderness_feature_type = {
+    "clearfelled area": {
+        "table": table_wilderness_feature_clearfelled_area
+    },
+    "clearing": {
+        "table": table_wilderness_feature_clearing
+    },
+    "foot hills": {
+        "table": table_wilderness_feature_small_mountain_range_foothills
+    },
+    "gully": {
+        "table": table_wilderness_feature_gully
+    },
+    "hills": {
+        "table": table_wilderness_feature_hills
+    },
+    "lake": {
+        "table": table_wilderness_feature_lake
+    },
+    "monument": {
+        "table": table_wilderness_feature_monument
+    },
+    "oasis": {
+        "table": table_wilderness_feature_oasis
+    },
+    "rocky outcrop": {
+        "table": table_wilderness_feature_rocky_outcrop
+    },
+    "small mountain range": {
+        "table": table_wilderness_feature_small_mountain_range_foothills
+    },
+    "small wood": {
+        "table": table_wilderness_feature_small_wood
+    },
+    "special": {
+        "table": table_wilderness_feature_special
+    },
+    "structure": {
+        "table": table_wilderness_feature_structure
+    },
+    "swamp": {
+        "table": table_wilderness_feature_swamp
+    },
+    "unmarked settlement": {
+        "table": table_wilderness_feature_unmarked_settlement
+    },
+    "waterway": {
+        "table": table_wilderness_feature_waterway
+    }
+};

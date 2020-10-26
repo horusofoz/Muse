@@ -37,7 +37,7 @@ button_generate_event.onclick = function () {
 
 function generateQuestionAnswer() {
     var response = getquestionResult();
-    resetquestionInputs();
+    resetQuestionInputs();
     return setQuestionOutput(response);
 }
 
@@ -90,7 +90,7 @@ function getquestionResult() {
     return result;
 }
 
-function resetquestionInputs() {
+function resetQuestionInputs() {
     input_oracle_question.value = "";
     input_question_likelihood.value = "50/50";
 }
