@@ -22,7 +22,7 @@ function getTravel() {
     var terrainType = getTravelTerrain();
 
     travel.terrain = terrainType.type;
-    
+
     var featureType = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)];
 
     travel.feature = featureType.feature;
@@ -30,12 +30,12 @@ function getTravel() {
 
     console.log(travel.feature);
 
-    if(travel.feature !== "no feature") {
+    if (travel.feature !== "no feature" && travel.feature !== "monster lair") {
         var featureDetails = getTravelFeatureDetails(travel.feature);
         travel.featureDetails = featureDetails.type;
         travel.featureNotes = featureDetails.notes;
     }
-    
+
 
     // Get feature details
 
@@ -65,7 +65,7 @@ function getTravelFeatureDetails(type) {
 
     var featureTable = table_wilderness_feature_type[type].table;
     return featureDetails = featureTable[getRandomInt(1, Object.keys(featureTable).length)];
-     
+
 }
 
 function setTravel(travel) {
@@ -863,23 +863,23 @@ const table_wilderness_terrain_coastal = {
         "size": ""
     },
     "96": {
-        "feature": "monster's lair",
+        "feature": "monster lair",
         "size": ""
     },
     "97": {
-        "feature": "monster's lair",
+        "feature": "monster lair",
         "size": ""
     },
     "98": {
-        "feature": "monster's lair",
+        "feature": "monster lair",
         "size": ""
     },
     "99": {
-        "feature": "monster's lair",
+        "feature": "monster lair",
         "size": ""
     },
     "100": {
-        "feature": "monster's lair",
+        "feature": "monster lair",
         "size": ""
     }
 };
@@ -1501,36 +1501,36 @@ const table_wilderness_terrain_forest_jungle = {
         "size": "5 miles"
     },
     "53": {
-        "feature": "small clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "54": {
-        "feature": "small clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "55": {
-        "feature": "small clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "56": {
-        "feature": "small clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "57": {
-        "feature": "large clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "58": {
-        "feature": "large clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "59": {
-        "feature": "large clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "60": {
-        "feature": "large clearing",
-        "size": ""
+        "feature": "clearing",
+        "size": "1d4 m."
     },
     "61": {
         "feature": "gully",
@@ -1673,7 +1673,7 @@ const table_wilderness_terrain_forest_jungle = {
         "size": ""
     },
     "96": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "97": {
@@ -3285,31 +3285,31 @@ const table_wilderness_terrain_swamp = {
         "size": ""
     },
     "94": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "95": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "96": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "97": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "98": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "99": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     },
     "100": {
-        "feature": "monsters lair",
+        "feature": "monster lair",
         "size": ""
     }
 };
@@ -8910,7 +8910,7 @@ const table_wilderness_feature_type = {
     "clearing": {
         "table": table_wilderness_feature_clearing
     },
-    "foot hills": {
+    "foothills": {
         "table": table_wilderness_feature_small_mountain_range_foothills
     },
     "gully": {
