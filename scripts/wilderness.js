@@ -46,7 +46,7 @@ function getTravelTerrain() {
     var inputTerrainType = getTravelTerrainInput();
 
     if (inputTerrainType === "random") {
-        return table_wilderness_terrain_type[getRandomInt(1, table_wilderness_terrain_type_count)].table;
+        return table_wilderness_terrain_type[getRandomInt(1, table_wilderness_terrain_type_count)];
     } else {
         for (i = 1; i <= table_wilderness_terrain_type_count; i++) {
             var currentTerrainRecord = table_wilderness_terrain_type[i];

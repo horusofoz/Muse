@@ -98,6 +98,10 @@ body, html {
   border-collapse: collapse;
 }
 
+hr {
+  border: #f0f0f0 .1em solid;
+}
+
 
 
 /****    Inputs    ****/ 
