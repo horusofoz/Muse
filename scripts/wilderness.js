@@ -23,12 +23,11 @@ function getTravel() {
 
     travel.terrain = terrainType.type;
 
-    var featureType = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)];
+    var featureTemplate = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)];
 
-    travel.feature = featureType.feature;
-    travel.featureSize = featureType.size;
-
-    console.log(travel.feature);
+    travel.feature = featureTemplate.feature;
+    travel.featureSize = getTravelFeatureSize(featureTemplate);
+    travel.featureSizeInclude = featureTemplate.size_include;
 
     if (travel.feature !== "no feature" && travel.feature !== "monster lair") {
         var featureDetails = getTravelFeatureDetails(travel.feature);
@@ -68,8 +67,29 @@ function getTravelFeatureDetails(type) {
 
 }
 
+function getTravelFeatureSize(featureTemplate) {
+
+    if(featureTemplate.size_include === "FALSE") {
+        return false;
+    }
+
+    if(featureTemplate.size_variable === "FALSE") {
+        return featureTemplate.size;
+    }
+
+    return getRandomInt(1, featureTemplate.size);
+}
+
 function setTravel(travel) {
-    return JSON.stringify(travel);
+    travelString = "";
+
+    console.log(travel);
+
+    if(travel.featureSizeInclude !== false && travel.feature === "no feature") {
+        travelString += "Travel " + travel.featureSize + " miles across featureless " + travel.terrain + " terrain.";
+    }
+
+    return travelString;
 }
 
 // Wilderness Tables
@@ -79,403 +99,603 @@ function setTravel(travel) {
 const table_wilderness_terrain_arctic = {
     "1": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "57": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "58": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "59": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "60": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "61": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -484,403 +704,603 @@ const table_wilderness_terrain_arctic_count = Object.keys(table_wilderness_terra
 const table_wilderness_terrain_coastal = {
     "1": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "57": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "58": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "59": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "60": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "61": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -889,403 +1309,603 @@ const table_wilderness_terrain_coastal_count = Object.keys(table_wilderness_terr
 const table_wilderness_terrain_desert = {
     "1": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "57": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "58": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "59": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "60": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "61": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "62": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "63": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "64": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "65": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "66": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "67": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "68": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "69": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "70": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "71": {
         "feature": "oasis",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "oasis",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "oasis",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "oasis",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "oasis",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -1294,403 +1914,603 @@ const table_wilderness_terrain_desert_count = Object.keys(table_wilderness_terra
 const table_wilderness_terrain_forest_jungle = {
     "1": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "54": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "55": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "56": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "57": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "58": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "59": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "60": {
         "feature": "clearing",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "61": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "waterway",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "70": {
         "feature": "waterway",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "71": {
         "feature": "waterway",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "72": {
         "feature": "waterway",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "73": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "clearfelled area",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "clearfelled area",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "clearfelled area",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "clearfelled area",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "87": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "88": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -1699,403 +2519,603 @@ const table_wilderness_terrain_forest_jungle_count = Object.keys(table_wildernes
 const table_wilderness_terrain_grassland = {
     "1": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "57": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "58": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "59": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "60": {
         "feature": "hills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "61": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "swamp",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "87": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "88": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -2104,403 +3124,603 @@ const table_wilderness_terrain_grassland_count = Object.keys(table_wilderness_te
 const table_wilderness_terrain_hills = {
     "1": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 miles"
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "57": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "58": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "59": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "60": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "61": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -2509,403 +3729,603 @@ const table_wilderness_terrain_hills_count = Object.keys(table_wilderness_terrai
 const table_wilderness_terrain_mountains = {
     "1": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "53": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "54": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "55": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "56": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "57": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "58": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "59": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "60": {
         "feature": "gully",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "61": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "81": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "82": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "83": {
         "feature": "small mountain range",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "84": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "85": {
         "feature": "foothills",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
@@ -2914,403 +4334,603 @@ const table_wilderness_terrain_mountains_count = Object.keys(table_wilderness_te
 const table_wilderness_terrain_swamp = {
     "1": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "2": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "3": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "4": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "5": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "6": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "7": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "8": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "9": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "10": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "11": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "12": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "13": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "14": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "15": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "16": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "17": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "18": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "19": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "20": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "21": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "22": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "23": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "24": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "25": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "26": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "27": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "28": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "29": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "30": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "31": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "32": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "33": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "34": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "35": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "36": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "37": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "38": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "39": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "40": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "41": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "42": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "43": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "44": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "45": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "46": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "47": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "48": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "49": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "50": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "51": {
         "feature": "no feature",
-        "size": "5 m."
+        "size_include": "TRUE",
+        "size_variable": "FALSE",
+        "size": 5
     },
     "52": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "53": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "54": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "55": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "56": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "57": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "58": {
         "feature": "waterway",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "59": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "60": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "61": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "62": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "63": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "64": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "65": {
         "feature": "lake",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "66": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "67": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "68": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "69": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "70": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "71": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "72": {
         "feature": "small wood",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "73": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "74": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "75": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "76": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "77": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "78": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "79": {
         "feature": "rocky outcrop",
-        "size": "1d4 m."
+        "size_include": "TRUE",
+        "size_variable": "TRUE",
+        "size": 4
     },
     "80": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "81": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "82": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "83": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "84": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "85": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "86": {
         "feature": "unmarked settlement",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "87": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "88": {
         "feature": "structure",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "89": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "90": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "91": {
         "feature": "monument",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "92": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "93": {
         "feature": "special",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "94": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "95": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "96": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "97": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "98": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "99": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     },
     "100": {
         "feature": "monster lair",
-        "size": ""
+        "size_include": "FALSE",
+        "size_variable": "FALSE",
+        "size": 0
     }
 };
 
