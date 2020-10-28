@@ -69,11 +69,11 @@ function getTravelFeatureDetails(type) {
 
 function getTravelFeatureSize(featureTemplate) {
 
-    if(featureTemplate.size_include === "FALSE") {
+    if (featureTemplate.size_include === "FALSE") {
         return false;
     }
 
-    if(featureTemplate.size_variable === "FALSE") {
+    if (featureTemplate.size_variable === "FALSE") {
         return featureTemplate.size;
     }
 
@@ -85,8 +85,11 @@ function setTravel(travel) {
 
     console.log(travel);
 
-    if(travel.featureSizeInclude !== false && travel.feature === "no feature") {
+    if (travel.featureSizeInclude !== false && (travel.feature === "no feature" || travel.feature === "monster lair")) {
         travelString += "Travel " + travel.featureSize + " miles across featureless " + travel.terrain + " terrain.";
+    } else {
+        travelString += "Travelling across " + travel.terrain + " terrain, you find " + travel.featureDetails;
+        travelString += "<br />" + travel.featureNotes;
     }
 
     return travelString;
@@ -4981,404 +4984,124 @@ const table_wilderness_terrain_type_count = Object.keys(table_wilderness_terrain
 
 const table_wilderness_feature_clearfelled_area = {
     "1": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled very recently",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled very recently",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled recently",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled recently",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled recently",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled years ago",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled years ago",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled years ago",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled a long time ago",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been clearfelled a long time ago",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "a human army cutting down trees to build siege weapons",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "a non-human army cutting down trees to build siege weapons",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been burned out by fire",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an area that appears to have been burned out by fire",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an unmarked hamlet within a clearing",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "an unmarked village within a clearing",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "a crew of human workers cutting timber for nearest large settlement",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "18": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "a crew of human workers cutting timber for an unmarked settlement",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
+        "feature": "a crew of non-human workers cutting timber for nearest large settlement",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "20": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "21": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "22": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "23": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "24": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "25": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "26": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "27": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "28": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "29": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "30": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "31": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "32": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "33": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "34": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "35": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "36": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "37": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "38": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "39": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "40": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "41": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "42": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "43": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "44": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "45": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "46": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "47": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "48": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "49": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "50": {
-        "type": "Clearfelled area",
-        "notes": "Large section of forest removed for local industry"
-    },
-    "51": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "52": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "53": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "54": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "55": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "56": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "57": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "58": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "59": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "60": {
-        "type": "Army cutting down trees to build siege weapons. 40% human",
-        "notes": "50% army still there"
-    },
-    "61": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "62": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "63": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "64": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "65": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "66": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "67": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "68": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "69": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "70": {
-        "type": "This clear area is the result of a forest fire, not active clearfelling.",
-        "notes": "DC 12 nature check to discern cause. Q/A rolls to determine cause."
-    },
-    "71": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "72": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "73": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "74": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "75": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "76": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "77": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "78": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "79": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "80": {
-        "type": "Clearfelled area contains an unmarked settlement",
-        "notes": "Roll on Unmarked Settlement Table."
-    },
-    "81": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "82": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "83": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "84": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "85": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "86": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "87": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "88": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "89": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "90": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Contracted by nearby large settlement.",
-        "notes": "Q/A to find out more."
-    },
-    "91": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "92": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "93": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "94": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "95": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "96": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "97": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "98": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "99": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
-    },
-    "100": {
-        "type": "Area being clearfelled presently. Workers are 70% human. Timber will go to building new Unmarked Settlement",
-        "notes": "Roll on Unmarked Settlement table. Workers camp nearby"
+        "feature": "a crew of non-human workers cutting timber for an unmarked settlement",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -5386,404 +5109,304 @@ const table_wilderness_feature_clearfelled_area_count = Object.keys(table_wilder
 
 const table_wilderness_feature_clearing = {
     "1": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "18": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees. Something has been stalking you",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 100
     },
     "20": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees. Something has been stalking you",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 100
     },
     "21": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees. Something has been stalking you",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 100
     },
     "22": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a natural clearing, devoid of trees. Something has been stalking you",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 100
     },
     "23": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a circle of standing stones",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "24": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a circle of standing stones",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "25": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a circle of standing stones",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "26": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a circle of standing stones",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "27": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "signs of a dark magic ritual site",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "28": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "signs of a dark magic ritual site",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "29": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "signs of a dark magic ritual site",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 45
     },
     "30": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "signs of a dark magic ritual site",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 45
     },
     "31": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "32": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "33": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "34": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "35": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "36": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing with a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "37": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with friendly adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "38": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with friendly adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "39": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with friendly adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "40": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with friendly adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "41": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with hostile adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "42": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with hostile adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "43": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with hostile adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "44": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a campsite with hostile adventurers",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 45
     },
     "45": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing containing a",
+        "secondary_feature": "structure",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "46": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a clearing containing a",
+        "secondary_feature": "structure",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "47": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a magical glade with a friendly mage",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "48": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a magical glade with a hostile mage",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 50
     },
     "49": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
+        "feature": "a magical glade with a friendly fey",
+        "secondary_feature": "",
+        "event_chance_modifier": 50,
+        "combat_chance_modifier": 0
     },
     "50": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
-    },
-    "51": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
-    },
-    "52": {
-        "type": "Natural clearing, devoid of trees",
-        "notes": "Is something watching you from the trees? Q/A roll. Do you notice it?"
-    },
-    "53": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "54": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "55": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "56": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "57": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "58": {
-        "type": "Druid circle containing standing stones",
-        "notes": "Q/A roll to see what you can discern. Clue 20%"
-    },
-    "59": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "60": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "61": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "62": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "63": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "64": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "65": {
-        "type": "Totems and other sinister symbols, possibly dark rituals take place here.",
-        "notes": "Q/A rolls, medium encounter 10% Clue 40%"
-    },
-    "66": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "67": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "68": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "69": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "70": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "71": {
-        "type": "Clearing contains a pond, watering hole for local wildlife",
-        "notes": "Easy encounter(beast 20% If left alone it will probably just take a drink and leave."
-    },
-    "72": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "73": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "74": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "75": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "76": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "77": {
-        "type": "Abandoned campsite.",
-        "notes": "Q/A rolls, investigation rolls to find out more. Clue 50%"
-    },
-    "78": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "79": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "80": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "81": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "82": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "83": {
-        "type": "Active campsite",
-        "notes": "Perception check, DC 8, to determine whether you hear the inhabitants before seeing them. 50% friendly."
-    },
-    "84": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "85": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "86": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "87": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "88": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "89": {
-        "type": "Magic at work here - some sort of dimensional rift?",
-        "notes": "Q/A rolls to see what's happening here!"
-    },
-    "90": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "91": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "92": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "93": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "94": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "95": {
-        "type": "Structure present in the clearing.",
-        "notes": "Roll on Structures table."
-    },
-    "96": {
-        "type": "Treant meeting currently in progress",
-        "notes": "Q/A / Charisma rolls to interact?"
-    },
-    "97": {
-        "type": "Treant meeting currently in progress",
-        "notes": "Q/A / Charisma rolls to interact?"
-    },
-    "98": {
-        "type": "Treant meeting currently in progress",
-        "notes": "Q/A / Charisma rolls to interact?"
-    },
-    "99": {
-        "type": "Magical glade. A mage or some other magic user (or fey creatures) has a residence here.",
-        "notes": "50% friendly. Q/A rolls to determine interaction. Perhaps they have a quest for you!"
-    },
-    "100": {
-        "type": "Magical glade. A mage or some other magic user (or fey creatures) has a residence here.",
-        "notes": "50% friendly. Q/A rolls to determine interaction. Perhaps they have a quest for you!"
+        "feature": "a magical glade with a hostile fey",
+        "secondary_feature": "",
+        "event_chance_modifier": 50,
+        "combat_chance_modifier": 75
     }
 };
 
@@ -5791,404 +5414,244 @@ const table_wilderness_feature_clearing_count = Object.keys(table_wilderness_fea
 
 const table_wilderness_feature_gully = {
     "1": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a small gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a large gully",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "18": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "20": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "21": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "22": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a",
+        "secondary_feature": "waterway",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "23": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a rocky gully with caves",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 25
     },
     "24": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a rocky gully with caves",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 25
     },
     "25": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully that looks like it was only recently made",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "26": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully that looks like it was only recently made",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "27": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully home to a group of neutral creatures",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "28": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully home to a group of neutral creatures",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "29": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully home to a group of hostile creatures",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "30": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully home to a group of hostile creatures",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "31": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a dry gully containing the bones of many animals",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "32": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a dry gully containing the bones of many animals",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "33": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a dry gully containing the bones of many animals",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "34": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully containing an abandoned mine",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "35": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully containing an abandoned mine",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 5
     },
     "36": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully containing an abandoned mine",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "37": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a magical aura. A wizard lives here",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "38": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a magical aura. A Fey creature lives here",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "39": {
-        "type": "Standard gully",
-        "notes": ""
+        "feature": "a gully with a magical aura. A druid lives here",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 0
     },
     "40": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "41": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "42": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "43": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "44": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "45": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "46": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "47": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "48": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "49": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "50": {
-        "type": "Standard gully",
-        "notes": ""
-    },
-    "51": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "52": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "53": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "54": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "55": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "56": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "57": {
-        "type": "Gully with a waterway",
-        "notes": ""
-    },
-    "58": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "59": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "60": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "61": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "62": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "63": {
-        "type": "Rocky gully containing caves",
-        "notes": "25% easy encounter. Q/A & investigation rolls to investigate caves. 15% chance they lead to tunnels. 10% NPC."
-    },
-    "64": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "65": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "66": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "67": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "68": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "69": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "70": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "71": {
-        "type": "Gully that looks as if recently caused, perhaps by an earthquake or other natural disaster… or by a huge creature perhaps!",
-        "notes": "Q/A / nature rolls to discern cause"
-    },
-    "72": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "73": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "74": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "75": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "76": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "77": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "78": {
-        "type": "Dry gully containing the bones of many animals. A graveyard of sorts",
-        "notes": "Q/A nature rolls to find out more"
-    },
-    "79": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "80": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "81": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "82": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "83": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "84": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "85": {
-        "type": "Heavily wooded gully, an oasis for a particular colony of creatures",
-        "notes": "Q/A nature rolls to find out more. Are they still here? 25% Easy encounter, 25% clue"
-    },
-    "86": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "87": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "88": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "89": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "90": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "91": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "92": {
-        "type": "Gully with evidence of mining - an abandoned mining operation",
-        "notes": "Mines may lead quite far underground. Go to Random Dungeon Generator"
-    },
-    "93": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "94": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "95": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "96": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "97": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "98": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "99": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
-    },
-    "100": {
-        "type": "Magical wooded gully. A druid, or wizard, or Fey creatures lives here!",
-        "notes": "Friendly 50%, Clue 50%"
+        "feature": "a gully with a dark aura. An evil entity lives here",
+        "secondary_feature": "",
+        "event_chance_modifier": 5,
+        "combat_chance_modifier": 20
     }
 };
 
@@ -6196,404 +5659,226 @@ const table_wilderness_feature_gully_count = Object.keys(table_wilderness_featur
 
 const table_wilderness_feature_hills = {
     "1": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills, easier to travel than you would have expected",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills, easier to travel than you would have expected",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills, easier to travel than you would have expected",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills, easier to travel than you would have expected",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "18": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "low rolling hills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "20": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "rocky hills with many cave entrances",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "21": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "rocky hills with many cave entrances",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "22": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "rocky hills with many cave entrances",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "23": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a high hill offering a good view of the surrounding area",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "24": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a high hill offering a good view of the surrounding area",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "25": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a high hill offering a good view of the surrounding area",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "26": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a series of sharply jutting rocky hills requiring a great effort to scale",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "27": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a series of sharply jutting rocky hills requiring a great effort to scale",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 20
     },
     "28": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a series of sharply jutting rocky hills requiring a great effort to scale",
+        "secondary_feature": "",
+        "event_chance_modifier": 10,
+        "combat_chance_modifier": 15
     },
     "29": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a dry low plateau containing",
+        "secondary_feature": "monument",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "30": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a cluster of hills sheltering a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "31": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a cluster of hills sheltering a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "32": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "a cluster of hills sheltering a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "33": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "an entrance to an ancient barrow buried in the side of a hill",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "34": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "an entrance to an ancient barrow buried in the side of a hill",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "35": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "an entrance to an ancient barrow buried in the side of a hill",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "36": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
+        "feature": "the hills you are walking across house a colony of friendly humanoids",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "37": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "38": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "39": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "40": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "41": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "42": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "43": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "44": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "45": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "46": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "47": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "48": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "49": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "50": {
-        "type": "Low, rolling hills",
-        "notes": "Covered with overarching terrain. In a forest, wooded hills. In grassland, grassy hills."
-    },
-    "51": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "52": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "53": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "54": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "55": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "56": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "57": {
-        "type": "Rocky hills abundant with caves, may also possess a network of natural tunnels",
-        "notes": "Q/A rolls to see whether tunnels are present and whether they are inhabited. Clue 25%"
-    },
-    "58": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "59": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "60": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "61": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "62": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "63": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "64": {
-        "type": "Slightly higher hills, giving a good view of the surrounding area",
-        "notes": "Q/A A roll to see whether you can see anything of interest. 10% NPC."
-    },
-    "65": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "66": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "67": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "68": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "69": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "70": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "71": {
-        "type": "Sharply jutting, rocky hills, practically unscalable",
-        "notes": "Athletics check to scale, DC 16. Fall damage if fail?"
-    },
-    "72": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "73": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "74": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "75": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "76": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "77": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "78": {
-        "type": "Dry, low plateau.",
-        "notes": "Monument 25%"
-    },
-    "79": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "80": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "81": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "82": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "83": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "84": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "85": {
-        "type": "Slightly wooded hills, small patches of forest.",
-        "notes": "Easy encounter 25%. Roll on Small wood minor feature table."
-    },
-    "86": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "87": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "88": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "89": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "90": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "91": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "92": {
-        "type": "Not hills but barrows of some kind, possibly burial mounds!",
-        "notes": "Q/A to determine nature of these mounds. May lead to tunnels."
-    },
-    "93": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "94": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "95": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "96": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "97": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "98": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "99": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
-    },
-    "100": {
-        "type": "Hills are home to some sort of colony. 50% humanoid, otherwise some sort of burrowing beast.",
-        "notes": "Q/A rolls to determine what lurks here."
+        "feature": "the hills you are walking across house a colony of hostile humanoids",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -6601,84 +5886,88 @@ const table_wilderness_feature_hills_count = Object.keys(table_wilderness_featur
 
 const table_wilderness_feature_special = {
     "1": {
-        "type": "Sinkhole",
-        "notes": ""
+        "feature": "a sinkhole",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Crevasse caused by earthquake",
-        "notes": ""
+        "feature": "a crevasse",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Geiser / Hot Springs",
-        "notes": ""
+        "feature": "a geiser",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Landslide",
-        "notes": ""
+        "feature": "a landslide's aftermath",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Waterfall",
-        "notes": ""
+        "feature": "a landslide triggers",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Cave Forest",
-        "notes": ""
+        "feature": "a waterfall",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Blowhole (if not coastal, roll again)",
-        "notes": ""
+        "feature": "a cave leading to a mystical subterranean forest",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 10
     },
     "8": {
-        "type": "Volcano",
-        "notes": ""
+        "feature": "a volcano",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Interesting rock formations (caused by lava flow?)",
-        "notes": ""
+        "feature": "a series of seemingly natural yet symmetrical rock formations",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Madmade tunnel",
-        "notes": ""
+        "feature": "a large crater",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Crater (meteor?)",
-        "notes": ""
+        "feature": "a tar pit",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Tar Pit",
-        "notes": ""
+        "feature": "a petrified forest",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "River source / spring / river going underground",
-        "notes": ""
+        "feature": "a megalithic pillar covered in runes",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Quicksand (Perception check to notice?)",
-        "notes": ""
-    },
-    "15": {
-        "type": "Skull / facelike formation of rocks.",
-        "notes": ""
-    },
-    "16": {
-        "type": "Creature-shaped rocks. Basilisk victim?",
-        "notes": ""
-    },
-    "17": {
-        "type": "Petrified forest",
-        "notes": ""
-    },
-    "18": {
-        "type": "A lone pillar with runes",
-        "notes": ""
-    },
-    "19": {
-        "type": "Hanging tree, with noose",
-        "notes": ""
-    },
-    "20": {
-        "type": "Cairns of stone, arranged symetrically",
-        "notes": ""
+        "feature": "a tree with an empty noose",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 30
     }
 };
 
@@ -6686,404 +5975,106 @@ const table_wilderness_feature_special_count = Object.keys(table_wilderness_feat
 
 const table_wilderness_feature_lake = {
     "1": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "2": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "3": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "4": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "5": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "6": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "7": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "8": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "9": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "10": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 40
     },
     "11": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake with an unmarked village",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "a small pond",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 30
     },
     "13": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "a large unmapped lake that is difficult to cross",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake with an unmarked hamlet",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake",
+        "secondary_feature": "",
+        "event_chance_modifier": 100,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
+        "feature": "an unmapped lake teeming with fish",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "18": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "19": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "20": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "21": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "22": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "23": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "24": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "25": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "26": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "27": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "28": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "29": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "30": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "31": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "32": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "33": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "34": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "35": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "36": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "37": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "38": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "39": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "40": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "41": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "42": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "43": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "44": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "45": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "46": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "47": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "48": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "49": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "50": {
-        "type": "Medium-sized lake, unmarked on map.",
-        "notes": "Situated in overarching terrain. 40% easy encounter. Use overarching terrain for encounter table. 10% NPC."
-    },
-    "51": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table"
-    },
-    "52": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table"
-    },
-    "53": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table"
-    },
-    "54": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table"
-    },
-    "55": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table"
-    },
-    "56": {
-        "type": "Smallish lake / pond / watering hole",
-        "notes": "Q/A to discern whether anything lurks here. 30% medium encounter. Use overarching terrain for encounter table"
-    },
-    "57": {
-        "type": "Smallish lake / pond / watering hole",
-        "notes": "Q/A to discern whether anything lurks here. 30% medium encounter. Use overarching terrain for encounter table"
-    },
-    "58": {
-        "type": "Smallish lake / pond / watering hole",
-        "notes": "Q/A to discern whether anything lurks here. 30% medium encounter. Use overarching terrain for encounter table"
-    },
-    "59": {
-        "type": "Smallish lake / pond / watering hole",
-        "notes": "Q/A to discern whether anything lurks here. 30% medium encounter. Use overarching terrain for encounter table"
-    },
-    "60": {
-        "type": "Smallish lake / pond / watering hole",
-        "notes": "Q/A to discern whether anything lurks here. 30% medium encounter. Use overarching terrain for encounter table"
-    },
-    "61": {
-        "type": "Large, unmapped lake, with a waterway running out of it. Could be rideable in a canoe",
-        "notes": "DC 19 Survival check to craft canoe if trees are nearby. 10% NPC."
-    },
-    "62": {
-        "type": "Large, unmapped lake, with a waterway running out of it. Could be rideable in a canoe",
-        "notes": "DC 19 Survival check to craft canoe if trees are nearby. 10% NPC."
-    },
-    "63": {
-        "type": "Large, unmapped lake, with a waterway running out of it. Could be rideable in a canoe",
-        "notes": "DC 19 Survival check to craft canoe if trees are nearby. 10% NPC."
-    },
-    "64": {
-        "type": "Large, unmapped lake, with a waterway running out of it. Could be rideable in a canoe",
-        "notes": "DC 19 Survival check to craft canoe if trees are nearby. 10% NPC."
-    },
-    "65": {
-        "type": "Large, unmapped lake, with a waterway running out of it. Could be rideable in a canoe",
-        "notes": "DC 19 Survival check to craft canoe if trees are nearby. 10% NPC."
-    },
-    "66": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table, adding 20 to roll."
-    },
-    "67": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table, adding 20 to roll."
-    },
-    "68": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table, adding 20 to roll."
-    },
-    "69": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table, adding 20 to roll."
-    },
-    "70": {
-        "type": "Medium sized lake, small settlement somewhere on its shores.",
-        "notes": "Roll on Unmarked Settlement Table, adding 20 to roll."
-    },
-    "71": {
-        "type": "Large, unmapped lake, with small mountain range by its shores",
-        "notes": "Roll on Small Mountain Range table."
-    },
-    "72": {
-        "type": "Large, unmapped lake, with small mountain range by its shores",
-        "notes": "Roll on Small Mountain Range table."
-    },
-    "73": {
-        "type": "Large, unmapped lake, with small mountain range by its shores",
-        "notes": "Roll on Small Mountain Range table."
-    },
-    "74": {
-        "type": "Large, unmapped lake, with small mountain range by its shores",
-        "notes": "Roll on Small Mountain Range table."
-    },
-    "75": {
-        "type": "Large, unmapped lake, with small mountain range by its shores",
-        "notes": "Roll on Small Mountain Range table."
-    },
-    "76": {
-        "type": "Large lake with small woods on its shores",
-        "notes": "Roll on Small Woods Table"
-    },
-    "77": {
-        "type": "Large lake with small woods on its shores",
-        "notes": "Roll on Small Woods Table"
-    },
-    "78": {
-        "type": "Large lake with small woods on its shores",
-        "notes": "Roll on Small Woods Table"
-    },
-    "79": {
-        "type": "Large lake with small woods on its shores",
-        "notes": "Roll on Small Woods Table"
-    },
-    "80": {
-        "type": "Large lake with small woods on its shores",
-        "notes": "Roll on Small Woods Table"
-    },
-    "81": {
-        "type": "Medium-sized lakes with many boats",
-        "notes": "Q/A rolls to determine more. 25% clue. 40% NPC"
-    },
-    "82": {
-        "type": "Medium-sized lakes with many boats",
-        "notes": "Q/A rolls to determine more. 25% clue. 40% NPC"
-    },
-    "83": {
-        "type": "Medium-sized lakes with many boats",
-        "notes": "Q/A rolls to determine more. 25% clue. 40% NPC"
-    },
-    "84": {
-        "type": "Medium-sized lakes with many boats",
-        "notes": "Q/A rolls to determine more. 25% clue. 40% NPC"
-    },
-    "85": {
-        "type": "Medium-sized lakes with many boats",
-        "notes": "Q/A rolls to determine more. 25% clue. 40% NPC"
-    },
-    "86": {
-        "type": "Small lake or pond, serves as a lair for some aquatic creature",
-        "notes": "25% clue"
-    },
-    "87": {
-        "type": "Small lake or pond, serves as a lair for some aquatic creature",
-        "notes": "25% clue"
-    },
-    "88": {
-        "type": "Small lake or pond, serves as a lair for some aquatic creature",
-        "notes": "25% clue"
-    },
-    "89": {
-        "type": "Small lake or pond, serves as a lair for some aquatic creature",
-        "notes": "25% clue"
-    },
-    "90": {
-        "type": "Small lake or pond, serves as a lair for some aquatic creature",
-        "notes": "25% clue"
-    },
-    "91": {
-        "type": "Medium-sized lake, fish jumping",
-        "notes": "DC 15 Survival check to catch a fish."
-    },
-    "92": {
-        "type": "Medium-sized lake, fish jumping",
-        "notes": "DC 15 Survival check to catch a fish."
-    },
-    "93": {
-        "type": "Medium-sized lake, fish jumping",
-        "notes": "DC 15 Survival check to catch a fish."
-    },
-    "94": {
-        "type": "Medium-sized lake, fish jumping",
-        "notes": "DC 15 Survival check to catch a fish."
-    },
-    "95": {
-        "type": "Medium-sized lake, fish jumping",
-        "notes": "DC 15 Survival check to catch a fish."
-    },
-    "96": {
-        "type": "Sacred pool of some sort. Magical in nature",
-        "notes": "Q/A to discern whether any rituals are going on / magic user NPCs nearby."
-    },
-    "97": {
-        "type": "Sacred pool of some sort. Magical in nature",
-        "notes": "Q/A to discern whether any rituals are going on / magic user NPCs nearby."
-    },
-    "98": {
-        "type": "Sacred pool of some sort. Magical in nature",
-        "notes": "Q/A to discern whether any rituals are going on / magic user NPCs nearby."
-    },
-    "99": {
-        "type": "Sacred pool of some sort. Magical in nature",
-        "notes": "Q/A to discern whether any rituals are going on / magic user NPCs nearby."
-    },
-    "100": {
-        "type": "Sacred pool of some sort. Magical in nature",
-        "notes": "Q/A to discern whether any rituals are going on / magic user NPCs nearby."
+        "feature": "a small pool radiating a magical aura",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -7091,84 +6082,100 @@ const table_wilderness_feature_lake_count = Object.keys(table_wilderness_feature
 
 const table_wilderness_feature_monument = {
     "1": {
-        "type": "Standing stones / Obelisks / Large stone carvings",
-        "notes": "Q/A to discern more. Might have runes inscribed 10% NPC."
+        "feature": "a circle of standing stones",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Charcoal burning mound",
-        "notes": "Q/A rolls to determine what is being burnt here? Ores?"
+        "feature": "a series of large stone carvings",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Tribal totem pole",
-        "notes": "25% easy encounter Q/A to determine who is nearby, if anyone"
+        "feature": "an ancient looking statue of primitive origins",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 15
     },
     "4": {
-        "type": "Small Shrine",
-        "notes": "Q/A to determine god it is dedicated to, and also whether it is currently attended"
+        "feature": "a small shrine",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Sign to show nearby settlements",
-        "notes": "50% chance at least one of them isn't on the map. Clue 10%"
+        "feature": "a sign showing nearby settlements",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Cliff face with carved faces of gods",
-        "notes": "Q/A to determine god it is dedicated to, and also whether it is currently attended"
+        "feature": "a cliff face carved with the likeness of an unknown figure",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Statue of ancient leader",
-        "notes": "Q/A / History rolls to discern more"
+        "feature": "a statue of a famous figure from history",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Statue of famous adventurer",
-        "notes": "Anything hidden here?"
+        "feature": "a fairy ring",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Significant / tribally important tree or other natural feature",
-        "notes": "70% guarded by tribespeople / barbarians"
+        "feature": "ruins of an ancient structure lost to history",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 30
     },
     "10": {
-        "type": "Ancient Stone Pillars",
-        "notes": "Part of ruins? Q/A / History rolls to discern more"
+        "feature": "an altar with flowers, jewels and offerings",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Ruined stone walls",
-        "notes": "Q/A / History rolls to discern more"
+        "feature": "an altar marked by centuries of renewed splashed blood",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 20
     },
     "12": {
-        "type": "Altar / Pedestal",
-        "notes": "Sacrificial? 50% stained with blood"
+        "feature": "a tomb of a famous historical figure",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Large, scattered boulders of interesting shapes",
-        "notes": "Q/A / Nature rolls to discern more"
+        "feature": "a mountain of bones",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Single tomb of notable identity",
-        "notes": "25% already looted"
+        "feature": "an ancient battlefield with with monument to the dead",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Mountain of bones",
-        "notes": "Q/A / Nature rolls to discern more Clue 25%"
+        "feature": "a burnt down building",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Ancient battlefield with monument in remembrance of the dead",
-        "notes": "Q/A / History rolls to discern more Clue 25%"
-    },
-    "17": {
-        "type": "Burnt down building",
-        "notes": "Clue 50%"
-    },
-    "18": {
-        "type": "Termite or other insect mound",
-        "notes": "Nature check to discern more 50% easy encounter (with some insect like being perhaps?)"
-    },
-    "19": {
-        "type": "Ley lines",
-        "notes": "Q/A to discern more, like who drew them here and how long ago?"
-    },
-    "20": {
-        "type": "A lone archway in the middle of nowhere!",
-        "notes": "Portal?"
+        "feature": "an archway exuding a chaotic magic",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -7176,408 +6183,100 @@ const table_wilderness_feature_monument_count = Object.keys(table_wilderness_fea
 
 const table_wilderness_feature_oasis = {
     "1": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of refreshing water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis. Upon reaching it, you discover it is a mirage",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 30
     },
     "10": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of poisoned water",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 25
     },
     "11": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a pool of blessed water",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a travelling caravan of desert merchants",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis with a travelling caravan of desert nomads",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "14": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis containing a ruin",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
+        "feature": "an oasis containing a temple",
+        "secondary_feature": "",
+        "event_chance_modifier": 20,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "17": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "18": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "19": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "20": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "21": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "22": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "23": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "24": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "25": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "26": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "27": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "28": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "29": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "30": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "31": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "32": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "33": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "34": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "35": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "36": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "37": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "38": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "39": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "40": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "41": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "42": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "43": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "44": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "45": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "46": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "47": {
-        "type": "Oasis with pool of refreshing water at its centre. Ideal campsite",
-        "notes": "Good place for a long rest, especially in a desert"
-    },
-    "48": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "49": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "50": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "51": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "52": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "53": {
-        "type": "On reaching it, you discover it is a mirage.",
-        "notes": ""
-    },
-    "54": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "55": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "56": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "57": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "58": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "59": {
-        "type": "Oasis with pool but water is... not quite right. 30% poisoned, or something else. 50% favourable effect.",
-        "notes": "Q/A rolls / Nature check to discern more"
-    },
-    "60": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "61": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "62": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "63": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "64": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "65": {
-        "type": "Oasis contains a travelling caravan of desert merchants",
-        "notes": "90% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "66": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "67": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "68": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "69": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "70": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "71": {
-        "type": "Oasis contains a large camp of desert nomads.",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "72": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "73": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "74": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "75": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "76": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "77": {
-        "type": "Oasis contains a shrine or temple of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "78": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "79": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "80": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "81": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "82": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "83": {
-        "type": "Oasis contains a ruin of some sort",
-        "notes": "Q/A / Investigation roll to find out more."
-    },
-    "84": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "85": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "86": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "87": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "88": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "89": {
-        "type": "Oasis with bandits / raiders / other adventurers using it as a stopoff point",
-        "notes": "50% friendly. Are you able to approach with stealth SO they don't notice you?"
-    },
-    "90": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "91": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "92": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "93": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "94": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "95": {
-        "type": "Oasis with a waypoint / fresh horses / supplies",
-        "notes": "Restock on some basics! Q/A roll to discern more."
-    },
-    "96": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
-    },
-    "97": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
-    },
-    "98": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
-    },
-    "99": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
-    },
-    "100": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
-    },
-    "101": {
-        "type": "Some sort of magical barrier here.. it could only be described as a Wonderwall.",
-        "notes": "Q/A rolls / Arcana check to discern nature of barrier."
+        "feature": "an oasis camp for a group of bandits",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 100
     }
 };
 
@@ -7585,404 +6284,82 @@ const table_wilderness_feature_oasis_count = Object.keys(table_wilderness_featur
 
 const table_wilderness_feature_rocky_outcrop = {
     "1": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a high rocky outcrop providing a vantage point of surrounding area",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "10": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a high rocky outcrop providing a vantage point of surrounding area",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "a formation of standing stones atop a rocky outcrop",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
+        "feature": "an NPC sitting atop a rocky outcrop, bekconing you to join them",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "14": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "15": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "16": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "17": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "18": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "19": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "20": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "21": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "22": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "23": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "24": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "25": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "26": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "27": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "28": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "29": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "30": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "31": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "32": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "33": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "34": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "35": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "36": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "37": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "38": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "39": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "40": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "41": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "42": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "43": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "44": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "45": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "46": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "47": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "48": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "49": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "50": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "51": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "52": {
-        "type": "Rocky outcrop",
-        "notes": "Protruding above overarching terrain."
-    },
-    "53": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "54": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "55": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "56": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "57": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "58": {
-        "type": "Outcrop serves as a vantage point for humanoid scouts",
-        "notes": "DC 14 perception roll to see if your PC notices. Q/A to discern more."
-    },
-    "59": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "60": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "61": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "62": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "63": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "64": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "65": {
-        "type": "Small wood atop this outrcrop",
-        "notes": "Roll on Small Wood table"
-    },
-    "66": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "67": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "68": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "69": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "70": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "71": {
-        "type": "If scaled, PC might find a structure or monument on top of this feature",
-        "notes": "50% structure, 50% monument"
-    },
-    "72": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "73": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "74": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "75": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "76": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "77": {
-        "type": "Rocky outcrop is actually an island in the middle of a lake",
-        "notes": "Roll on Lake Table"
-    },
-    "78": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "79": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "80": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "81": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "82": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "83": {
-        "type": "Rocky outcrop is actually an assortment of large boulders scattered around.",
-        "notes": "Q/A to determine more. How did they get here? 50% medium encounter (possibly with surprise VS you)"
-    },
-    "84": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "85": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "86": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "87": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "88": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "89": {
-        "type": "Interesting formation of standing stones atop the outcrop.",
-        "notes": "DC 12 Survival check to scale this feature and investigate further"
-    },
-    "90": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "91": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "92": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "93": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "94": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "95": {
-        "type": "An NPC stands atop this outcrop and is calling out to you, beckoning you to join them up there",
-        "notes": "Q/A to discern more."
-    },
-    "96": {
-        "type": "Outcrop has been fashioned into the face or form of a well-known god.",
-        "notes": "50% worshippers present. Shrine atop the outcrop? Q/A to discern more."
-    },
-    "97": {
-        "type": "Outcrop has been fashioned into the face or form of a well-known god.",
-        "notes": "50% worshippers present. Shrine atop the outcrop? Q/A to discern more."
-    },
-    "98": {
-        "type": "Outcrop has been fashioned into the face or form of a well-known god.",
-        "notes": "50% worshippers present. Shrine atop the outcrop? Q/A to discern more."
-    },
-    "99": {
-        "type": "Outcrop has been fashioned into the face or form of a well-known god.",
-        "notes": "50% worshippers present. Shrine atop the outcrop? Q/A to discern more."
-    },
-    "100": {
-        "type": "Outcrop has been fashioned into the face or form of a well-known god.",
-        "notes": "50% worshippers present. Shrine atop the outcrop? Q/A to discern more."
+        "feature": "a rocky outcrop carved into the likeness of a well known god",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -7990,404 +6367,82 @@ const table_wilderness_feature_rocky_outcrop_count = Object.keys(table_wildernes
 
 const table_wilderness_feature_small_mountain_range_foothills = {
     "1": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "a small mountain range",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "a small mountain range",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "a small mountain range",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "foothills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "foothills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "foothills",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "an entrance to a cave in the side of a small mountain",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "an entrance to a cave in the side of a foothill",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "foothills surrounding a wizard tower",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "small mountains surrounding a monastery",
+        "secondary_feature": "",
+        "event_chance_modifier": 30,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "small mountains hiding the entrance to a secret dwaven underground citadel",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
+        "feature": "foothills mountains hiding the entrance to a secret dwaven gnomish stronghold",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "14": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "15": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "16": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "17": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "18": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "19": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "20": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "21": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "22": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "23": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "24": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "25": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "26": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "27": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "28": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "29": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "30": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "31": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "32": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "33": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "34": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "35": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "36": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "37": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "38": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "39": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "40": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "41": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "42": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "43": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "44": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "45": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "46": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "47": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "48": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "49": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "50": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "51": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "52": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "53": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "54": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "55": {
-        "type": "Standard small mountain range, mostly uniform size, no huge peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "56": {
-        "type": "Small mountain range with some large peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "57": {
-        "type": "Small mountain range with some large peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "58": {
-        "type": "Small mountain range with some large peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "59": {
-        "type": "Small mountain range with some large peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "60": {
-        "type": "Small mountain range with some large peaks",
-        "notes": "Will have snow if it is winter or near to winter. DC 16 Survival roll to scale (climbing gear also required)"
-    },
-    "61": {
-        "type": "Small mountain range that appears to possess a large amount of caves",
-        "notes": "Caves might lead to tunnels / dungeons"
-    },
-    "62": {
-        "type": "Small mountain range that appears to possess a large amount of caves",
-        "notes": "Caves might lead to tunnels / dungeons"
-    },
-    "63": {
-        "type": "Small mountain range that appears to possess a large amount of caves",
-        "notes": "Caves might lead to tunnels / dungeons"
-    },
-    "64": {
-        "type": "Small mountain range that appears to possess a large amount of caves",
-        "notes": "Caves might lead to tunnels / dungeons"
-    },
-    "65": {
-        "type": "Small mountain range that appears to possess a large amount of caves",
-        "notes": "Caves might lead to tunnels / dungeons"
-    },
-    "66": {
-        "type": "Mountain range appears to be home to a colony / settlement of some kind. Dwarven? Some kind of mountain dwelling creature.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "67": {
-        "type": "Mountain range appears to be home to a colony / settlement of some kind. Dwarven? Some kind of mountain dwelling creature.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "68": {
-        "type": "Mountain range appears to be home to a colony / settlement of some kind. Dwarven? Some kind of mountain dwelling creature.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "69": {
-        "type": "Mountain range appears to be home to a colony / settlement of some kind. Dwarven? Some kind of mountain dwelling creature.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "70": {
-        "type": "Mountain range appears to be home to a colony / settlement of some kind. Dwarven? Some kind of mountain dwelling creature.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "71": {
-        "type": "Small mountain range covered by forest.",
-        "notes": "Roll on Small Wood Table."
-    },
-    "72": {
-        "type": "Small mountain range covered by forest.",
-        "notes": "Roll on Small Wood Table."
-    },
-    "73": {
-        "type": "Small mountain range covered by forest.",
-        "notes": "Roll on Small Wood Table."
-    },
-    "74": {
-        "type": "Small mountain range covered by forest.",
-        "notes": "Roll on Small Wood Table."
-    },
-    "75": {
-        "type": "Small mountain range covered by forest.",
-        "notes": "Roll on Small Wood Table."
-    },
-    "76": {
-        "type": "Small mountain range, rugged and dangerous, partially wooded. Giant eagles and the like.",
-        "notes": "Hard encounter 50%"
-    },
-    "77": {
-        "type": "Small mountain range, rugged and dangerous, partially wooded. Giant eagles and the like.",
-        "notes": "Hard encounter 50%"
-    },
-    "78": {
-        "type": "Small mountain range, rugged and dangerous, partially wooded. Giant eagles and the like.",
-        "notes": "Hard encounter 50%"
-    },
-    "79": {
-        "type": "Small mountain range, rugged and dangerous, partially wooded. Giant eagles and the like.",
-        "notes": "Hard encounter 50%"
-    },
-    "80": {
-        "type": "Small mountain range, rugged and dangerous, partially wooded. Giant eagles and the like.",
-        "notes": "Hard encounter 50%"
-    },
-    "81": {
-        "type": "Bandits / Raiders using these mountains as a hideout. But does your PC know? Perception DC 18 to discern.",
-        "notes": "Hard encounter 70%"
-    },
-    "82": {
-        "type": "Bandits / Raiders using these mountains as a hideout. But does your PC know? Perception DC 18 to discern.",
-        "notes": "Hard encounter 70%"
-    },
-    "83": {
-        "type": "Bandits / Raiders using these mountains as a hideout. But does your PC know? Perception DC 18 to discern.",
-        "notes": "Hard encounter 70%"
-    },
-    "84": {
-        "type": "Bandits / Raiders using these mountains as a hideout. But does your PC know? Perception DC 18 to discern.",
-        "notes": "Hard encounter 70%"
-    },
-    "85": {
-        "type": "Bandits / Raiders using these mountains as a hideout. But does your PC know? Perception DC 18 to discern.",
-        "notes": "Hard encounter 70%"
-    },
-    "86": {
-        "type": "Small mountain range by lake.",
-        "notes": "Roll on Lake Table."
-    },
-    "87": {
-        "type": "Small mountain range by lake.",
-        "notes": "Roll on Lake Table."
-    },
-    "88": {
-        "type": "Small mountain range by lake.",
-        "notes": "Roll on Lake Table."
-    },
-    "89": {
-        "type": "Small mountain range by lake.",
-        "notes": "Roll on Lake Table."
-    },
-    "90": {
-        "type": "Small mountain range by lake.",
-        "notes": "Roll on Lake Table."
-    },
-    "91": {
-        "type": "Small mountain range with colony of Giants (or perhaps other humanoids)!",
-        "notes": "Q/A rolls to determine more"
-    },
-    "92": {
-        "type": "Small mountain range with colony of Giants (or perhaps other humanoids)!",
-        "notes": "Q/A rolls to determine more"
-    },
-    "93": {
-        "type": "Small mountain range with colony of Giants (or perhaps other humanoids)!",
-        "notes": "Q/A rolls to determine more"
-    },
-    "94": {
-        "type": "Small mountain range with colony of Giants (or perhaps other humanoids)!",
-        "notes": "Q/A rolls to determine more"
-    },
-    "95": {
-        "type": "monastery",
-        "notes": "Q/A rolls to determine more"
-    },
-    "96": {
-        "type": "wizard tower",
-        "notes": "Q/A rolls to determine more"
-    },
-    "97": {
-        "type": "community of druids",
-        "notes": "Q/A rolls to determine more"
-    },
-    "98": {
-        "type": "secret dwarven stronghold",
-        "notes": "Q/A rolls to determine more"
-    },
-    "99": {
-        "type": "secret gnomish stronghold",
-        "notes": "Q/A rolls to determine more"
-    },
-    "100": {
-        "type": "citadel for an assassin's order",
-        "notes": "Q/A rolls to determine more"
+        "feature": "mountains hiding a citedal for an assassin's order",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 40
     }
 };
 
@@ -8395,404 +6450,100 @@ const table_wilderness_feature_small_mountain_range_foothills_count = Object.key
 
 const table_wilderness_feature_small_wood = {
     "1": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small forest of dead trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "9": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood of ancient twisted trees",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 30
     },
     "10": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a serene Sylvan wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 40,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a dark thick wood",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 40
     },
     "12": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood that has been ravaged by fire",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood where a band of raiders are hiding",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 35
     },
     "14": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood with an overgrown shrine",
+        "secondary_feature": "",
+        "event_chance_modifier": 40,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
+        "feature": "a small wood sheltering a wood elf village",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "16": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "17": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "18": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "19": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "20": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "21": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "22": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "23": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "24": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "25": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "26": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "27": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "28": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "29": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "30": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "31": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "32": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "33": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "34": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "35": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "36": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "37": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "38": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "39": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "40": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "41": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "42": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "43": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "44": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "45": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "46": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "47": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "48": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "49": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "50": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "51": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "52": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "53": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "54": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "55": {
-        "type": "Standard type of wood for this area",
-        "notes": ""
-    },
-    "56": {
-        "type": "Trees dead, as if by some mysterious disease.",
-        "notes": "Use Q/A rolls to see if you can determine the nature of the affliction"
-    },
-    "57": {
-        "type": "Trees dead, as if by some mysterious disease.",
-        "notes": "Use Q/A rolls to see if you can determine the nature of the affliction"
-    },
-    "58": {
-        "type": "Trees dead, as if by some mysterious disease.",
-        "notes": "Use Q/A rolls to see if you can determine the nature of the affliction"
-    },
-    "59": {
-        "type": "Trees dead, as if by some mysterious disease.",
-        "notes": "Use Q/A rolls to see if you can determine the nature of the affliction"
-    },
-    "60": {
-        "type": "Trees dead, as if by some mysterious disease.",
-        "notes": "Use Q/A rolls to see if you can determine the nature of the affliction"
-    },
-    "61": {
-        "type": "Ancient wood, twisted, gnarled trees.",
-        "notes": "Clue 25%"
-    },
-    "62": {
-        "type": "Ancient wood, twisted, gnarled trees.",
-        "notes": "Clue 25%"
-    },
-    "63": {
-        "type": "Ancient wood, twisted, gnarled trees.",
-        "notes": "Clue 25%"
-    },
-    "64": {
-        "type": "Ancient wood, twisted, gnarled trees.",
-        "notes": "Clue 25%"
-    },
-    "65": {
-        "type": "Ancient wood, twisted, gnarled trees.",
-        "notes": "Clue 25%"
-    },
-    "66": {
-        "type": "Serene, Sylvan wood",
-        "notes": "Q/A rolls to check for signs of life"
-    },
-    "67": {
-        "type": "Serene, Sylvan wood",
-        "notes": "Q/A rolls to check for signs of life"
-    },
-    "68": {
-        "type": "Serene, Sylvan wood",
-        "notes": "Q/A rolls to check for signs of life"
-    },
-    "69": {
-        "type": "Serene, Sylvan wood",
-        "notes": "Q/A rolls to check for signs of life"
-    },
-    "70": {
-        "type": "Serene, Sylvan wood",
-        "notes": "Q/A rolls to check for signs of life"
-    },
-    "71": {
-        "type": "Dark, thick wood, full of menace",
-        "notes": "Hard encounter 20%"
-    },
-    "72": {
-        "type": "Dark, thick wood, full of menace",
-        "notes": "Hard encounter 20%"
-    },
-    "73": {
-        "type": "Dark, thick wood, full of menace",
-        "notes": "Hard encounter 20%"
-    },
-    "74": {
-        "type": "Dark, thick wood, full of menace",
-        "notes": "Hard encounter 20%"
-    },
-    "75": {
-        "type": "Dark, thick wood, full of menace",
-        "notes": "Hard encounter 20%"
-    },
-    "76": {
-        "type": "Wood which is in the process of being clearfelled for timber",
-        "notes": "Q/A rolls to determine who is clearfelling and why"
-    },
-    "77": {
-        "type": "Wood which is in the process of being clearfelled for timber",
-        "notes": "Q/A rolls to determine who is clearfelling and why"
-    },
-    "78": {
-        "type": "Wood which is in the process of being clearfelled for timber",
-        "notes": "Q/A rolls to determine who is clearfelling and why"
-    },
-    "79": {
-        "type": "Wood which is in the process of being clearfelled for timber",
-        "notes": "Q/A rolls to determine who is clearfelling and why"
-    },
-    "80": {
-        "type": "Wood which is in the process of being clearfelled for timber",
-        "notes": "Q/A rolls to determine who is clearfelling and why"
-    },
-    "81": {
-        "type": "Wood which has been ravaged by forest fire",
-        "notes": "Q/A rolls to determine cause of fire"
-    },
-    "82": {
-        "type": "Wood which has been ravaged by forest fire",
-        "notes": "Q/A rolls to determine cause of fire"
-    },
-    "83": {
-        "type": "Wood which has been ravaged by forest fire",
-        "notes": "Q/A rolls to determine cause of fire"
-    },
-    "84": {
-        "type": "Wood which has been ravaged by forest fire",
-        "notes": "Q/A rolls to determine cause of fire"
-    },
-    "85": {
-        "type": "Wood which has been ravaged by forest fire",
-        "notes": "Q/A rolls to determine cause of fire"
-    },
-    "86": {
-        "type": "Wood in which a band of raiding humanoids is currently hiding",
-        "notes": "Clue 50%. Medium encounter 35%"
-    },
-    "87": {
-        "type": "Wood in which a band of raiding humanoids is currently hiding",
-        "notes": "Clue 50%. Medium encounter 35%"
-    },
-    "88": {
-        "type": "Wood in which a band of raiding humanoids is currently hiding",
-        "notes": "Clue 50%. Medium encounter 35%"
-    },
-    "89": {
-        "type": "Wood in which a band of raiding humanoids is currently hiding",
-        "notes": "Clue 50%. Medium encounter 35%"
-    },
-    "90": {
-        "type": "Wood in which a band of raiding humanoids is currently hiding",
-        "notes": "Clue 50%. Medium encounter 35%"
-    },
-    "91": {
-        "type": "Wood containing a clearing containing totem / standing stones",
-        "notes": "Medium encounter 25%, Clue 10%"
-    },
-    "92": {
-        "type": "Wood containing a clearing containing totem / standing stones",
-        "notes": "Medium encounter 25%, Clue 10%"
-    },
-    "93": {
-        "type": "Wood containing a clearing containing totem / standing stones",
-        "notes": "Medium encounter 25%, Clue 10%"
-    },
-    "94": {
-        "type": "Wood containing a clearing containing totem / standing stones",
-        "notes": "Medium encounter 25%, Clue 10%"
-    },
-    "95": {
-        "type": "Wood containing a clearing containing totem / standing stones",
-        "notes": "Medium encounter 25%, Clue 10%"
-    },
-    "96": {
-        "type": "Wood inhabited by humanoid settlement such as elves, gnomes, halflings",
-        "notes": "Q/A rolls to determine whether you meet them"
-    },
-    "97": {
-        "type": "Wood inhabited by humanoid settlement such as elves, gnomes, halflings",
-        "notes": "Q/A rolls to determine whether you meet them"
-    },
-    "98": {
-        "type": "Wood inhabited by humanoid settlement such as elves, gnomes, halflings",
-        "notes": "Q/A rolls to determine whether you meet them"
-    },
-    "99": {
-        "type": "Wood inhabited by humanoid settlement such as elves, gnomes, halflings",
-        "notes": "Q/A rolls to determine whether you meet them"
-    },
-    "100": {
-        "type": "Wood inhabited by humanoid settlement such as elves, gnomes, halflings",
-        "notes": "Q/A rolls to determine whether you meet them"
+        "feature": "a small wood sheltering a wood forest gnome village",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -8800,509 +6551,237 @@ const table_wilderness_feature_small_wood_count = Object.keys(table_wilderness_f
 
 const table_wilderness_feature_structure = {
     "1": {
-        "type": "Mine",
-        "notes": "10% inhabited"
+        "feature": "mine",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Cemetery / Tomb",
-        "notes": "30% haunted / undead"
+        "feature": "tomb",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 30
     },
     "3": {
-        "type": "Small castle / keep",
-        "notes": "30% deserted (with possible monster inhabitants)"
+        "feature": "haunted cemetry",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 50
     },
     "4": {
-        "type": "Manor House",
-        "notes": "50% inhabited"
+        "feature": "cemetery",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 20
     },
     "5": {
-        "type": "Monastery",
-        "notes": "90% inhabited"
+        "feature": "small castle",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Shrine / Temple",
-        "notes": "50% humanoid inhabitants"
+        "feature": "manor house",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Watchtower",
-        "notes": "50% inhabitated, 50% humans"
+        "feature": "abandoned manor house",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Farm House",
-        "notes": "80% inhabited, 5% under attack currently"
+        "feature": "shrine",
+        "secondary_feature": "",
+        "event_chance_modifier": 40,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Fence",
-        "notes": "Q/A roll / nature roll to determine its purpose"
+        "feature": "watchtower",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Windmill",
-        "notes": ""
+        "feature": "old well",
+        "secondary_feature": "",
+        "event_chance_modifier": 50,
+        "combat_chance_modifier": 0
     },
     "11": {
-        "type": "Watermill",
-        "notes": "Roll on Waterway Table"
+        "feature": "hermit hut",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "12": {
-        "type": "Old well",
-        "notes": "50% hidden cave / tunnel at bottom. 30% clue"
+        "feature": "lone tavern",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Hermit Hut / Cave",
-        "notes": "70% inhabited, 40% clue"
+        "feature": "hunting cabin",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Lone tavern / inn",
-        "notes": "90% inhabited Q/A to discern more"
+        "feature": "bandit hideout",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Roll d4. 1-2: Hunting cabin. S-4: Fishing Hut.",
-        "notes": "25% inhabited. Might contain basic supplies. Q/A roll to determine If fishing hut, (roll d4) roll on 1-2: Waterway Table, S-4: Lake Table."
+        "feature": "ruins",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 75
     },
     "16": {
-        "type": "Hideout / Bunker",
-        "notes": "DC 16 perception check to notice. If you are in familiar / favoured terrain, make at advantage."
+        "feature": "wizard tower",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "17": {
-        "type": "Waypoint. Stopoff for couriers / horse trader",
-        "notes": "Q/A to discern more. 75% friendly or neutral."
+        "feature": "burial mound",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 30
     },
     "18": {
-        "type": "Training Camp",
-        "notes": "Q/A to discern more"
+        "feature": "monastery",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Bridge. (Roll d4) 1-2: Small, S: Medium, 4: Large",
-        "notes": "Roll on Waterways Table"
-    },
-    "20": {
-        "type": "Medium Bridge",
-        "notes": "Roll on Waterways Table"
-    },
-    "21": {
-        "type": "Large Bridge",
-        "notes": "Roll on Waterways Table"
-    },
-    "22": {
-        "type": "Large Castle / Keep",
-        "notes": "80% inhabited (if uninhabited, then something else will have moved in)."
-    },
-    "23": {
-        "type": "Ruins",
-        "notes": "50% hard encounter 10% deadly encounter. Clue 60%"
-    },
-    "24": {
-        "type": "Burial Mounds / Barrows",
-        "notes": "What lies beneath?"
-    },
-    "25": {
-        "type": "Wizard Tower",
-        "notes": "Definitely inhabited. 60% friendly."
+        "feature": "brindge",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     }
-}
+};
 
 const table_wilderness_feature_structure_count = Object.keys(table_wilderness_feature_structure).length;
 
 const table_wilderness_feature_swamp = {
     "1": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "2": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "3": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "4": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "5": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "6": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "7": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "8": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a swamp that is difficult to pass througfh",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 15
     },
     "9": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a thick, dense swamp, extremely difficult to pass through",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 30
     },
     "10": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a thick, dense swamp, extremely difficult to pass through",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 30
     },
     "11": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a patchy swamp with dry areas",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 50
     },
     "12": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a patchy swamp with dry areas",
+        "secondary_feature": "",
+        "event_chance_modifier": 25,
+        "combat_chance_modifier": 0
     },
     "13": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a wetland containing a network of waterways",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "14": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a wetland containing a network of waterways",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "15": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a dark, eerie swamp exuding an eldritch aura",
+        "secondary_feature": "",
+        "event_chance_modifier": 50,
+        "combat_chance_modifier": 65
     },
     "16": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "an ancient swamp with creatures forgotten to time",
+        "secondary_feature": "",
+        "event_chance_modifier": 35,
+        "combat_chance_modifier": 55
     },
     "17": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "a Fey oasis",
+        "secondary_feature": "",
+        "event_chance_modifier": 75,
+        "combat_chance_modifier": 0
     },
     "18": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
+        "feature": "an unmarked human village within a swamp",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "19": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "20": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "21": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "22": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "23": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "24": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "25": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "26": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "27": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "28": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "29": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "30": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "31": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "32": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "33": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "34": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "35": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "36": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "37": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "38": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "39": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "40": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "41": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "42": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "43": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "44": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "45": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "46": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "47": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "48": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "49": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "50": {
-        "type": "Standard swamp",
-        "notes": "Difficult terrain (half movement) 25% easy encounter"
-    },
-    "51": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "52": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "53": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "54": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "55": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "56": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "57": {
-        "type": "Thick, dense swamp, almost impossible to traverse, extending in all directions forward.",
-        "notes": "Extremely difficult terrain, movement slowed to quarter of normal."
-    },
-    "58": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "59": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "60": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "61": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "62": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "63": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "64": {
-        "type": "Patchy swamp with dry areas. Perfect area for bandits or raiders to have a camp.",
-        "notes": "Hard encounter 50%. Clue 30%"
-    },
-    "65": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "66": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "67": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "68": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "69": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "70": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "71": {
-        "type": "Wetland containing many ponds and a network of waterways. May need a small boat to traverse.",
-        "notes": "Survival check, DC 19, to craft a small kayak. Otherwise, might need to go around, adding travel time."
-    },
-    "72": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "73": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "74": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "75": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "76": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "77": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "78": {
-        "type": "Dark, eerie swamp, with an eldritch aura",
-        "notes": "Something evil hides in here.. Q/A rolls to determine what! Clue 10%"
-    },
-    "79": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "80": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "81": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "82": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "83": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "84": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "85": {
-        "type": "A land forgotten by time! Ancient swamp, small part of a more primeval wilderness that was here before",
-        "notes": "Hard encounter 50%"
-    },
-    "86": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "87": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "88": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "89": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "90": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "91": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "92": {
-        "type": "Fey Oasis",
-        "notes": "50% encounter with fey. Wisdom check (DC 16) or you get totally turned around, lost."
-    },
-    "93": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "94": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "95": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "96": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "97": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "98": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "99": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
-    },
-    "100": {
-        "type": "Swamp inhabited by humanoids who wish to remain hidden from the world.",
-        "notes": "Q/A rolls to determine whether you meet them."
+        "feature": "an unmarked non-human village with a swamp",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -9310,404 +6789,64 @@ const table_wilderness_feature_swamp_count = Object.keys(table_wilderness_featur
 
 const table_wilderness_feature_unmarked_settlement = {
     "1": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "hamlet",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "hamlet",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "village",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "village",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "5": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "nomadic camp",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "abandoned hamlet",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 10
     },
     "7": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "abandoned village",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 10
     },
     "8": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "abandoned tower",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 10
     },
     "9": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
+        "feature": "tower",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "11": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "12": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "13": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "14": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "15": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "16": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "17": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "18": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "19": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "20": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "21": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "22": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "23": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "24": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "25": {
-        "type": "Hamlet",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "26": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "27": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "28": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "29": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "30": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "31": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "32": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "33": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "34": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "35": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "36": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "37": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "38": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "39": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "40": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "41": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "42": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "43": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "44": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "45": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "46": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "47": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "48": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "49": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "50": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "51": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "52": {
-        "type": "Village",
-        "notes": "Situated in overarching terrain. Q/A rolls to find out more."
-    },
-    "53": {
-        "type": "Nomadic camp",
-        "notes": ""
-    },
-    "54": {
-        "type": "Nomadic camp",
-        "notes": ""
-    },
-    "55": {
-        "type": "Nomadic camp",
-        "notes": ""
-    },
-    "56": {
-        "type": "Nomadic camp",
-        "notes": ""
-    },
-    "57": {
-        "type": "Abandoned Hamlet",
-        "notes": "Q/A rolls to discern cause of abandonment and also how long ago it was abandoned."
-    },
-    "58": {
-        "type": "Abandoned Hamlet",
-        "notes": "Q/A rolls to discern cause of abandonment and also how long ago it was abandoned."
-    },
-    "59": {
-        "type": "Abandoned Village",
-        "notes": "Q/A rolls to discern cause of abandonment and also how long ago it was abandoned."
-    },
-    "60": {
-        "type": "Abandoned Village",
-        "notes": "Q/A rolls to discern cause of abandonment and also how long ago it was abandoned."
-    },
-    "61": {
-        "type": "Tower. Appears uninhabited",
-        "notes": "Q/A to discern whether anything lurks here."
-    },
-    "62": {
-        "type": "Tower. Appears uninhabited",
-        "notes": "Q/A to discern whether anything lurks here."
-    },
-    "63": {
-        "type": "Tower. Appears uninhabited",
-        "notes": "Q/A to discern whether anything lurks here."
-    },
-    "64": {
-        "type": "Tower. Appears inhabited",
-        "notes": "Q/A rolls to discern more."
-    },
-    "65": {
-        "type": "Tower. Appears inhabited",
-        "notes": "Q/A rolls to discern more."
-    },
-    "66": {
-        "type": "Tower. Appears inhabited",
-        "notes": "Q/A rolls to discern more."
-    },
-    "67": {
-        "type": "Tower. Appears inhabited",
-        "notes": "Q/A rolls to discern more."
-    },
-    "68": {
-        "type": "Worker's camp",
-        "notes": "Appropriate to overarching terrain. 70% human, otherwise\nsome other sort of humanoid."
-    },
-    "69": {
-        "type": "Worker's camp",
-        "notes": "Appropriate to overarching terrain. 70% human, otherwise\nsome other sort of humanoid."
-    },
-    "70": {
-        "type": "Worker's camp",
-        "notes": "Appropriate to overarching terrain. 70% human, otherwise\nsome other sort of humanoid."
-    },
-    "71": {
-        "type": "Worker's camp",
-        "notes": "Appropriate to overarching terrain. 70% human, otherwise\nsome other sort of humanoid."
-    },
-    "72": {
-        "type": "Hamlet, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "73": {
-        "type": "Hamlet, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "74": {
-        "type": "Hamlet, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "75": {
-        "type": "Hamlet, but some sort of affliction on the inhabitants",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "76": {
-        "type": "Hamlet, but some sort of affliction on the inhabitants",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "77": {
-        "type": "Hamlet, but some sort of affliction on the inhabitants",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "78": {
-        "type": "Hamlet, but some sort of affliction on the inhabitants",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "79": {
-        "type": "Unmapped village, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "80": {
-        "type": "Unmapped village, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "81": {
-        "type": "Unmapped village, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "82": {
-        "type": "Unmapped village, inhabited",
-        "notes": "Settlement founded on surrounding industry. 70% human, otherwise some other sort of humanoid."
-    },
-    "83": {
-        "type": "Village, but in discord / strife",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "84": {
-        "type": "Village, but in discord / strife",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "85": {
-        "type": "Village, but in discord / strife",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "86": {
-        "type": "Village, but in discord / strife",
-        "notes": "Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "87": {
-        "type": "Hidden town / humanoid colony. A good amount of inhabitants.",
-        "notes": "How have they remained hidden, and why? Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "88": {
-        "type": "Hidden town / humanoid colony. A good amount of inhabitants.",
-        "notes": "How have they remained hidden, and why? Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "89": {
-        "type": "Hidden town / humanoid colony. A good amount of inhabitants.",
-        "notes": "How have they remained hidden, and why? Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "90": {
-        "type": "Hidden town / humanoid colony. A good amount of inhabitants.",
-        "notes": "How have they remained hidden, and why? Q/A rolls to discern more. 70% human, otherwise some other sort of humanoid."
-    },
-    "91": {
-        "type": "Tree hut village",
-        "notes": "80% humanoid inhabitants (probably wood elves)"
-    },
-    "92": {
-        "type": "Tree hut village",
-        "notes": "80% humanoid inhabitants (probably wood elves)"
-    },
-    "93": {
-        "type": "Tree hut village",
-        "notes": "80% humanoid inhabitants (probably wood elves)"
-    },
-    "94": {
-        "type": "Tree hut village",
-        "notes": "80% humanoid inhabitants (probably wood elves)"
-    },
-    "95": {
-        "type": "Town is here magically",
-        "notes": "50% hard encounter. Q/A rolls to discern more."
-    },
-    "96": {
-        "type": "Town is here magically",
-        "notes": ""
-    },
-    "97": {
-        "type": "Town is illusory but inhabitants still interact with you",
-        "notes": ""
-    },
-    "98": {
-        "type": "Floating town, suspended by magic",
-        "notes": ""
-    },
-    "99": {
-        "type": "Town is a haven for undead",
-        "notes": ""
-    },
-    "100": {
-        "type": "Town is here magically",
-        "notes": ""
+        "feature": "village in strife",
+        "secondary_feature": "",
+        "event_chance_modifier": 15,
+        "combat_chance_modifier": 0
     }
 };
 
@@ -9715,404 +6854,64 @@ const table_wilderness_feature_unmarked_settlement_count = Object.keys(table_wil
 
 const table_wilderness_feature_waterway = {
     "1": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a small stream",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "2": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a small stream",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "3": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a river",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "4": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a river",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 40
     },
     "5": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a river",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "6": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a deep narrow stream",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "7": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a man-made waterway",
+        "secondary_feature": "",
+        "event_chance_modifier": 0,
+        "combat_chance_modifier": 0
     },
     "8": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a river with Fey frolicking within",
+        "secondary_feature": "",
+        "event_chance_modifier": 35,
+        "combat_chance_modifier": 0
     },
     "9": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
+        "feature": "a river with Elves frolicking within",
+        "secondary_feature": "",
+        "event_chance_modifier": 35,
+        "combat_chance_modifier": 0
     },
     "10": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "11": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "12": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "13": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "14": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "15": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "16": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "17": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "18": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "19": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "20": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "21": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "22": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "23": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "24": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "25": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "26": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "27": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "28": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "29": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "30": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "31": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "32": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "33": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "34": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "35": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "36": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "37": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "38": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "39": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "40": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "41": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "42": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "43": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "44": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "45": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "46": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "47": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "48": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "49": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "50": {
-        "type": "Stream /river running through",
-        "notes": "Runs through overarching terrain 15% waterfall nearby."
-    },
-    "51": {
-        "type": "Slightly larger river, might be difficult to ford",
-        "notes": "Survival check. DC 12 to ford. On a fail, you lose 1d4 perishable goods downstream and are soaked through If it's cold, you might need to stop and make a fire to dry off."
-    },
-    "52": {
-        "type": "Slightly larger river, might be difficult to ford",
-        "notes": "Survival check. DC 12 to ford. On a fail, you lose 1d4 perishable goods downstream and are soaked through If it's cold, you might need to stop and make a fire to dry off."
-    },
-    "53": {
-        "type": "Slightly larger river, might be difficult to ford",
-        "notes": "Survival check. DC 12 to ford. On a fail, you lose 1d4 perishable goods downstream and are soaked through If it's cold, you might need to stop and make a fire to dry off."
-    },
-    "54": {
-        "type": "Slightly larger river, might be difficult to ford",
-        "notes": "Survival check. DC 12 to ford. On a fail, you lose 1d4 perishable goods downstream and are soaked through If it's cold, you might need to stop and make a fire to dry off."
-    },
-    "55": {
-        "type": "Slightly larger river, might be difficult to ford",
-        "notes": "Survival check. DC 12 to ford. On a fail, you lose 1d4 perishable goods downstream and are soaked through If it's cold, you might need to stop and make a fire to dry off."
-    },
-    "56": {
-        "type": "A man-made waterway of some sort, irrigation channel perhaps?",
-        "notes": "Q/A rolls to discern purpose"
-    },
-    "57": {
-        "type": "A man-made waterway of some sort, irrigation channel perhaps?",
-        "notes": "Q/A rolls to discern purpose"
-    },
-    "58": {
-        "type": "A man-made waterway of some sort, irrigation channel perhaps?",
-        "notes": "Q/A rolls to discern purpose"
-    },
-    "59": {
-        "type": "A man-made waterway of some sort, irrigation channel perhaps?",
-        "notes": "Q/A rolls to discern purpose"
-    },
-    "60": {
-        "type": "A man-made waterway of some sort, irrigation channel perhaps?",
-        "notes": "Q/A rolls to discern purpose"
-    },
-    "61": {
-        "type": "Deep but narrow stream. You see something float by! Dex check to grab it.",
-        "notes": "Clue 50%, otherwise just a branch."
-    },
-    "62": {
-        "type": "Deep but narrow stream. You see something float by! Dex check to grab it.",
-        "notes": "Clue 50%, otherwise just a branch."
-    },
-    "63": {
-        "type": "Deep but narrow stream. You see something float by! Dex check to grab it.",
-        "notes": "Clue 50%, otherwise just a branch."
-    },
-    "64": {
-        "type": "Deep but narrow stream. You see something float by! Dex check to grab it.",
-        "notes": "Clue 50%, otherwise just a branch."
-    },
-    "65": {
-        "type": "Deep but narrow stream. You see something float by! Dex check to grab it.",
-        "notes": "Clue 50%, otherwise just a branch."
-    },
-    "66": {
-        "type": "Large, unmapped river. Could be rideable in canoe.",
-        "notes": "DC 19 Survival check to craft boat (if in forest or trees are nearby). O/A rolls and DC 19 History roll to discern more about this river."
-    },
-    "67": {
-        "type": "Large, unmapped river. Could be rideable in canoe.",
-        "notes": "DC 19 Survival check to craft boat (if in forest or trees are nearby). O/A rolls and DC 19 History roll to discern more about this river."
-    },
-    "68": {
-        "type": "Large, unmapped river. Could be rideable in canoe.",
-        "notes": "DC 19 Survival check to craft boat (if in forest or trees are nearby). O/A rolls and DC 19 History roll to discern more about this river."
-    },
-    "69": {
-        "type": "Large, unmapped river. Could be rideable in canoe.",
-        "notes": "DC 19 Survival check to craft boat (if in forest or trees are nearby). O/A rolls and DC 19 History roll to discern more about this river."
-    },
-    "70": {
-        "type": "Large, unmapped river. Could be rideable in canoe.",
-        "notes": "DC 19 Survival check to craft boat (if in forest or trees are nearby). O/A rolls and DC 19 History roll to discern more about this river."
-    },
-    "71": {
-        "type": "Sizable river with pond areas. Probably quite good for fishing or swimming",
-        "notes": "Medium encounter 50% Clue 25%"
-    },
-    "72": {
-        "type": "Sizable river with pond areas. Probably quite good for fishing or swimming",
-        "notes": "Medium encounter 50% Clue 25%"
-    },
-    "73": {
-        "type": "Sizable river with pond areas. Probably quite good for fishing or swimming",
-        "notes": "Medium encounter 50% Clue 25%"
-    },
-    "74": {
-        "type": "Sizable river with pond areas. Probably quite good for fishing or swimming",
-        "notes": "Medium encounter 50% Clue 25%"
-    },
-    "75": {
-        "type": "Sizable river with pond areas. Probably quite good for fishing or swimming",
-        "notes": "Medium encounter 50% Clue 25%"
-    },
-    "76": {
-        "type": "Sizable, unmapped river, spanned by bridge",
-        "notes": "Easy encounter 25% O/A roll to discern who built the bridge and for what purpose. 35% Unmarked Settlement nearby."
-    },
-    "77": {
-        "type": "Sizable, unmapped river, spanned by bridge",
-        "notes": "Easy encounter 25% O/A roll to discern who built the bridge and for what purpose. 35% Unmarked Settlement nearby."
-    },
-    "78": {
-        "type": "Sizable, unmapped river, spanned by bridge",
-        "notes": "Easy encounter 25% O/A roll to discern who built the bridge and for what purpose. 35% Unmarked Settlement nearby."
-    },
-    "79": {
-        "type": "Sizable, unmapped river, spanned by bridge",
-        "notes": "Easy encounter 25% O/A roll to discern who built the bridge and for what purpose. 35% Unmarked Settlement nearby."
-    },
-    "80": {
-        "type": "Sizable, unmapped river, spanned by bridge",
-        "notes": "Easy encounter 25% O/A roll to discern who built the bridge and for what purpose. 35% Unmarked Settlement nearby."
-    },
-    "81": {
-        "type": "Meandering river with pier where small boats are tied up. Ferryman?",
-        "notes": "Q/A rolls to determine purpose of boats."
-    },
-    "82": {
-        "type": "Meandering river with pier where small boats are tied up. Ferryman?",
-        "notes": "Q/A rolls to determine purpose of boats."
-    },
-    "83": {
-        "type": "Meandering river with pier where small boats are tied up. Ferryman?",
-        "notes": "Q/A rolls to determine purpose of boats."
-    },
-    "84": {
-        "type": "Meandering river with pier where small boats are tied up. Ferryman?",
-        "notes": "Q/A rolls to determine purpose of boats."
-    },
-    "85": {
-        "type": "Meandering river with pier where small boats are tied up. Ferryman?",
-        "notes": "Q/A rolls to determine purpose of boats."
-    },
-    "86": {
-        "type": "This appears to be a drainage channel for a nearby settlement.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "87": {
-        "type": "This appears to be a drainage channel for a nearby settlement.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "88": {
-        "type": "This appears to be a drainage channel for a nearby settlement.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "89": {
-        "type": "This appears to be a drainage channel for a nearby settlement.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "90": {
-        "type": "This appears to be a drainage channel for a nearby settlement.",
-        "notes": "Roll on Unmarked Settlement table."
-    },
-    "91": {
-        "type": "Humanoids or fey (elves? dryads?) frolicking in the water.",
-        "notes": "25% get freaky"
-    },
-    "92": {
-        "type": "Humanoids or fey (elves? dryads?) frolicking in the water.",
-        "notes": "25% get freaky"
-    },
-    "93": {
-        "type": "Humanoids or fey (elves? dryads?) frolicking in the water.",
-        "notes": "25% get freaky"
-    },
-    "94": {
-        "type": "Humanoids or fey (elves? dryads?) frolicking in the water.",
-        "notes": "25% get freaky"
-    },
-    "95": {
-        "type": "Humanoids or fey (elves? dryads?) frolicking in the water.",
-        "notes": "25% get freaky"
-    },
-    "96": {
-        "type": "Shallow brook what's that you see there amongst the pebbles?",
-        "notes": "Loot 20% (use CR of last creature defeated). Clue 40%"
-    },
-    "97": {
-        "type": "Shallow brook what's that you see there amongst the pebbles?",
-        "notes": "Loot 20% (use CR of last creature defeated). Clue 40%"
-    },
-    "98": {
-        "type": "Shallow brook what's that you see there amongst the pebbles?",
-        "notes": "Loot 20% (use CR of last creature defeated). Clue 40%"
-    },
-    "99": {
-        "type": "Shallow brook what's that you see there amongst the pebbles?",
-        "notes": "Loot 20% (use CR of last creature defeated). Clue 40%"
-    },
-    "100": {
-        "type": "Shallow brook what's that you see there amongst the pebbles?",
-        "notes": "Loot 20% (use CR of last creature defeated). Clue 40%"
+        "feature": "a river with humans frolicking within",
+        "secondary_feature": "",
+        "event_chance_modifier": 35,
+        "combat_chance_modifier": 0
     }
 };
 
