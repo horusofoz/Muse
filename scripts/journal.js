@@ -69,9 +69,7 @@ function writeToJournal(journalEntry) {
     var result_node = document.createElement('p');
     result_node.innerHTML = journalEntry;
     var divider = document.createElement('hr');
-    if(div_journal_log.innerHTML !== "") {
-        div_journal_log.appendChild(divider);
-    }
+    div_journal_log.appendChild(divider);
     div_journal_log.appendChild(result_node);
     div_journal_log.scrollTop = div_journal_log.scrollHeight;
 }
