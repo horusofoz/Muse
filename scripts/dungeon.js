@@ -192,7 +192,7 @@ function getDungeonPassage() {
 
     passage.eventOccurs = rollPercentileTrueFalse(table_dungeon_passage_content.Event.chance);
     if (passage.eventOccurs) {
-        passage.event = (initiateEvent()).replace("Random Event", "");
+        passage.event = (generateEvent()).replace("Random Event", "");
     }
 
     passage.combatOccurs = rollPercentileTrueFalse(table_dungeon_passage_content.Combat.chance);
@@ -380,7 +380,7 @@ function setDungeonRoom(room) {
 
     if (room.event) {
         roomString += "</br /></br />Random event occurs in passage";
-        roomString += initiateEvent().replace("Random Event", "");
+        roomString += generateEvent().replace("Random Event", "");
     }
 
     return roomString;
@@ -398,7 +398,7 @@ function getDungeonStair() {
     stair.size = table_dungeon_stair_size[getRandomInt(1, table_dungeon_stair_size_count)].size;
     stair.direction = table_dungeon_stair_direction[getRandomInt(1, table_dungeon_stair_direction_count)].direction;
     stair.trap = (rollPercentileTrueFalse(table_dungeon_stair_content.trap.chance)) ? generateTrap("stair") : false;
-    stair.event = (rollPercentileTrueFalse(table_dungeon_stair_content.event.chance)) ? initiateEvent().replace("Random Event", "") : false;
+    stair.event = (rollPercentileTrueFalse(table_dungeon_stair_content.event.chance)) ? generateEvent().replace("Random Event", "") : false;
     stair.combat = (rollPercentileTrueFalse(table_dungeon_stair_content.combat.chance)) ? getCombat() : false;
     stair.loot = (rollPercentileTrueFalse(table_dungeon_stair_content.loot.chance)) ? true : false;
 

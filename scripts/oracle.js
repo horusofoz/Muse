@@ -30,9 +30,7 @@ button_generate_portent.onclick = function () {
 };
 
 button_generate_event.onclick = function () {
-    var randomEvent = getRandomEvent();
-    randomEvent = setRandomEvent(randomEvent);
-    writeToJournal(randomEvent);
+    writeToJournal(generateEvent());
 };
 
 function generateQuestionAnswer() {
@@ -52,7 +50,7 @@ function setQuestionOutput(response) {
     questionString += "<br />Answer: " + response.answer;
 
     if(response.event === true) {
-        questionString += initiateEvent().replace("Random Event", "<br /><br />Random event triggered by Oracle");
+        questionString += generateEvent().replace("Random Event", "<br /><br />Random event triggered by Oracle");
     }
 
     return questionString;
@@ -142,7 +140,7 @@ function setRandomEvent(randomEvent) {
     return eventResult;
 }
 
-function initiateEvent() {
+function generateEvent() {
     var randomEvent = getRandomEvent();
     randomEvent = setRandomEvent(randomEvent);
     return randomEvent;

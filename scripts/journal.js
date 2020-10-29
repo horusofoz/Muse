@@ -66,6 +66,11 @@ function undoLastJournalEntry() {
 }
 
 function writeToJournal(journalEntry) {
+
+    if(journalEntry === "") {
+        return;
+    }
+
     var result_node = document.createElement('p');
     result_node.innerHTML = journalEntry;
     var divider = document.createElement('hr');

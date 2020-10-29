@@ -209,8 +209,8 @@ function applyActiveStyleToFeatureButton(activeFeatureButton) {
     activeFeatureButton.classList.add("active_button");
 }
 
-function capitalize (inputString) {
-    if(typeof inputString !== 'string') {
+function capitalize(inputString) {
+    if (typeof inputString !== 'string') {
         return "";
     }
     return inputString.charAt(0).toUpperCase() + inputString.slice(1);
@@ -230,4 +230,8 @@ function rollPercentileTrueFalse(chance) {
     roll = (roll < 1) ? 1 : roll;
     roll = (roll > 100) ? 100 : roll;
     return (roll <= chance);
+}
+
+function isVowel(letter) {
+    return ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) !== -1;
 }

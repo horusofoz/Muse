@@ -23,17 +23,13 @@ function getTravel() {
 
     travel.terrain = terrainType.type;
 
-    var featureTemplate = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)];
+    var featureType = terrainType.table[getRandomInt(1, Object.keys(terrainType.table).length)].feature;
+    var featureTemplate = getTravelFeature(featureType);
 
     travel.feature = featureTemplate.feature;
-    travel.featureSize = getTravelFeatureSize(featureTemplate);
-    travel.featureSizeInclude = featureTemplate.size_include;
+    travel.combat = (rollPercentileTrueFalse(table_wilderness_travel_content.Combat.chance + featureTemplate.combat_chance_modifier)) ? getCombat() : false;
+    travel.event = (rollPercentileTrueFalse(table_wilderness_travel_content.Event.chance + featureTemplate.event_chance_modifier)) ? generateEvent().replace("Random Event", "") : false;
 
-    if (travel.feature !== "no feature" && travel.feature !== "monster lair") {
-        var featureDetails = getTravelFeatureDetails(travel.feature);
-        travel.featureDetails = featureDetails.type;
-        travel.featureNotes = featureDetails.notes;
-    }
 
 
     // Get feature details
@@ -60,39 +56,107 @@ function getTravelTerrainInput() {
     return input_wilderness_travel_terrain.options[input_wilderness_travel_terrain.selectedIndex].value;
 }
 
-function getTravelFeatureDetails(type) {
+function getTravelFeature(type) {
 
-    var featureTable = table_wilderness_feature_type[type].table;
-    return featureDetails = featureTable[getRandomInt(1, Object.keys(featureTable).length)];
-
-}
-
-function getTravelFeatureSize(featureTemplate) {
-
-    if (featureTemplate.size_include === "FALSE") {
-        return false;
+    var travelFeature = {};
+    if (type == "no feature" || type == "monster lair") {
+        travelFeature.feature = type;
+        travelFeature.secondary_feature = false;
+        travelFeature.event_chance_modifier = 0;
+        travelFeature.combat_chance_modifier = (type === "no feature") ? 0 : 100;
+        return travelFeature;
     }
 
-    if (featureTemplate.size_variable === "FALSE") {
-        return featureTemplate.size;
-    }
 
-    return getRandomInt(1, featureTemplate.size);
+    var travelFeature = table_wilderness_feature_type[type].table;
+    travelFeature = travelFeature[getRandomInt(1, Object.keys(travelFeature).length)];
+    return travelFeature;
 }
 
 function setTravel(travel) {
-    travelString = "";
+    //travelString = JSON.stringify(travel);    
+    var travelString = "";
 
-    console.log(travel);
+    travelString += setTravelStringTerrain(travel.terrain);
 
-    if (travel.featureSizeInclude !== false && (travel.feature === "no feature" || travel.feature === "monster lair")) {
-        travelString += "Travel " + travel.featureSize + " miles across featureless " + travel.terrain + " terrain.";
-    } else {
-        travelString += "Travelling across " + travel.terrain + " terrain, you find " + travel.featureDetails;
-        travelString += "<br />" + travel.featureNotes;
+    // Monster lair
+    travelString += (travel.feature === "monster lair") ? "you discover a monster's lair. " : "";
+
+
+
+    // Feature
+    //travelString += (travel.feature !== "no feature" && travel.feature !== "monster lair") ? setTravelStringFeature() : "";
+
+    if (travel.feature !== "monster lair" && travel.feature !== "no feature") {
+        travelString += "you discover " + travel.feature + ". ";
     }
 
+    console.log(travelString[travelString.length - 2]);
+
+    // Combat
+    if(travel.combat !== false) {
+        var combatString = "you face a " + travel.combat.toLowerCase() + " encounter. ";
+        if(travelString[travelString.length - 2] !== ",") {
+            combatString = capitalize(combatString);
+        }
+        travelString += combatString;
+    }
+
+    // Event
+    if(travel.event !== false) {
+        var eventString = "a random event occurs.<br />" + travel.event;
+        if(travelString[travelString.length - 2] !== ",") {
+            eventString = capitalize(eventString);
+        }
+        travelString += eventString;
+    }
+
+    // Nothing happens
+
+    if(travel.feature  === "no feature" && travel.combat === false && travel.event === false) {
+        travelString += "you find nothing new of note.";
+    }
+
+    console.log(travel);
     return travelString;
+}
+
+function setTravelStringTerrain(terrain) {
+    var travelString = "Travelling ";
+
+    switch (terrain) {
+        case "arctic":
+            travelString += "through arctic terrain, "
+            break;
+        case "coastal":
+            travelString += "along a coast, "
+            break;
+        case "desert":
+            travelString += "though desert terrain, "
+            break;
+        case "grassland":
+            travelString += "through grasslands, "
+            break;
+        case "forest":
+            travelString += "through forest, "
+            break;
+        case "jungle":
+            travelString += "through jungle, "
+            break;
+        case "hills":
+            travelString += "through hilly terrain, "
+            break;
+        case "mountains":
+            travelString += "through mountains, "
+            break;
+        case "swamp":
+            travelString += "through swampy terrain, "
+            break;
+        default:
+            throw "Unknown terrain type passed to setTravelStringTerrain";
+    }
+
+    return travelString
 }
 
 // Wilderness Tables
@@ -6551,115 +6615,115 @@ const table_wilderness_feature_small_wood_count = Object.keys(table_wilderness_f
 
 const table_wilderness_feature_structure = {
     "1": {
-        "feature": "mine",
+        "feature": "a mine",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "2": {
-        "feature": "tomb",
+        "feature": "a tomb",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 30
     },
     "3": {
-        "feature": "haunted cemetry",
+        "feature": "a haunted cemetery",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 50
     },
     "4": {
-        "feature": "cemetery",
+        "feature": "a cemetery",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 20
     },
     "5": {
-        "feature": "small castle",
+        "feature": "a small castle",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "6": {
-        "feature": "manor house",
+        "feature": "a manor house",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "7": {
-        "feature": "abandoned manor house",
+        "feature": "an abandoned manor house",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "8": {
-        "feature": "shrine",
+        "feature": "a shrine",
         "secondary_feature": "",
         "event_chance_modifier": 40,
         "combat_chance_modifier": 0
     },
     "9": {
-        "feature": "watchtower",
+        "feature": "a watchtower",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "10": {
-        "feature": "old well",
+        "feature": "an old well",
         "secondary_feature": "",
         "event_chance_modifier": 50,
         "combat_chance_modifier": 0
     },
     "11": {
-        "feature": "hermit hut",
+        "feature": "a hermit hut",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "12": {
-        "feature": "lone tavern",
+        "feature": "a lone tavern",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "13": {
-        "feature": "hunting cabin",
+        "feature": "a hunting cabin",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "14": {
-        "feature": "bandit hideout",
+        "feature": "a bandit hideout",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "15": {
-        "feature": "ruins",
+        "feature": "a ruins",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 75
     },
     "16": {
-        "feature": "wizard tower",
+        "feature": "a wizard tower",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "17": {
-        "feature": "burial mound",
+        "feature": "a burial mound",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 30
     },
     "18": {
-        "feature": "monastery",
+        "feature": "a monastery",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
     },
     "19": {
-        "feature": "brindge",
+        "feature": "a bridge",
         "secondary_feature": "",
         "event_chance_modifier": 25,
         "combat_chance_modifier": 0
@@ -6789,61 +6853,61 @@ const table_wilderness_feature_swamp_count = Object.keys(table_wilderness_featur
 
 const table_wilderness_feature_unmarked_settlement = {
     "1": {
-        "feature": "hamlet",
+        "feature": "a hamlet",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "2": {
-        "feature": "hamlet",
+        "feature": "a hamlet",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "3": {
-        "feature": "village",
+        "feature": "a village",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "4": {
-        "feature": "village",
+        "feature": "a village",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "5": {
-        "feature": "nomadic camp",
+        "feature": "a nomadic camp",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "6": {
-        "feature": "abandoned hamlet",
+        "feature": "an abandoned hamlet",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 10
     },
     "7": {
-        "feature": "abandoned village",
+        "feature": "an abandoned village0",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 10
     },
     "8": {
-        "feature": "abandoned tower",
+        "feature": "an abandoned tower",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 10
     },
     "9": {
-        "feature": "tower",
+        "feature": "a tower",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
     },
     "10": {
-        "feature": "village in strife",
+        "feature": "a village in strife",
         "secondary_feature": "",
         "event_chance_modifier": 15,
         "combat_chance_modifier": 0
@@ -7370,5 +7434,14 @@ const table_wilderness_feature_type = {
     },
     "waterway": {
         "table": table_wilderness_feature_waterway
+    }
+};
+
+const table_wilderness_travel_content = {
+    "Event": {
+        "chance": 10
+    },
+    "Combat": {
+        "chance": 25
     }
 };
