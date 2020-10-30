@@ -28,12 +28,12 @@ function getTravel() {
 
     travel.feature = featureTemplate.feature;
     travel.combat = (rollPercentileTrueFalse(table_wilderness_travel_content.Combat.chance + featureTemplate.combat_chance_modifier)) ? getCombat() : false;
-    travel.event = (rollPercentileTrueFalse(table_wilderness_travel_content.Event.chance + featureTemplate.event_chance_modifier)) ? generateEvent().replace("Random Event", "") : false;
+    travel.event = (rollPercentileTrueFalse(table_wilderness_travel_content.Event.chance + featureTemplate.event_chance_modifier)) ? generateEvent() : false;
 
 
 
     // Get feature details
-
+    console.log(travel);
     return travel;
 }
 
@@ -73,11 +73,11 @@ function getTravelFeature(type) {
     return travelFeature;
 }
 
-function setTravel(travel) {
+function setTravelOld(travel) {
     //travelString = JSON.stringify(travel);    
     var travelString = "";
 
-    travelString += setTravelStringTerrain(travel.terrain);
+    travelString += setTravelStringTerrainOld(travel.terrain);
 
     // Monster lair
     travelString += (travel.feature === "monster lair") ? "you discover a monster's lair. " : "";
@@ -85,8 +85,6 @@ function setTravel(travel) {
 
 
     // Feature
-    //travelString += (travel.feature !== "no feature" && travel.feature !== "monster lair") ? setTravelStringFeature() : "";
-
     if (travel.feature !== "monster lair" && travel.feature !== "no feature") {
         travelString += "you discover " + travel.feature + ". ";
     }
@@ -94,26 +92,25 @@ function setTravel(travel) {
     console.log(travelString[travelString.length - 2]);
 
     // Combat
-    if(travel.combat !== false) {
+    if (travel.combat !== false) {
         var combatString = "you face a " + travel.combat.toLowerCase() + " encounter. ";
-        if(travelString[travelString.length - 2] !== ",") {
+        if (travelString[travelString.length - 2] !== ",") {
             combatString = capitalize(combatString);
         }
         travelString += combatString;
     }
 
     // Event
-    if(travel.event !== false) {
+    if (travel.event !== false) {
         var eventString = "a random event occurs.<br />" + travel.event;
-        if(travelString[travelString.length - 2] !== ",") {
+        if (travelString[travelString.length - 2] !== ",") {
             eventString = capitalize(eventString);
         }
         travelString += eventString;
     }
 
     // Nothing happens
-
-    if(travel.feature  === "no feature" && travel.combat === false && travel.event === false) {
+    if (travel.feature === "no feature" && travel.combat === false && travel.event === false) {
         travelString += "you find nothing new of note.";
     }
 
@@ -121,7 +118,7 @@ function setTravel(travel) {
     return travelString;
 }
 
-function setTravelStringTerrain(terrain) {
+function setTravelStringTerrainOld(terrain) {
     var travelString = "Travelling ";
 
     switch (terrain) {
@@ -151,6 +148,76 @@ function setTravelStringTerrain(terrain) {
             break;
         case "swamp":
             travelString += "through swampy terrain, "
+            break;
+        default:
+            throw "Unknown terrain type passed to setTravelStringTerrain";
+    }
+
+    return travelString
+}
+
+function setTravel(travel) {
+
+    // Set Terrain
+    var travelString = setTravelStringTerrain(travel.terrain);
+
+    // Nothing happens
+    if (travel.feature === "no feature" && travel.combat === false && travel.event === false) {
+        travelString += "<br /><br />Nothing of note occurs";
+        return travelString;
+    }
+
+    // Monster Lair
+    travelString += (travel.feature === "monster lair") ? "<br /><br />Discover a monster's lair" : "";
+
+    // Feature
+    if (travel.feature !== "monster lair" && travel.feature !== "no feature") {
+        travelString += "<br /><br />Discover " + travel.feature;
+    }
+
+    // Combat
+    if (travel.combat !== false) {
+        travelString += "<br /><br />Face a " + travel.combat.toLowerCase() + " encounter ";
+    }
+
+    // Event
+    if (travel.event !== false) {
+        travelString += "<br /><br />A random event occurs" + travel.event.replace("Random Event","");
+    }
+
+    return travelString;
+}
+
+function setTravelStringTerrain(terrain) {
+    var travelString = "Travel ";
+
+    switch (terrain) {
+        case "arctic":
+            travelString += "through arctic terrain"
+            break;
+        case "coastal":
+            travelString += "along a coast"
+            break;
+        case "desert":
+            travelString += "though desert terrain"
+            break;
+        case "grassland":
+            travelString += "through grasslands"
+            break;
+        case "forest":
+            travelString += "through forest"
+            break;
+        case "jungle":
+            travelString += "through jungle"
+            break;
+        case "hills":
+            travelString += "through hilly terrain"
+            break;
+        case "mountains":
+            travelString += "through mountains"
+            break;
+        case "swamp":
+            travelString += "through swampy terrain"
             break;
         default:
             throw "Unknown terrain type passed to setTravelStringTerrain";
