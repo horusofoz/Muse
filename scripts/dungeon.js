@@ -2419,16 +2419,16 @@ const table_dungeon_passage_width_count = Object.keys(table_dungeon_passage_widt
 
 const table_dungeon_passage_content = {
     "Trap": {
-        "chance": 10
+        "chance": 5
     },
     "Event": {
-        "chance": 10
+        "chance": 5
     },
     "Combat": {
         "chance": 25
     },
     "Loot": {
-        "chance": 5
+        "chance": 10
     }
 };
 
