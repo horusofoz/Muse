@@ -40,3 +40,7 @@ button_feature_about_encounter.onclick = function () {
 function getPartyTier() {
     return input_party_tier.options[input_party_tier.selectedIndex].value;
 }
+
+function getEntryStyle() {
+    return input_entry_style.options[input_entry_style.selectedIndex].value;
+}

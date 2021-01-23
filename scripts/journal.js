@@ -71,10 +71,18 @@ function writeToJournal(journalEntry) {
         return;
     }
 
+    if(getEntryStyle() == "clear") {
+        clearJournalLog();
+    }
+    
     var result_node = document.createElement('p');
     result_node.innerHTML = journalEntry;
-    var divider = document.createElement('hr');
-    div_journal_log.appendChild(divider);
+
+    if(getEntryStyle() !== "clear") {
+        var divider = document.createElement('hr');
+        div_journal_log.appendChild(divider);
+    }
+
     div_journal_log.appendChild(result_node);
     div_journal_log.scrollTop = div_journal_log.scrollHeight;
 }
